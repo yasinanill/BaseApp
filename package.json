@@ -22,6 +22,7 @@
     "react-native-paper": "^5.11.4",
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
+    "react-native-svg": "^14.1.0",
     "react-router-dom": "^6.20.1",
     "zustand": "^4.4.7"
   },
