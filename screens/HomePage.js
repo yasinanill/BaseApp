@@ -3,6 +3,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TextInput } from 'react-native-paper'
 import { COLOURS } from '../components/database/Database';
+import { useNavigation } from '@react-navigation/native';
 
 export default function HomePage() {
 
@@ -14,20 +15,23 @@ export default function HomePage() {
  
 ],
 categories: [
-    { id: 1, title: 'Kalori Listesi',  items :'Activite'},
-    { id: 1, title: 'Kalori Listesi',  items :'Activite'},
-    { id: 1, title: 'Kalori Listesi',  items :'Activite'},
-    { id: 1, title: 'Kalori Listesi',  items :'Activite'},
-    { id: 1, title: 'Kalori Listesi',  items :'Activite'},
+   
+    { id: 1, title: 'Kalori Listesi', icon: require('../assets/images/kalorilistesi.png'),  items :'Home'},
+    { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'), items :'RecipesHome' },
+    { id: 4, title: 'Aktiviteler', icon:  require('../assets/images/activities.png'), items :'ActivitiesHome' },
+    { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'), items :'Calculation' },
+    { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png')},
+
+
 
 ],
   products:[ 
     { id: 4, title: 'Karpuz', kalori:'150' },
-    { id: 4, title: 'Karpuz', kalori:'150' },
-    { id: 4, title: 'Karpuz', kalori:'150' },
-    { id: 4, title: 'Karpuz', kalori:'150' },
-    { id: 4, title: 'Karpuz', kalori:'150' },
-    { id: 4, title: 'Karpuz', kalori:'150' },
+    { id: 5, title: 'Karpuz', kalori:'150' },
+    { id: 6, title: 'Karpuz', kalori:'150' },
+    { id: 7, title: 'Karpuz', kalori:'150' },
+    { id: 8, title: 'Karpuz', kalori:'150' },
+    { id: 9, title: 'Karpuz', kalori:'150' },
   
    
    
@@ -40,14 +44,15 @@ const promations = data.promations;
 const categories = data.categories;
 
 const products = data.products;
+const navigation = useNavigation();
 
 renderCategoryItem = ({ item }) => {
   return <View style={style.categoryItem}>
 
 
       <View style={style.categoryItemIconContainer}>
-          <TouchableOpacity onPress={()=> this.props.navigation.navigate(item.items)} >
-          <Image  style={style.categoryItemIcon} /></TouchableOpacity>
+          <TouchableOpacity onPress={()=> navigation.navigate(item.items)} >
+          <Image source={item.icon}  style={style.categoryItemIcon} /></TouchableOpacity>
       </View>
       <Text style={style.categoryItemTitle}>{item.title}</Text>
 
@@ -122,7 +127,7 @@ renderProductItem = ({ item }) => {
 
                         </View>
                         <View style={{ marginTop: 15 }}>
-                            <FlatList style={{ paddingHorizontal: 10 }}
+                            <FlatList style={{ paddingHorizontal: 4 }}
                                 showsHorizontalScrollIndicator={false}
                                 data={categories} horizontal={true} renderItem={this.renderCategoryItem} />
 
@@ -170,9 +175,9 @@ const style = StyleSheet.create({
 
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingHorizontal: 20,
-        paddingTop: 20,
-        paddingBottom: 5,
+        paddingHorizontal: 16,
+        paddingTop: 8,
+        paddingBottom: 2,
 
     },
     Avatar: {
@@ -183,7 +188,7 @@ const style = StyleSheet.create({
 
     },
     AppName: {
-        padding: 8,
+        padding: 6,
         fontSize: 24,
         color: "#8a2be2",
         fontWeight:'700',
@@ -204,8 +209,8 @@ const style = StyleSheet.create({
     Searcharea: {
         flexDirection: "row",
         alignItems: "center",
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingHorizontal:16,
+        paddingVertical: 12,
 
     },
     SearchInput: {
@@ -221,7 +226,7 @@ const style = StyleSheet.create({
 
     },
     Searchbar: {
-        padding: 10,
+        padding: 1,
 
         borderWidth: 1,
         borderColor: "#8a2be2",
@@ -230,12 +235,12 @@ const style = StyleSheet.create({
 
     },
     SearchButtoncontainer: {
-        padding: 14,
+        padding: 12,
 
         borderWidth: 1,
         borderColor: "#8a2be2",
         borderRadius: 5,
-        marginLeft: 15,
+        marginLeft: 12,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
@@ -277,56 +282,56 @@ const style = StyleSheet.create({
         fontSize: 12,
         color: "white",
         fontWeight: '500',
-        marginTop: 10,
+        marginTop: 12,
     },
 
     categoryAreaTopBar: {
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingHorizontal: 15,
+        paddingHorizontal: 12,
     },
 
     categoryArea: {
-        marginTop: 20,
+        marginTop: 2,
 
     },
     categoryone: {
-        fontSize: 18,
+        fontSize: 16,
         color:COLOURS.Purple
 
     },
 
     categorytwo: {
         color: "#8a2be2",
-        fontWeight: '400',
+        fontWeight: '500',
 
     },
 
     categoryItem: {
 
-        padding: 10,
-        marginRight: 5,
+        padding: 6,
+        marginRight: 4,
         borderRadius: 15,
         alignItems: 'center',
 
     },
 
     categoryItemIcon: {
-        width: 50,
-        height: 50,
+        width: 70,
+        height: 70,
         borderRadius: 10,
 
     },
     categoryItemIconContainer: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
+        shadowColor: "#8a2be2",
+        shadowOffset: { width: 1, height: 1},
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
         elevation: 20,
         backgroundColor: "white",
         borderRadius: 10,
-        width: 60,
-        height: 60,
+        width: 75,
+        height: 75,
         alignItems: 'center',
         justifyContent: "center",
     },
@@ -334,7 +339,7 @@ const style = StyleSheet.create({
     categoryItemTitle: {
 
         textAlign: 'center',
-        marginTop: 5,
+        marginTop: 4,
 
     },
     

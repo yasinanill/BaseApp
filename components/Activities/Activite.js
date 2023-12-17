@@ -47,7 +47,7 @@ resultByMinute =()=>{
        setContent(!content)
       }
     
-    hgjh
+    
       return (
  
         <SafeAreaView>
