@@ -10,11 +10,11 @@ export const COLOURS = {
     Purple :"#8a2be2",
   };
   
-  export const Items = [
+  export const FoodItems = [
     {
       id: 1,
       category: 'Foods',
-      productName: ' Beyaz Ekmek',
+      productname: ' Beyaz Ekmek',
       productCalorie: 102,
       Amount: "100 gram",
       productCarbo: 43,
@@ -462,17 +462,7 @@ export const COLOURS = {
 
 
 
-      {
-        id: 44,
-        category: 'activite',
-        Name: 'kosu',
-        productCalorie: 17,
-   
-     
-        productImage: require('../database/images/foods/1.jpg'),
-        isAvailable: true,
 
-      },
      
   ];
   

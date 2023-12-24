@@ -86,6 +86,16 @@ const style = StyleSheet.create({
 
     Image: { width: 100, height: 100, padding: 20, borderRadius: 20, },
     
+    
+    mealContainer:{
+
+
+
+      
+
+    },
+
+
     content: {
         margin: 16,
         borderRadius: 20, width: 360, height: 200, color: 'white', alignItems: "center", fontSize: 16, justifyContent: 'center', marginTop: 60, backgroundColor: "#ccc",

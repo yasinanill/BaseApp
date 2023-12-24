@@ -1,51 +1,80 @@
-import React from 'react';
-import { View, Image, Text } from 'react-native';
 
-const CircularProgressBar = ({ value }) => {
-  const radius = 100; // Yuvarlak barın yarıçapı
-  const normalizedValue = Math.min(Math.max(value, 0), 3000);
-  const fillPercentage = (normalizedValue / 3000) * 100;
+import React, { useState } from 'react';
+import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
+import { FoodItems } from '../components/database/Database';
 
-  const dotOffsetX = radius * Math.cos(((360 - fillPercentage / 100 * 360) * Math.PI) / 180);
-  const dotOffsetY = radius * Math.sin(((360 - fillPercentage / 100 * 360) * Math.PI) / 180);
+
+
+export default function SignIn() {
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+ 
+  // Arama fonksiyonu
+  const handleSearch = (term) => {
+
+    const results = FoodItems.filter((item) =>
+    item.productName && item.productName.toLowerCase().includes(term.toLowerCase())
+    );
+    
+    setSearchResults(results);
+
+  };
+
+  // FlatList için özel öğe bileşeni
+  const renderItem = ({ item }) => (
+    <View style={styles.card}>
+      <Text style={styles.cardTitle}>{item.productName}</Text>
+      <Text>{`Kaloriler: ${item.productCalorie}`}</Text>
+    </View>
+  );
 
   return (
-    <View style={{ alignItems: 'center' }}>
-      {/* Dolu kısmı gösteren resim (bar) */}
-      <Image
-        source={require('../components/Activities/images/yuruyus.png')} // Kendi görüntünüzü ekleyin
-        style={{
-          width: 2 * radius,
-          height: 2 * radius,
-          resizeMode: 'contain',
-          
+    <View style={styles.container}>
+      {/* Arama çubuğu */}
+      <TextInput
+        style={styles.input}
+        placeholder="Besin adını girin..."
+        value={searchTerm}
+        onChangeText={(text) => {
+          setSearchTerm(text);
+          handleSearch(text);
         }}
       />
-      {/* Noktayı gösteren resim (dot) */}
-      <Image
-        source={require('../components/Activities/images/walk.jpg')} // Kendi görüntünüzü ekleyin
-        style={{
-          position: 'absolute',
-          left: 100 - dotOffsetX,
-          top: 100 - dotOffsetY,
-          width: 10, // Nokta boyutunu ayarlayın
-          height: 10,
-          resizeMode: 'contain',
-        }}
+
+      {/* Sonuçları göster */}
+      <FlatList
+        data={searchResults}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
       />
-      {/* Değeri gösteren metin */}
-      <Text style={{ position: 'absolute', fontSize: 20, color: '#3498db' }}>
-        {normalizedValue}
-      </Text>
     </View>
   );
 };
 
-export default function SignIn() {
-  const myValue = 15; // Göstermek istediğiniz değer
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <CircularProgressBar value={myValue} />
-    </View>
-  );
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#fff',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 16,
+    paddingLeft: 8,
+  },
+  card: {
+    backgroundColor: '#f0f0f0',
+    padding: 16,
+    marginBottom: 8,
+    borderRadius: 8,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+});

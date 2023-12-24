@@ -6,6 +6,7 @@ import TabsNavigator from './tabsNavigator'
 import User from '../screens/User'
 import Activite from '../components/Activities/Activite'
 import ActivitiesHome from '../components/Activities/ActivitiesHome'
+import YourComponent from '../screens/Deneme'
 
 
 const Stack = createNativeStackNavigator()
@@ -19,6 +20,7 @@ export default function AuthStack() {
        <Stack.Screen name="Profil"  component={User}  options={{  headerShown: false }} />
        <Stack.Screen name="Activite"  component={Activite}  options={{  headerShown: false }} />
        <Stack.Screen name="ActivitiesHome"  component={ActivitiesHome}  options={{  headerShown: false }} />
+       <Stack.Screen name="YourComponent"  component={YourComponent}  options={{  headerShown: false }} />
 
 
 
