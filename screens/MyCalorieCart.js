@@ -1,10 +1,34 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 import Svg, { Circle, G, Text as SvgText, Defs, LinearGradient, Stop, Filter, FeDropShadow } from 'react-native-svg';
+import { useSelector } from 'react-redux';
 
 const CircularProgressBar = ({ value }) => {
+ 
+ 
+  const [calorieSum, setCalorieSum] = useState();
+ 
+
+ 
+ 
+  const totalCalories = useSelector((state) => state.cart.totalCalories);
+
+  const cartItems = useSelector((state) => state.cart.items);
+ 
+  
+ 
+ 
+  useEffect(() => {
+    setCalorieSum(totalCalories.toString());
+  }, [totalCalories]);
+ 
+ console.log(cartItems)
+ 
+ 
+ 
+ 
   const radius = 100; // Yuvarlak barın yarıçapı
   const circumference = 2 * Math.PI * radius; // Yuvarlak barın çevresi
 
@@ -17,7 +41,6 @@ const CircularProgressBar = ({ value }) => {
   const dotRadius = 7;
   const dotOffset = circumference - (fillPercentage / 100) * circumference;
 
-
   return (
     <View style={{ borderRadius: 43, justifyContent: 'center', width: '100%', padding: 12, flexDirection: 'row', alignItems: 'center' }}>
       <Svg s height="240" width="280">
@@ -27,11 +50,7 @@ const CircularProgressBar = ({ value }) => {
             <Stop offset="0%" stopColor="#FF2200" />
             
           </LinearGradient>
-
-
-
-        </Defs>
-        
+        </Defs>       
         <G transform={`rotate(-90 130 100)`}>
           
         <Circle
@@ -51,7 +70,7 @@ const CircularProgressBar = ({ value }) => {
             stroke="url(#gradient)" // Lineer gradienti kullan
             strokeWidth="12"
             borderRadius='13'
-            fill="#fff9e6"
+            fill="#ffffff"
             strokeDasharray={`${circumference} ${circumference}`}
             strokeDashoffset={circumference - dotOffset}
        
@@ -91,7 +110,21 @@ const CircularProgressBar = ({ value }) => {
           {normalizedValue}
         </SvgText>
       </Svg>
-
+      <View>
+      <Text>Sepetteki Ürünler:</Text>
+      {cartItems.length > 0 ? (
+        cartItems.map((item) => (
+          <View key={item.id} style={{ marginBottom: 10 }}>
+            <Text>{item.productName}</Text>
+            <Text>{`Kaloriler: ${item.productCalorie}`}</Text>
+            <Text>{`Kaloriler: ${item.productCarbo}`}</Text>
+            {/* İsterseniz buraya ürünü sepetten çıkarma işlemini gerçekleştiren bir düğme ekleyebilirsiniz */}
+          </View>
+        ))
+      ) : (
+        <Text>Sepetiniz boş.</Text>
+      )}
+    </View>
       <View style={{ flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
 
         <View style={{ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -101,13 +134,8 @@ const CircularProgressBar = ({ value }) => {
         <View style={{ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center' }}>
           <Text>Yakılan Kalori </Text>
 
-
         </View>
-
-
-
       </View>
-
     </View>
   );
 };
@@ -115,9 +143,13 @@ const CircularProgressBar = ({ value }) => {
 export default function MyCalorieCart() {
 
 
+  const totalCalories = useSelector((state) => state.cart.totalCalories);
 
-
-  const myValue = 1111; // Göstermek istediğiniz değer
+  const myValue = totalCalories;
+  
+  
+  
+  // Göstermek istediğiniz değer
   return (
 
     <ScrollView >

@@ -25,7 +25,7 @@ export default function TabsNavigator() {
             <Tabs.Screen name='profil'  component={User} options={{ headerShown:false, tabBarIcon: (props) => <Ionicons name="reorder-four-outline" {...props}/> }} />
             <Tabs.Screen name="Kalorim" component={MyCalorieCart}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="timer-outline" {...props}/>}}/>
             <Tabs.Screen name="Tarifler" component={RecipesHome}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="pizza-outline" {...props}/>}}/>
-            <Tabs.Screen name="YourComponent" component={YourComponent}  options={{  headerShown:false,tabBarIcon: (props) => <Ionicons name="person-outline" {...props}/>}}/>
+            <Tabs.Screen name="SignIn" component={SignIn}  options={{  headerShown:false,tabBarIcon: (props) => <Ionicons name="person-outline" {...props}/>}}/>
           
 
         </Tabs.Navigator>

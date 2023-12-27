@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
 import { FoodItems } from '../components/database/Database';
-
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../utils/redux/store.js'
+import { Button } from 'react-native-paper';
 
 
 export default function SignIn() {
@@ -10,8 +12,10 @@ export default function SignIn() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
- 
+  const dispatch = useDispatch();
   // Arama fonksiyonu
+
+  
   const handleSearch = (term) => {
 
     const results = FoodItems.filter((item) =>
@@ -21,14 +25,25 @@ export default function SignIn() {
     setSearchResults(results);
 
   };
+ 
+
 
   // FlatList için özel öğe bileşeni
   const renderItem = ({ item }) => (
     <View style={styles.card}>
       <Text style={styles.cardTitle}>{item.productName}</Text>
       <Text>{`Kaloriler: ${item.productCalorie}`}</Text>
+      <Button title="Add to Cart" onPress={() => handleAddToCart(item)} />
     </View>
   );
+
+    
+  const handleAddToCart = (item) => {
+    console.log('Ürün ekleniyor:', item);
+    dispatch(addToCart(item));
+  };
+
+
 
   return (
     <View style={styles.container}>
