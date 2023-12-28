@@ -1,7 +1,8 @@
 
+import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button, Chip } from 'react-native-paper';
 import Svg, { Circle, G, Text as SvgText, Defs, LinearGradient, Stop, Filter, FeDropShadow } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
@@ -146,7 +147,16 @@ export default function MyCalorieCart() {
   const totalCalories = useSelector((state) => state.cart.totalCalories);
 
   const myValue = totalCalories;
-  
+  const navigation = useNavigation();
+  const onPressButton = (mealType) => {
+    // Yönlendirme işlemleri ve değer gönderme
+    navigation.navigate('SignIn', { mealType });
+  };
+
+
+
+
+
   
   
   // Göstermek istediğiniz değer
@@ -162,15 +172,15 @@ export default function MyCalorieCart() {
           <View style={styles.mealContainer}>
             <View style={styles.mealContainerLchild} >
               <Text style={{ fontSize: 20 }}>Kahvaltı </Text>
-
-              <Text style={{ fontSize: 20, padding: 2 }}>Toplam Kalori  </Text>
-
+       
+              <Chip icon="close" onPress={() => console.log('Pressed')}>Example Chip</Chip>
+        
             </View>
             <View style={styles.mealContainerRchild} >
-              <Text style={{ fontSize: 20 }}>Kahvaltı </Text>
+                <Text style={{ fontSize: 20, padding: 2 }}>Toplam Kalori  </Text>
 
               <Image source={{ uri: "https://images.unsplash.com/photo-1633037404710-c88b4abcb71d" }} style={styles.mealImage} />
-              <TouchableOpacity style={styles.mealAddButton}  >
+              <TouchableOpacity style={styles.mealAddButton} onPress={() => onPressButton('breakfast')} >
                 <Text style={{
                   color: 'white',
                   fontSize: 24,
@@ -184,7 +194,7 @@ export default function MyCalorieCart() {
 
           <View style={styles.mealContainer}>
             <View style={styles.mealContainerLchild} >
-              <Text style={{ fontSize: 20 }}>Kahvaltı </Text>
+              <Text style={{ fontSize: 20 }}>Öğle Yemeği </Text>
 
               <Text style={{ fontSize: 20, padding: 2 }}>Toplam Kalori  </Text>
 
@@ -193,7 +203,7 @@ export default function MyCalorieCart() {
               <Text style={{ fontSize: 20 }}>Kahvaltı </Text>
 
               <Image source={{ uri: "https://images.unsplash.com/photo-1633037404710-c88b4abcb71d" }} style={styles.mealImage} />
-              <TouchableOpacity style={styles.mealAddButton} >
+              <TouchableOpacity style={styles.mealAddButton} onPress={() => onPressButton('lunch')} >
                 <Text style={{
                   color: 'white',
                   fontSize: 24,
@@ -205,7 +215,7 @@ export default function MyCalorieCart() {
           </View>
           <View style={styles.mealContainer}>
             <View style={styles.mealContainerLchild}>
-              <Text style={{ fontSize: 20 }}>Kahvaltı </Text>
+              <Text style={{ fontSize: 20 }}>Akşam yemeği  </Text>
 
               <Text style={{ fontSize: 20, padding: 2 }}>Toplam Kalori  </Text>
 
@@ -214,7 +224,7 @@ export default function MyCalorieCart() {
               <Text style={{ fontSize: 20 }}>Kahvaltı </Text>
 
               <Image source={{ uri: "https://images.unsplash.com/photo-1633037404710-c88b4abcb71d" }} style={styles.mealImage} />
-              <TouchableOpacity style={styles.mealAddButton}  >
+              <TouchableOpacity style={styles.mealAddButton} onPress={() => onPressButton('Dinner')} >
                 <Text style={{
                   color: 'white',
                   fontSize: 24,
@@ -226,7 +236,7 @@ export default function MyCalorieCart() {
           </View>
           <View style={styles.mealContainer}>
             <View style={styles.mealContainerLchild} >
-              <Text style={{ fontSize: 20 }}>Kahvaltı </Text>
+              <Text style={{ fontSize: 20 }}>Ara öğün </Text>
 
               <Text style={{ fontSize: 20, padding: 2 }}>Toplam Kalori  </Text>
 
@@ -235,7 +245,7 @@ export default function MyCalorieCart() {
               <Text style={{ fontSize: 20 }}>Kahvaltı </Text>
 
               <Image source={{ uri: "https://images.unsplash.com/photo-1633037404710-c88b4abcb71d" }} style={styles.mealImage} />
-              <TouchableOpacity style={styles.mealAddButton} >
+              <TouchableOpacity style={styles.mealAddButton}  onPress={() => onPressButton('snack')}>
                 <Text style={{
                   color: 'white',
                   fontSize: 22,

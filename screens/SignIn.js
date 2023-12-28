@@ -1,14 +1,17 @@
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet } from 'react-native';
+import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { FoodItems } from '../components/database/Database';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../utils/redux/store.js'
 import { Button } from 'react-native-paper';
 
 
-export default function SignIn() {
+export default function SignIn({route}) {
 
+
+  const { mealType } = route.params;
+  console.log('Meal Type:', mealType);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -33,14 +36,26 @@ export default function SignIn() {
     <View style={styles.card}>
       <Text style={styles.cardTitle}>{item.productName}</Text>
       <Text>{`Kaloriler: ${item.productCalorie}`}</Text>
-      <Button title="Add to Cart" onPress={() => handleAddToCart(item)} />
+      <TouchableOpacity style={styles.mealAddButton} onPress={() => handleAddToCart(item)} >
+                <Text style={{
+                  color: 'white',
+                  fontSize: 24,
+                  fontWeight: 'bold',
+                }}>+</Text>
+              </TouchableOpacity>
     </View>
   );
 
     
   const handleAddToCart = (item) => {
-    console.log('Ürün ekleniyor:', item);
-    dispatch(addToCart(item));
+
+    const newItem = {
+      ...item,
+      mealType: mealType,
+    };
+    console.log('Ürün ekleniyor:', mealType);
+    dispatch(addToCart(newItem));
+
   };
 
 
@@ -92,4 +107,27 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 8,
   },
+  mealAddButton: {
+    position: 'absolute',
+
+    right: 1,
+    backgroundColor: '#4CAF50',
+    borderRadius: 2,
+    width:45,
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...Platform.select({
+      ios: {
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 6,
+      },
+    }),
+
+  }
 });
