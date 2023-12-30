@@ -6,10 +6,12 @@ import { Ionicons } from '@expo/vector-icons'
 import User from '../screens/User'
 import MyCalorieCart from '../screens/MyCalorieCart'
 import RecipesHome from '../screens/RecipesHome'
-import SignIn from '../screens/SignIn'
+import SignIn from '../screens/FoodSearch'
 import Activite from '../components/Activities/Activite'
 import YourComponent from '../screens/Deneme'
 import ActivitiesHome from '../components/Activities/ActivitiesHome'
+import FoodSearch from '../screens/FoodSearch'
+import CalorieCalculator from '../screens/CalorieCalculator'
 
 
 
@@ -24,9 +26,9 @@ export default function TabsNavigator() {
 
             <Tabs.Screen name='home'  component={HomePage} options={{ headerShown:false, tabBarIcon: (props) => <Ionicons name="reorder-four-outline" {...props}/> }} />
             <Tabs.Screen name='profil'  component={User} options={{ headerShown:false, tabBarIcon: (props) => <Ionicons name="reorder-four-outline" {...props}/> }} />
-            <Tabs.Screen name="Kalorim" component={MyCalorieCart}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="timer-outline" {...props}/>}}/>
-            <Tabs.Screen name="Tarifler" component={ActivitiesHome}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="pizza-outline" {...props}/>}}/>
-            <Tabs.Screen name="SignIn" component={SignIn}  options={{  headerShown:false,tabBarIcon: (props) => <Ionicons name="person-outline" {...props}/>}}/>
+            <Tabs.Screen  name="Kalorim" component={MyCalorieCart}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="timer-outline" {...props}/>}}/>
+            <Tabs.Screen name="Tarifler" component={CalorieCalculator}  options={{  headerShown:false,tabBarIcon: (props) => <Ionicons name="pizza-outline" {...props}/>}}/>
+        
           
 
         </Tabs.Navigator>

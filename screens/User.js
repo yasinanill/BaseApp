@@ -1,19 +1,24 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, Picker, Image } from "react-native";
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, Picker, Image ,Button} from "react-native";
+
 
 const UserProfile = () => {
 
       const navigation = useNavigation();
 
+      const [imageCount, setImageCount] = useState(1);
 
+      const addImage = () => {
+        setImageCount((prevCount) => prevCount + 1);
+      };
 
     return (
         <SafeAreaView>
-            <View>
+            <View style={{ flex: 1,  height:'100%', }}>
 
                 <View style={style.header}>
 
@@ -29,37 +34,51 @@ const UserProfile = () => {
 
 
 
+                <View style={{ width: '95%', height: 120, backgroundColor: '#2AA3A9', margin: 8, padding: 2, borderRadius: 12,flexDirection:'row', justifyContent:'space-between' }}>
+                     
+              
 
-                <View>
-                    <View style={style.ItemList}>
-                        <View style={style.ItemListText}>
-                            <Ionicons style={{ padding: 8, fontSize: 20 }} name="person" />
-                            <Text> Bilgilerim</Text></View>
-                    </View>
-                    <View style={style.ItemList}>
-                        <View style={style.ItemListText}>
-                            <Ionicons style={{ padding: 8, fontSize: 20 }} name="calculator" />
-                            <Text> Vücut Ölçülerim</Text></View>
-                    </View>
-                    <View style={style.ItemList}>
-                        <View style={style.ItemListText}>
-                            <Ionicons style={{ padding: 8, fontSize: 20 }} name="calendar" />
-                            <Text> Takvimim</Text></View>
-                    </View>
-                    <View style={style.ItemList}>
-                        <View style={style.ItemListText}>
-                            <Ionicons style={{ padding: 8, fontSize: 20 }} name="barbell" />
-                            <Text> Aktiviteler</Text></View>
-                    </View>
-                    <View style={style.ItemList}>
-                        <View style={style.ItemListText}>
-                            <Ionicons style={{ padding: 8, fontSize: 20 }} name="checkbox-outline" />
-                            <Text>Hedeflerim</Text></View>
-                    </View>
+              
+                    <View style={{ flex: 1,margin:4, width: '70%',alignItems:'center'}}>
+                               <Text style={{marginBottom:12, fontSize:18, fontWeight:'bold', color:'#FDFEFE'}}> Vucut Kitle Endeksin</Text>
+                               <Text style={{ fontSize:18, fontWeight:'bold', color:'#FDFEFE'}}> BMI</Text>
+                             
+
+                            </View>
+                          
+
+     
+
 
                 </View>
 
-            </View>
+
+                                    
+                <View style={{ width: '95%', height: 120, backgroundColor: '#522AA9', margin: 8, padding: 2, borderRadius: 12,flexDirection:'row', justifyContent:'space-between' }}>
+                     
+              
+
+              
+                     <View style={{ flex: 1,margin:4, width: '70%',alignItems:'center'}}>
+                                <Text style={{marginBottom:12, fontSize:18, fontWeight:'bold', color:'#FDFEFE'}}> İdeal Kalori İhtiyacın</Text>
+                                <Text style={{ fontSize:18, fontWeight:'bold', color:'#FDFEFE'}}>  / KCAL</Text>
+                              
+ 
+                             </View>
+                           
+                     
+      
+ 
+ 
+                 </View>
+ 
+
+
+                </View>
+
+
+
+
 
 
 
@@ -141,6 +160,24 @@ const style = StyleSheet.create({
         alignItems: "center",
 
     },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection:'row',
+        height:'100%',
+        flexWrap:'wrap'
+      },
+      image: {
+        width: 40,
+        height: 40,
+        marginBottom: 10,
+      },
+      imageb: {
+        width: 2440,
+        height: 2440,
+        marginBottom: 10,
+      },
 
 
 

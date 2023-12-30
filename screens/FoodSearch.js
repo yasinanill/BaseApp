@@ -1,13 +1,13 @@
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
-import { FoodItems } from '../components/database/Database';
+import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import { FoodItems } from '../components/database/Database.js';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../utils/redux/store.js'
 import { Button } from 'react-native-paper';
 
 
-export default function SignIn({route}) {
+export default function FoodSearch({route}) {
 
 
   const { mealType } = route.params;
@@ -17,8 +17,6 @@ export default function SignIn({route}) {
 
   const dispatch = useDispatch();
   // Arama fonksiyonu
-
-  
   const handleSearch = (term) => {
 
     const results = FoodItems.filter((item) =>
@@ -34,15 +32,16 @@ export default function SignIn({route}) {
   // FlatList için özel öğe bileşeni
   const renderItem = ({ item }) => (
     <View style={styles.card}>
-      <Text style={styles.cardTitle}>{item.productName}</Text>
-      <Text>{`Kaloriler: ${item.productCalorie}`}</Text>
+            <View><Text style={styles.cardTitle}>{item.productName}</Text>
+      <Text>{`Kaloriler: ${item.productCalorie}`}</Text></View>
+      <View>
       <TouchableOpacity style={styles.mealAddButton} onPress={() => handleAddToCart(item)} >
                 <Text style={{
                   color: 'white',
                   fontSize: 24,
                   fontWeight: 'bold',
                 }}>+</Text>
-              </TouchableOpacity>
+              </TouchableOpacity></View>
     </View>
   );
 
@@ -61,15 +60,21 @@ export default function SignIn({route}) {
 
 
   return (
+    
+
     <View style={styles.container}>
       {/* Arama çubuğu */}
+
+      
       <TextInput
         style={styles.input}
         placeholder="Besin adını girin..."
         value={searchTerm}
         onChangeText={(text) => {
           setSearchTerm(text);
-          handleSearch(text);
+          if (text.length >= 1) {
+            handleSearch(text);
+          }
         }}
       />
 
@@ -88,6 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: '#fff',
+    
   },
   input: {
     height: 40,
@@ -98,23 +104,24 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: '#f0f0f0',
-    padding: 16,
+    padding: 12,
     marginBottom: 8,
     borderRadius: 8,
+    flexDirection:'row',
+    justifyContent:'space-between'
   },
   cardTitle: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   mealAddButton: {
-    position: 'absolute',
-
-    right: 1,
+   
+    
     backgroundColor: '#4CAF50',
     borderRadius: 2,
-    width:45,
-    height: 80,
+    width:60,
+    height: 60,
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({

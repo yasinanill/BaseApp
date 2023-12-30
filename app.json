@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2f4f4f"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,11 +20,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#2f4f4f"
+      },
+      "package": "com.yaskay7.BaseApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "92c0456d-c44a-4c53-969e-5431432a83ff"
+      }
     }
   }
 }
