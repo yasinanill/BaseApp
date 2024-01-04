@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   mealContainer: {
 
     backgroundColor: '#f0f8ff', height: 100, alignItems: 'center', width: '90%', flexDirection: 'row', borderRadius: 13, flex: 1, justifyContent: 'space-between',
-    borderBottomRightRadius: 12, borderTopRightRadius: 100,
+    borderBottomRightRadius: 12, 
     marginVertical: 6
 
 
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
 
   },
   mealImage: {
-
+    
     width: 50, height: 50, borderRadius: 50, position: 'absolute',
     top: -10,
     right: 18,

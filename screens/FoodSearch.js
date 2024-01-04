@@ -1,11 +1,11 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import { FoodItems } from '../components/database/Database.js';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../utils/redux/store.js'
 import { Button } from 'react-native-paper';
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function FoodSearch({route}) {
 
@@ -14,6 +14,8 @@ export default function FoodSearch({route}) {
   console.log('Meal Type:', mealType);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
+
 
   const dispatch = useDispatch();
   // Arama fonksiyonu
@@ -24,9 +26,57 @@ export default function FoodSearch({route}) {
     );
     
     setSearchResults(results);
+  
+   
 
   };
- 
+  const handleAddToCart = async (item) => {
+    const newItem = {
+      ...item,
+      mealType: mealType,
+    };
+  
+    const allItemsFromStorage = await loadFromStorage('allItems') || [];
+    const updatedItems = [...allItemsFromStorage, newItem];
+    await saveToStorage('allItems', updatedItems);
+  
+    dispatch(addToCart(newItem));
+    
+  };
+
+
+  const saveToStorage = async (key, data) => {
+    try {
+      await AsyncStorage.setItem(key, JSON.stringify(data));
+    } catch (error) {
+      console.error('Veri kaydedilemedi:', error);
+    }
+  };
+
+  const loadFromStorage = async (key) => {
+    try {
+      const data = await AsyncStorage.getItem(key);
+      if (data) {
+        return JSON.parse(data);
+      }
+      return null;
+    } catch (error) {
+      console.error('Veri çekilemedi:', error);
+      return null;
+    }
+  };
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const storedItems = await loadFromStorage('allItems');
+      if (storedItems) {
+        dispatch(addToCartList(storedItems));
+      }
+    };
+    
+    fetchData();
+  }, [dispatch]);
+
 
 
   // FlatList için özel öğe bileşeni
@@ -46,17 +96,6 @@ export default function FoodSearch({route}) {
   );
 
     
-  const handleAddToCart = (item) => {
-
-    const newItem = {
-      ...item,
-      mealType: mealType,
-    };
-    console.log('Ürün ekleniyor:', mealType);
-    dispatch(addToCart(newItem));
-
-  };
-
 
 
   return (

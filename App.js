@@ -3,24 +3,16 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import AuthStack from './navigations/stackNavigator';
 import store from './utils/redux/store';
-import { Provider } from 'react-redux';
+import { Provider,persistor  } from 'react-redux';
 
 
 export default function App() {
-  const MyTheme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: '#fffff0',
-      background:'#fdf5e6'
-    },
-  };
-  const theme = useColorScheme();
+
  
   return (
     
     <Provider store={store}>
-      <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+      <NavigationContainer >
         <AuthStack />
       </NavigationContainer>
     </Provider>

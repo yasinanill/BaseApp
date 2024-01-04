@@ -9,7 +9,7 @@ export default function ActivitiesHome({}) {
         { id: 1, title: 'Koşma(Orta Tempo)', ActiviteMET: 3.5, imagePath: require('./images/byc.png') },
         { id: 2, title: 'Koşma(Yavaş Tempo)', ActiviteMET: 3, imagePath: require('./images/futbol.png') },
         { id: 3, title: 'Koşma(Hızlı Tempo)', ActiviteMET: 3, imagePath: require('./images/byc.png') },
-        { id: 4, title: 'Yüzmek', ActiviteMET: 3, imagePath: require('./images/swimming.png') },
+     
         { id: 5, title: 'Bisiklet Sürmek', ActiviteMET: 3, imagePath: require('./images/basketbol.png') },
         { id: 6, title: 'Ev Temizliği', ActiviteMET: 3, imagePath: require('./images/evisleri.png') },
         { id: 7, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/byc.png') },

@@ -210,7 +210,6 @@ export const COLOURS = {
           'Leblebileri robottan geçirelim Tahin,pekmez ve 4 yemek kaşığı ılık su ekleyip karıştıralım. Streç film geçirdiğimiz kaba bastıralım Buzdolabında 10 dk bekletelim Ters çevirip dilimleyelim Üzeri için bitter ya da beyaz çikolata kullanabilirsiniz.',
         isOff: true,
         offPercentage: 10,
-        productImage: require('../database/images/foods/leblebi.png'),
         isAvailable: true,
         productImageList: [
             require('../database/images/foods/1.jpg'),
@@ -235,7 +234,7 @@ export const COLOURS = {
           'Tavuk suyunda bulunan vitamin ve mineraller, vücuda zarar veren maddelerin atılmasını kolaylaştırır. Bu nedenle grip ve nezle gibi hastalıklarda, hastanın bolca tavuk suyu içmesi istenir. Gribe neden olan virüslerin, vücuttan kolayca atılması tavuk suyu çorbası sayesindedir.',
         isOff: true,
         offPercentage: 10,
-        productImage: require('../database/images/foods/hurma.png'),
+    
         isAvailable: true,
         productImageList: [
             require('../database/images/foods/1.jpg'),
@@ -391,7 +390,7 @@ export const COLOURS = {
           'Up to 20 hours battery life | Super powerful Bass | 40mm dynamic driver | Pressure less ear muffs | Bluetooth 5.0 | Voice control',
         isOff: true,
         offPercentage: 10,
-        productImage: require('../database/images/foods/yumurta.png'),
+      
         isAvailable: true,
         productImageList: [
             require('../database/images/foods/1.jpg'),
@@ -418,7 +417,6 @@ export const COLOURS = {
           'Beyaz peynirin 100 gramında 310 kalori bulunmaktadır. Beyaz peynirin 1 dilimi (30 gr) 93 kalori, 1 çorba kaşığı (10 gr) 31 kaloridir. Beyaz peynirin 100 gramı 2.53 gram karbonhidrat, 20.38 gram protein, 24.31 gram yağ içermektedir Kahvaltılık ürünler denildiği zaman ilk olarak peynir çeşitleri akla geliyor. Fermente bir süt ürünü olan peynir, her yaştan tüketicinin sağlıklı beslenme tercihinde yer alıyor. Piyasada birçok çeşidi bulunan peynir grubu ürünler, sofralara zenginlik katıyor. Kendine has dokusu ve tadı ile girdiği tüm tariflere uyum sağlayan peynir, içerdiği kalsiyum, potasyum ve protein sayesinde vücudun tüm gereksinimlerini karşılamayı sağlıyor',
         isOff: true,
         offPercentage: 10,
-        productImage: require('../database/images/foods/peynir.png'),
         isAvailable: true,
         productImageList: [
             require('../database/images/foods/1.jpg'),
