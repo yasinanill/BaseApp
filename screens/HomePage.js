@@ -21,7 +21,7 @@ export default function HomePage() {
            // { id: 1, title: 'Kalori Listesi', icon: require('../assets/images/kalorilistesi.png'), items: 'Home' },
            { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'),  },
             { id: 4, title: 'Aktiviteler', icon: require('../assets/images/activities.png'), items: 'ActivitiesHome' },
-            { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'),  },
+            { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'),  items:'CalorieCalculator'  },
             { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png') },
 
 

@@ -34,7 +34,7 @@ const bmiResult = useSelector((state) => state.user.bmiResults);
             <Tabs.Screen name='home'  component={HomePage} options={{ headerShown:false, tabBarIcon: (props) => <Ionicons name="reorder-four-outline" {...props}/> }} />
           
             <Tabs.Screen  name="MyCalorieCart" component={MyCalorieCart}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="timer-outline" {...props}/>}}/>
-       
+          
             {bmiResult ? (
             <Tabs.Screen name="UserData" component={User}  options={{  headerShown:false,tabBarIcon: (props) => <Ionicons name="pizza-outline" {...props}/>}}/>
             ) : (
