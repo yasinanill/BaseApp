@@ -3,23 +3,19 @@ import {  Image, StyleSheet, Text,  View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Avatar, TextInput, Title, Subheading, Button } from "react-native-paper";
-import { useDispatch, useSelector } from 'react-redux';
-import { addCalorie } from '../../utils/redux/store';
 
 
 
-
-export default function Activite({route}) {
+export default function UserActivities({route}) {
 
     const {item } = route.params;
-    const user = useSelector((state) => state.user);
+
     const  [content,setContent] = useState(true)
-    const  [weight,setWeight] = useState(user.weight ? user.weight.toString() : '0')
+    const  [weight,setWeight] = useState(0)
     const  [minute,setMinute] = useState(0)
     const  [calorie,setCalorie] = useState(0)
     const  [result,setResult] = useState(0)
 
-    const dispatch = useDispatch();
    
     resultByCalorie =()=>{
 
@@ -27,12 +23,10 @@ export default function Activite({route}) {
             const calories = parseFloat(calorie);
             const weightInM = parseFloat(weight);
             
-            const resultMinute =  (calories * 200) / (weightInM * 3.5 * item.ActiviteMET);
+            const resultCalorie =  (calories * 200) / (weightInM * 3.5 * item.ActiviteMET);
 
-            setResult(resultMinute.toFixed(1));
-           
-           
-            dispatch(addCalorie(resultCalorie));
+            setResult(resultCalorie.toFixed(1));
+
             
     }
 }
@@ -43,10 +37,10 @@ resultByMinute =()=>{
             const minuteInM = parseFloat(minute);
             const weightInM = parseFloat(weight);
             
-            const resultCalorie =  (minuteInM * weightInM * item.ActiviteMET * 3.5) / (200);
+            const resultMinute =  (minuteInM * weightInM * item.ActiviteMET * 3.5) / (200);
 
-            setResult(resultCalorie.toFixed(2));
-            dispatch(addCalorie(resultCalorie));
+            setResult(resultMinute.toFixed(2));
+ 
     }
 }
 
@@ -68,17 +62,17 @@ resultByMinute =()=>{
                            <Text style={{fontSize:44 }}> {result}</Text>
                           
                          </View>
-) : (
+            ) : (
 
-   <Image
-   style={style.Image}
-   source={item.imagePath}
-/>
+                      <Image
+             style={style.Image}
+             source={item.imagePath}
+                />
                         )}
                     </View>
                 </View>
                 
-           {   content ?     (
+ 
 
                     
 
@@ -92,40 +86,19 @@ resultByMinute =()=>{
                     <TextInput label="Dakika" keyboardType="numeric"  style={{ margin: 10, }} onChangeText={setMinute}
                        
                     />
-                    <TextInput label="Kilo"  keyboardType="numeric" style={{ margin: 10, }}   value={user.weight} onChangeText={(text) => setWeight(text)}/>
+                    <TextInput label="Kilo"  keyboardType="numeric" style={{ margin: 10, }}  onChangeText={setWeight}/>
 
 
 
                     <Button compact mode="contained" onPress={resultByMinute}
                         style={{ margin: 10, }}
                     > HESAPLA
-
                     </Button>
                
 
                 </View>
-           
-             ) : (
+       
           
-                <View style={{ margin: 8, }}>
-
-<Button  onPress={this.componentHideAndShow} >
-                Dakika Hesapla   </Button>
-                    <TextInput label="Kalori"  keyboardType="numeric" style={{ margin: 10, }} onChangeText={setCalorie} 
-                       
-                    />
-                    <TextInput label="Kilo"  keyboardType="numeric" style={{ margin: 10, }}  onChangeText={setWeight}/>
-
-
-
-                    <Button compact mode="contained" onPress={resultByCalorie}
-                        style={{ margin: 10, }}
-                    > HESAPLA
-                    </Button>
-                
-           
-
-                </View> )}
 
 
        

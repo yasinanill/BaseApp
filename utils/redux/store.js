@@ -25,9 +25,9 @@ const userSlice = createSlice({
     weight: null,
     gender: null,
     activityLevel: null,
-    bmiResult: null,
-    calorieResult: null,
-    idealWeight: null,
+    bmiResults: null,
+    calorieResults: null,
+    idealWeights: null,
   },
   reducers: {
     setUserData: (state, action) => {
@@ -36,7 +36,25 @@ const userSlice = createSlice({
     // Diğer reducer'ları buraya ekleyin
   },
 });
+const activiteCalorieSlice = createSlice({
+  name: 'activiteCalories',
+  initialState: {
+    totalCalories: 0,
+  },
+  reducers: {
+    addCalorie: (state, action) => {
+      state.totalCalories += action.payload;
+    },
+  },
+});
 
+
+
+
+
+
+
+export const { addCalorie } = activiteCalorieSlice.actions;
 export const { setUserData } = userSlice.actions;
 export const { addToCart } = cartSlice.actions;
 
@@ -44,6 +62,7 @@ const store = configureStore({
   reducer: {
     cart: cartSlice.reducer,
     user: userSlice.reducer,
+    activiteCalories: activiteCalorieSlice.reducer,
 
     // Diğer reducer'ları buraya ekleyin
   },

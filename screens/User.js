@@ -33,11 +33,18 @@ const UserProfile = () => {
 
 
 
-                <View style={{ width: '95%', height: 120, backgroundColor: '#2AA3A9', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ width: '95%', height: 120, backgroundColor: '#F7EEEA', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
 
+                    <View style={{ flex: 1, margin: 4, width: '70%', alignItems: 'center'}}>
+                        <Text style={{ fontSize: 16,margin:10, fontWeight: 'bold', color: '#444241' }}> Kilo</Text>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#444241' }}>  {user.weight}</Text>
+
+
+                    </View>
+                    
                     <View style={{ flex: 1, margin: 4, width: '70%', alignItems: 'center' }}>
-                        <Text style={{ marginBottom: 12, fontSize: 18, fontWeight: 'bold', color: '#FDFEFE' }}> Vucut Kitle Endeksin</Text>
-                        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FDFEFE' }}> BMI</Text>
+                        <Text style={{ margin: 10, fontSize: 18, fontWeight: 'bold', color: '#444241' }}> Hedef Kilo </Text>
+                        <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#444241' }}>  {user.weight - 10}</Text>
 
 
                     </View>
@@ -46,11 +53,11 @@ const UserProfile = () => {
 
 
 
-                <View style={{ width: '95%', height: 80, backgroundColor: '#522AA9', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ width: '95%', height: 80, backgroundColor: '#586F55', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
 
                     <View style={{ flex: 1, margin: 4, width: '70%', alignItems: 'center', justifyContent: 'center' }}>
 
-                        <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#FDFEFE' }}> {user.idealWeight}</Text>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FDFEFE' }}> {user.idealWeights}</Text>
                         <Text style={{ marginTop: 8, fontSize: 12, fontWeight: 'bold', color: '#FDFEFE' }}>İdeal  Kilon</Text>
 
 
@@ -58,23 +65,23 @@ const UserProfile = () => {
                     </View>
 
                 </View>
-                <View style={{ width: '95%', height: 80, backgroundColor: '#522AA9', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ width: '95%', height: 80, backgroundColor: '#9597A0', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
 
                     <View style={{ flex: 1, margin: 4, width: '70%', alignItems: 'center', justifyContent: 'center' }}>
 
-                        <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#FDFEFE' }}>  {user.calorieResult}</Text>
-                        <Text style={{ marginTop: 8, fontSize: 12, fontWeight: 'bold', color: '#FDFEFE' }}> İdeal Kalori İhtiyacın</Text>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FDFEFE' }}>  {user.calorieResults}</Text>
+                        <Text style={{ marginTop: 8, fontSize: 12, fontWeight: 'bold', color: '#FDFEFE' }}> Günlük Kalori İhtiyacın</Text>
 
 
 
                     </View>
 
                 </View>
-                <View style={{ width: '95%', height: 80, backgroundColor: '#522AA9', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
+                <View style={{ width: '95%', height: 80, backgroundColor: '#F09E7B', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
 
                     <View style={{ flex: 1, margin: 4, width: '70%', alignItems: 'center', justifyContent: 'center' }}>
 
-                        <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#FDFEFE' }}>  {user.bmiResult} </Text>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#FDFEFE' }}>  {user.bmiResults} </Text>
                         <Text style={{ marginTop: 8, fontSize: 12, fontWeight: 'bold', color: '#FDFEFE' }}> Vücut Kitle Endeksin (BMI)</Text>
 
 

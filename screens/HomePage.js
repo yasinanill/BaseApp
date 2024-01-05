@@ -18,25 +18,21 @@ export default function HomePage() {
         ],
         categories: [
 
-            { id: 1, title: 'Kalori Listesi', icon: require('../assets/images/kalorilistesi.png'), items: 'Home' },
-            { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'), items: 'RecipesHome' },
+           // { id: 1, title: 'Kalori Listesi', icon: require('../assets/images/kalorilistesi.png'), items: 'Home' },
+           { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'),  },
             { id: 4, title: 'Aktiviteler', icon: require('../assets/images/activities.png'), items: 'ActivitiesHome' },
-            { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'), items: 'Calculation' },
+            { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'),  },
             { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png') },
 
 
 
         ],
-        products: [
-            { id: 4, title: 'Karpuz', kalori: '150' },
-            { id: 5, title: 'Karpuz', kalori: '150' },
-            { id: 6, title: 'Karpuz', kalori: '150' },
-            { id: 7, title: 'Karpuz', kalori: '150' },
-            { id: 8, title: 'Karpuz', kalori: '150' },
-            { id: 9, title: 'Karpuz', kalori: '150' },
-
-
-
+        products: [ 
+            { id: 4, title: 'Karpuz', Image: require('../components/database/images/foods/karpuz.jpg'), kalori:'150' },
+          
+            { id: 2, title: 'Dondurma', Image: require('../components/database/images/foods/dond.jpg'), kalori:'1333' },
+            { id: 3, title: 'Kandil Simidi ', Image:  require('../components/database/images/foods/kandil.jpg'), kalori:'150' },
+           
 
         ],
     };
@@ -45,8 +41,12 @@ export default function HomePage() {
 
     const categories = data.categories;
 
+    const totalActiviteCalories = useSelector(state => state.activiteCalories.totalCalories);
+    console.log(totalActiviteCalories)
     const products = data.products;
+
     const navigation = useNavigation();
+
 
     renderCategoryItem = ({ item }) => {
         return <View style={style.categoryItem}>
@@ -62,18 +62,20 @@ export default function HomePage() {
     }
     renderProductItem = ({ item }) => {
         return <View style={style.productItem}>
-            <TouchableOpacity >
+<TouchableOpacity 
+ >
+       
+            <View style={style.productItemIconContainer}>
 
-                <View style={style.productItemIconContainer}>
-
-                    <Image style={style.ProductItemimage} />
-                </View>
-                <View style={{ padding: 10 }}>
-                    <Text style={style.productItemTitle}>{item.title}</Text>
-
-                </View></TouchableOpacity>
+                <Image source={item.Image} style={style.ProductItemimage} />
+            </View>
+            <View style={{padding:10}}>
+            <Text style={style.productItemTitle}>{item.title}</Text>
+       
+            </View></TouchableOpacity>
         </View>
     }
+
 
 
     const [imageCount, setImageCount] = useState(1);
@@ -129,6 +131,7 @@ export default function HomePage() {
 
 
               
+                <TouchableOpacity onPress={() => navigation.navigate('MyCalorieCart')}>
                 <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#F5B7B1', margin: 8, padding: 2, borderRadius: 12,flexDirection:'row', justifyContent:'space-between' }}>
                      
               
@@ -152,17 +155,32 @@ export default function HomePage() {
 
 
                 </View>
+
+</TouchableOpacity>
+                <TouchableOpacity  onPress={() => navigation.navigate('ActivitiesHome')}>
+
                 <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#ABEBC6', margin: 8, padding: 2, borderRadius: 12,flexDirection:'row', justifyContent:'space-between' }}>
                      
               
+        
+              
                             <View style={{ flex: 1, width: '70%',margin:4}}>
+
+               
                                 <Text style={{marginBottom:18, fontSize:18, fontWeight:'bold', color:'#FDFEFE'}}> Egzersiz</Text>
                                 <Text style={{ fontSize:12, color:'#FDFEFE'}}> Yakılan kalori</Text>
-                               <Text style={{ marginLeft:4, fontSize:16, fontWeight:'bold', color:'#FDFEFE'}}> / Kcal</Text>
-
+                               <Text style={{ marginLeft:4, fontSize:16, fontWeight:'bold', color:'#FDFEFE'}}>{totalActiviteCalories} / Kcal</Text>
+                   
  
+                           
                              </View>
+                           
+                           
                              <View style={{ width: '30%' , opacity: 0.5 , alignItems:'center' ,backgroundColor: '#FFFFFF50', justifyContent:'center',}}>
+                         
+                         
+                         
+                         
                              <Image
                                     
                                     style={{
@@ -177,7 +195,7 @@ export default function HomePage() {
  
                  </View>
 
-
+                 </TouchableOpacity>
 
                 <View style={{ flex: 1, width: '95%', height: 180, backgroundColor: '#5DADE2', margin: 8, padding: 2, borderRadius: 12, }}>
                     <View style={{ alignItems: 'center' ,margin:4}}>

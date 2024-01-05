@@ -12,7 +12,7 @@ export default function MyCalorieCart() {
 
 
   const totalCalories = useSelector((state) => state.cart.totalCalories);
-
+  const totalActiviteCalories = useSelector(state => state.activiteCalories.totalCalories);
   const myValue = totalCalories;
   const navigation = useNavigation();
   const onPressButton = (mealType) => {
@@ -25,11 +25,13 @@ export default function MyCalorieCart() {
   const breakfastItem = allItems.filter((item) => item.mealType === 'breakfast');
   const dinnerItem = allItems.filter((item) => item.mealType === 'dinner');
   const lunchItem = allItems.filter((item) => item.mealType === 'lunch');
- 
+  const snackItem = allItems.filter((item) => item.mealType === 'snack');
+
+
   const bratotalCalories = breakfastItem.reduce((totalCalorie,item)=>  totalCalorie + item.productCalorie, 0 )
   const lunchtotalCalories = lunchItem.reduce((totalCalorie,item)=>  totalCalorie + item.productCalorie, 0 )
   const dinnertotalCalories = dinnerItem.reduce((totalCalorie,item)=>  totalCalorie + item.productCalorie, 0 )
-  const snacktotalCalories = breakfastItem.reduce((totalCalorie,item)=>  totalCalorie + item.productCalorie, 0 )
+  const snacktotalCalories = snackItem.reduce((totalCalorie,item)=>  totalCalorie + item.productCalorie, 0 )
   
   return (
 
@@ -54,7 +56,7 @@ export default function MyCalorieCart() {
              <Text style={{ fontSize: 16,fontWeight:'bold', color:'#f95959'}}>Yakılan  </Text> 
 
              <View style={styles.line} />
-             <Text style={{ fontSize: 14, fontWeight:'bold' }}>{totalCalories} /kcal </Text> 
+             <Text style={{ fontSize: 14, fontWeight:'bold' }}> {totalActiviteCalories}  /kcal </Text> 
                </View>
               </View>  
         
@@ -124,7 +126,7 @@ export default function MyCalorieCart() {
             <Text style={{ fontSize: 18, padding: 2 }}>{dinnertotalCalories} /kcal</Text>
 
               <Image source={require('../utils/Images/dinner.png')} style={styles.mealImage} />
-              <TouchableOpacity style={styles.mealAddButton} onPress={() => onPressButton('Dinner')} >
+              <TouchableOpacity style={styles.mealAddButton} onPress={() => onPressButton('dinner')} >
                 <Text style={{
                   color: 'white',
                   fontSize: 24,
@@ -138,7 +140,7 @@ export default function MyCalorieCart() {
             <View style={styles.mealContainerLchild} >
               <Text style={styles.mealContainerTitle}>Ara öğün </Text>
 
-              {breakfastItem.map((item) => (
+              {snackItem.map((item) => (
   <Text style={{ fontSize: 12, padding: 1 }}> {item.productName}  </Text>
 ))}
 

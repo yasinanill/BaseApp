@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity, Keyboard, } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../utils/redux/store';
@@ -27,28 +27,36 @@ const CalorieCalculator = () => {
     };
   
     const calculateResults = () => {
-      calculateBMI();
-      calculateCalories();
-      calculateIdealWeight();
-      
-
+      calculateBMI()
+      calculateCalories()
+      calculateBMR()
+      calculateIdealWeight()
+   
+   
+   
+  
+    };
+    useEffect(() => {
       dispatch(
         setUserData({
-          age,
-          height,
-          weight,
-          gender,
-          activityLevel,
-          bmiResult,
-          calorieResult,
-          idealWeight,
+      age,
+      height,
+      weight,
+      gender,
+      activityLevel,
+      bmiResults: bmiResult,
+      calorieResults: calorieResult,
+      idealWeights: idealWeight,
         })
       );
   
       // Reset the form
-  
-    };
-  
+    }, [bmiResult]);
+
+
+
+
+
     const calculateBMI = () => {
       const bmi = (parseFloat(weight) / ((parseFloat(height) / 100) ** 2)).toFixed(2);
       setBmiResult(bmi);
@@ -67,7 +75,7 @@ const CalorieCalculator = () => {
     const calculateBMR = () => {
       if (gender === 'male') {
         return (10 * parseFloat(weight)) + (6.25 * parseFloat(height)) - (5 * parseFloat(age)) + 5;
-      } else if (gender === 'Kadın') {
+      } else if (gender === 'female') {
         return (10 * parseFloat(weight)) + (6.25 * parseFloat(height)) - (5 * parseFloat(age)) - 161;
       } else {
         return null;
@@ -79,7 +87,7 @@ const CalorieCalculator = () => {
   
       if (gender === 'male') {
         idealWeightValue = (22.0 * ((parseFloat(height) / 100) ** 2)).toFixed(2);
-      } else if (gender === 'Erkek') {
+      } else if (gender === 'female') {
         idealWeightValue = (21.7 * ((parseFloat(height) / 100) ** 2)).toFixed(2);
       }
   
@@ -96,13 +104,13 @@ const CalorieCalculator = () => {
   
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Health Calculator</Text>
+        <Text style={styles.header}>HESAPLA</Text>
         <View style={styles.form}>
           <View style={styles.inputRow}>
-            <Text style={styles.label}>Age</Text>
+            <Text style={styles.label}>Yaş</Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Enter your age"
+              placeholder="Yasınızı Girin"
               onChangeText={setAge}
               value={age}
               keyboardType="numeric"
@@ -126,6 +134,7 @@ const CalorieCalculator = () => {
               onChangeText={setWeight}
               value={weight}
               keyboardType="numeric"
+              onBlur={Keyboard.dismiss}
             />
           </View>
           <View style={styles.genderRow}>
@@ -163,24 +172,7 @@ const CalorieCalculator = () => {
           <TouchableOpacity style={styles.submitButton} onPress={validateForm}>
             <Text style={styles.submitButtonText}>Hesapla</Text>
           </TouchableOpacity>
-          {bmiResult !== null && (
-            <View style={styles.resultContainer}>
-              <Text style={styles.resultLabel}>BMI:</Text>
-              <Text style={styles.resultText}>{bmiResult}</Text>
-            </View>
-          )}
-          {calorieResult !== null && (
-            <View style={styles.resultContainer}>
-              <Text style={styles.resultLabel}>:</Text>
-              <Text style={styles.resultText}>{calorieResult} kcal</Text>
-            </View>
-          )}
-          {idealWeight !== null && (
-            <View style={styles.resultContainer}>
-              <Text style={styles.resultLabel}>Ideal Weight:</Text>
-              <Text style={styles.resultText}>{idealWeight} kg</Text>
-            </View>
-          )}
+ 
         </View>
       </View>
     );
@@ -188,7 +180,8 @@ const CalorieCalculator = () => {
   
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      height:'100%',
+      
       backgroundColor: '#eef2f3',
       alignItems: 'center',
       justifyContent: 'center',
@@ -210,17 +203,17 @@ const CalorieCalculator = () => {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
-      marginBottom: 20,
+      marginBottom: 40,
     },
     label: {
       flex: 1,
-      fontSize: 18,
+      fontSize: 16,
       fontWeight: 'bold',
       marginRight: 10,
     },
     textInput: {
       flex: 2,
-      height: 40,
+      height: 50,
       borderWidth: 1,
       borderColor: '#ddd',
       borderRadius: 10,
@@ -234,13 +227,13 @@ const CalorieCalculator = () => {
     },
     genderButton: {
       flex: 1,
-      height: 40,
+      height: 50,
       borderRadius: 10,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#dbeffe',
       padding: 10,
-      margin: 10,
+      margin: 5,
     },
     selectedGender: {
       backgroundColor: '#289df6',
@@ -263,7 +256,7 @@ const CalorieCalculator = () => {
       color: '#fff',
     },
     resultContainer: {
-      marginTop: 20,
+      marginTop: 40,
     },
     resultLabel: {
       fontSize: 18,

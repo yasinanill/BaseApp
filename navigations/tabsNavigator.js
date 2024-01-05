@@ -23,7 +23,7 @@ const Tabs = createBottomTabNavigator()
 export default function TabsNavigator() {
 
 
-const age = useSelector((state) => state.user.age);
+const bmiResult = useSelector((state) => state.user.bmiResults);
 
 
   return (
@@ -32,10 +32,10 @@ const age = useSelector((state) => state.user.age);
 
 
             <Tabs.Screen name='home'  component={HomePage} options={{ headerShown:false, tabBarIcon: (props) => <Ionicons name="reorder-four-outline" {...props}/> }} />
-            <Tabs.Screen name='profil'  component={User} options={{ headerShown:false, tabBarIcon: (props) => <Ionicons name="reorder-four-outline" {...props}/> }} />
-            <Tabs.Screen  name="Kalorim" component={MyCalorieCart}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="timer-outline" {...props}/>}}/>
+          
+            <Tabs.Screen  name="MyCalorieCart" component={MyCalorieCart}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="timer-outline" {...props}/>}}/>
        
-            {age ? (
+            {bmiResult ? (
             <Tabs.Screen name="UserData" component={User}  options={{  headerShown:false,tabBarIcon: (props) => <Ionicons name="pizza-outline" {...props}/>}}/>
             ) : (
 
