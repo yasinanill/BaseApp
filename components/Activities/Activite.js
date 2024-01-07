@@ -32,7 +32,7 @@ export default function Activite({route}) {
             setResult(resultMinute.toFixed(1));
            
            
-            dispatch(addCalorie(resultCalorie));
+           
             
     }
 }

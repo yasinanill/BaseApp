@@ -6,17 +6,22 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 export default function ActivitiesHome({}) {
 
     const ActivitieItems = [
-        { id: 1, title: 'Koşma(Orta Tempo)', ActiviteMET: 3.5, imagePath: require('./images/byc.png') },
-        { id: 2, title: 'Koşma(Yavaş Tempo)', ActiviteMET: 3, imagePath: require('./images/futbol.png') },
-        { id: 3, title: 'Koşma(Hızlı Tempo)', ActiviteMET: 3, imagePath: require('./images/byc.png') },
-     
-        { id: 5, title: 'Bisiklet Sürmek', ActiviteMET: 3, imagePath: require('./images/basketbol.png') },
+        { id: 1, title: 'Koşma(Orta Tempo)', ActiviteMET: 3.5, imagePath: require('./images/runm.png') },
+        { id: 2, title: 'Yürüyüş', ActiviteMET: 3, imagePath: require('./images/walk.png') },
+        { id: 3, title: 'Koşma(Hızlı Tempo)', ActiviteMET: 3, imagePath: require('./images/fastrun.png') },
+        { id: 5, title: 'Bisiklet Sürmek', ActiviteMET: 3, imagePath: require('./images/byc.png') },
         { id: 6, title: 'Ev Temizliği', ActiviteMET: 3, imagePath: require('./images/evisleri.png') },
-        { id: 7, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/byc.png') },
-        { id: 8, title: 'futbol', ActiviteMET: 3, imagePath: require('./images/byc.png') },
-        { id: 9, title: 'run', ActiviteMET: 3, imagePath: require('./images/byc.png') },
-        { id: 10, title: 'run', ActiviteMET: 3, imagePath: require('./images/byc.png') },
-        { id: 11, title: 'run', ActiviteMET: 3, imagePath: require('./images/byc.png') },
+        { id: 7, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/gym.png') },
+        { id: 8, title: 'futbol', ActiviteMET: 3, imagePath: require('./images/futbol.png') },
+        { id: 9, title: 'basketbol', ActiviteMET: 3, imagePath: require('./images/basketbol.png') },
+        { id: 10, title: 'Tırmanma', ActiviteMET: 3, imagePath: require('./images/climbing.png') },
+        { id: 11, title: 'Merdiven Çıkma', ActiviteMET: 3, imagePath: require('./images/climbingstairs.png') },
+        { id: 11, title: 'Dövüş Sporları', ActiviteMET: 3, imagePath: require('./images/combatsports.png') },
+        { id: 11, title: 'Golf', ActiviteMET: 3, imagePath: require('./images/golf.png') },
+        { id: 11, title: 'Egzersiz', ActiviteMET: 3, imagePath: require('./images/squat.png') },
+        { id: 11, title: 'Voleybol', ActiviteMET: 3, imagePath: require('./images/voleybool.png') },
+        { id: 11, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/gymm.png') },
+        { id: 11, title: 'Masa Tenisi', ActiviteMET: 3, imagePath: require('./images/table.png') },
     ];
     const navigation = useNavigation();
 
