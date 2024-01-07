@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { setUserData } from '../utils/redux/store';
 
 
-const CalorieCalculator = () => {
+export default function CalorieCalculator (){
 
     const dispatch = useDispatch();
     const [age, setAge] = useState('');
@@ -36,24 +36,6 @@ const CalorieCalculator = () => {
    
   
     };
-    useEffect(() => {
-      dispatch(
-        setUserData({
-      age,
-      height,
-      weight,
-      gender,
-      activityLevel,
-      bmiResults: bmiResult,
-      calorieResults: calorieResult,
-      idealWeights: idealWeight,
-        })
-      );
-  
-      // Reset the form
-    }, [bmiResult]);
-
-
 
 
 
@@ -267,5 +249,3 @@ const CalorieCalculator = () => {
       fontSize: 16,
     },
   });
-  
-  export default CalorieCalculator;

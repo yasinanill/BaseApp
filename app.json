@@ -4,10 +4,10 @@
     "slug": "BaseApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/kn.jpeg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/knn.png",
       "resizeMode": "contain",
       "backgroundColor": "#2f4f4f"
     },
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/kn.jpeg",
         "backgroundColor": "#2f4f4f"
       },
       "package": "com.yaskay7.BaseApp"

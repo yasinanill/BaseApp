@@ -113,12 +113,12 @@ export default function HomePage() {
 
                 <View style={style.categoryArea}>
 
-                    <View style={style.categoryAreaTopBar}>
+              { /*    <View style={style.categoryAreaTopBar}>
                         <View><Text style={style.categoryone}>Kategoriler</Text></View>
                         <View><Text style={style.categorytwo}>Hepsini gor</Text></View>
 
 
-                    </View>
+    </View>*/}
                     <View style={{ marginTop: 15 }}>
                         <FlatList style={{ paddingHorizontal: 4 }}
                             showsHorizontalScrollIndicator={false}
@@ -159,17 +159,14 @@ export default function HomePage() {
 </TouchableOpacity>
                 <TouchableOpacity  onPress={() => navigation.navigate('ActivitiesHome')}>
 
-                <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#ABEBC6', margin: 8, padding: 2, borderRadius: 12,flexDirection:'row', justifyContent:'space-between' }}>
-                     
-              
-        
-              
+                <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#FFFFFF50', margin: 8, padding: 2, borderRadius: 12,flexDirection:'row', borderWidth:1,  borderColor:'#ABEBC6' ,justifyContent:'space-between' }}>
+                          
                             <View style={{ flex: 1, width: '70%',margin:4}}>
 
                
-                                <Text style={{marginBottom:18, fontSize:18, fontWeight:'bold', color:'#FDFEFE'}}> Egzersiz</Text>
-                                <Text style={{ fontSize:12, color:'#FDFEFE'}}> Yakılan kalori</Text>
-                               <Text style={{ marginLeft:4, fontSize:16, fontWeight:'bold', color:'#FDFEFE'}}>{totalActiviteCalories} / Kcal</Text>
+                                <Text style={{marginBottom:18, fontSize:18, fontWeight:'bold', color:'#556b2f'}}> Egzersiz</Text>
+                                <Text style={{ fontSize:12, color:'#556b2f'}}> Yakılan kalori</Text>
+                               <Text style={{ marginLeft:4, fontSize:16, fontWeight:'bold', color:'#556b2f'}}>{totalActiviteCalories} / Kcal</Text>
                    
  
                            
@@ -197,8 +194,8 @@ export default function HomePage() {
 
                  </TouchableOpacity>
 
-                <View style={{ flex: 1, width: '95%', height: 180, backgroundColor: '#5DADE2', margin: 8, padding: 2, borderRadius: 12, }}>
-                    <View style={{ alignItems: 'center' ,margin:4}}>
+                <View style={{ flex: 1, width: '95%', height: 180,borderWidth:3,  borderColor:'#5DADE2',margin: 8, padding: 2, borderRadius: 12, }}>
+                    <View style={{ alignItems: 'center' ,margin:2}}>
                         <Text> Su Takipcisi </Text>
                  
                         <Text style={{fontSize:16}}> {WaterCount} litre</Text>
@@ -264,14 +261,14 @@ export default function HomePage() {
 
                 <View style={style.foodArea}>
                     <View style={style.categoryAreaTopBar}>
-                        <View><Text style={style.categoryone}>Öne Çıkanlar</Text></View>
+                        <View><Text style={style.categoryone}>Haftanın Favorileri</Text></View>
 
 
 
                     </View>
                     <TouchableOpacity>
-                        <View style={{ marginTop: 5 }}>
-                            <FlatList style={{ paddingHorizontal: 10, paddingVertical: 20 }}
+                        <View style={{ marginTop: 2 }}>
+                            <FlatList style={{ paddingHorizontal: 10, marginBottom:12 ,paddingVertical:12}}
                                 showsHorizontalScrollIndicator={false}
                                 data={products} horizontal={true} renderItem={this.renderProductItem} />
 
@@ -418,13 +415,13 @@ const style = StyleSheet.create({
     },
 
     categoryArea: {
-        marginTop: 2,
+        margin: 2,
 
     },
     categoryone: {
         fontSize: 16,
-        color: COLOURS.Purple
-
+        color: COLOURS.Purple,
+        margin: 2,
     },
 
     categorytwo: {
@@ -531,7 +528,7 @@ const style = StyleSheet.create({
         position: 'absolute',
         top: -16,
 
-        backgroundColor: '#4CAF50',
+        backgroundColor: '#5DADE2',
         borderRadius: 50,
         width: 40,
         height: 40,

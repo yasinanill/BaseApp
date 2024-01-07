@@ -5,6 +5,9 @@ const cartSlice = createSlice({
   initialState: {
     items: [],
     totalCalories: 0,
+    totalCarbo: 0,
+    totalPro: 0,
+    totalFat: 0,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -12,6 +15,9 @@ const cartSlice = createSlice({
       const newItem = action.payload;
       state.items.push(newItem);
       state.totalCalories += newItem.productCalorie;
+      state.totalCarbo += newItem.productCarbo;
+      state.totalPro += newItem.productProtein;
+      state.totalFat += newItem.productFAt;
     },
     // Diğer reducer'ları buraya ekleyin (örneğin, ürünü sepetten çıkarma)
   },

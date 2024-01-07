@@ -14,16 +14,11 @@ import FoodSearch from '../screens/FoodSearch'
 import CalorieCalculator from '../screens/CalorieCalculator'
 import { useSelector } from 'react-redux'
 
-
-
 const Tabs = createBottomTabNavigator()
-
-
 
 export default function TabsNavigator() {
 
-
-const bmiResult = useSelector((state) => state.user.bmiResults);
+;
 
 
   return (
@@ -35,13 +30,8 @@ const bmiResult = useSelector((state) => state.user.bmiResults);
           
             <Tabs.Screen  name="MyCalorieCart" component={MyCalorieCart}  options={{ headerShown:false,tabBarIcon: (props) => <Ionicons name="timer-outline" {...props}/>}}/>
           
-            {bmiResult ? (
             <Tabs.Screen name="UserData" component={User}  options={{  headerShown:false,tabBarIcon: (props) => <Ionicons name="pizza-outline" {...props}/>}}/>
-            ) : (
-
-            <Tabs.Screen name="UserCalculator" component={CalorieCalculator}  options={{  headerShown:false,tabBarIcon: (props) => <Ionicons name="pizza-outline" {...props}/>}}/>
-            )}
-
+        
         </Tabs.Navigator>
 
 

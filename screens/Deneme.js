@@ -150,21 +150,21 @@ export default function YourComponent({ route, navigation }) {
             onChangeText={(text) => handleCevapla(text, sorular[soruIndex].setFunction)}
           />
         ) : (
-          <Picker
+          <Picker   
             style={styles.input}
             selectedValue={sorular[soruIndex].state}
             onValueChange={(itemValue) => handleCevapla(itemValue, sorular[soruIndex].setFunction)}
           >
             {sorular[soruIndex].secenekler.map((secenek, index) => (
-              <Picker.Item key={index} label={secenek} value={secenek} />
+              <Picker.Item  key={index} label={secenek} value={secenek} />
             ))}
           </Picker>
         )}
         {soruIndex < sorular.length - 1 && (
-          <Button title="Devam Et" onPress={handleDevamEt} />
+          <Button  color="orange" style={styles.nextButton} title="    Devam Et    " onPress={handleDevamEt} />
         )}
         {soruIndex === sorular.length - 1 && (
-          <Button title="Başlayalım" onPress={handleBaslayalim} />
+          <Button  color="#008000" style={styles.finishButton} title="   Başlayalım   " onPress={handleBaslayalim} />
         )}
       </View>
     </ImageBackground>
@@ -173,24 +173,44 @@ export default function YourComponent({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+   
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   content: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    width:'100%',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    padding: 20,
+    padding: 10,
     borderRadius: 10,
   },
   soruMetni: {
     fontSize: 18,
-    marginBottom: 10,
+    marginBottom: 18,
+    
   },
   input: {
+  
     height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
+    width: 160,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
+    textAlign:'center',
+    fontSize:18
+  },
+  nextButton: {
+      width:22,
+      backgroundColor:'red',
+      color:'red'
+  },
+  finishButton: {
+    width:22,
+    backgroundColor:'red',
+    color:'red'
   },
 });
