@@ -42,6 +42,21 @@ export default function MyCalorieCart() {
   const snacktotalCalories = snackItem.reduce((totalCalorie, item) => totalCalorie + item.productCalorie, 0)
 
 
+  const [calorieSum, setCalorieSum] = useState();
+ 
+
+  useEffect(() => {
+    setCalorieSum(totalCalories.toString());
+  }, [totalCalories]);
+
+
+
+
+
+
+
+
+
 
   const mealData = [
     { title: "Kahvaltı", items: breakfastItem, totalCalories: bratotalCalories, onPress: () => onPressButton('breakfast'), onPressDetail: () => onPressButtonDetail('breakfast'), aimageSource: require('../utils/Images/ff.png') },
@@ -53,17 +68,17 @@ export default function MyCalorieCart() {
 
   const renderItem = ({ item }) => (
 
-    <View style={{ flex: 1, flexDirection: 'column' }}>
+    <View style={{ flex: 1, flexDirection: 'column' , }}>
       <TouchableOpacity style={styles.mealContainer}  onPress={item.onPressDetail}>
         <View style={styles.mealContainerLchild}>
           <Text style={styles.mealContainerTitle}>{item.title}</Text>
           <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
             {item.items.map((item, index) => (
               index < 3 && (
-                <Text key={index} style={{ fontSize: 12, padding: 1 }}> {item.productName}, </Text>
+                <Text key={index} style={{ fontSize: 10, padding:1 }}> {item.productName}, </Text>
               )
             ))}
-            {item.items.length > 3 && <Text style={{ fontSize: 12, padding: 1 }}> Devamı...</Text>}
+            {item.items.length > 3 && <Text style={{ fontSize: 12,  }}> Devamı...</Text>}
           </View>
         </View>
         <View style={styles.mealContainerRchild}>
@@ -98,13 +113,15 @@ export default function MyCalorieCart() {
 
     <ScrollView >
 
-      <View style={{ flex: 1, alignItems: 'center', }}>
-        <View style={{ justifyContent: 'center', width: 220, alignItems: 'center', padding: 10, margin: 4, flexDirection: 'row' }}>
+      <View style={{ flex: 1, alignItems: 'center',}}>
+        <View style={{ backgroundColor:'#dcdcdc' , justifyContent: 'center', width:'95%', alignItems: 'center', padding: 4, margin: 4, flexDirection: 'row', }}>
 
+        <View style={{ }}>
+        <CircularProgressBar totalCalories={totalCalories} />
 
+        </View>
 
-          <CircularProgressBar />
-          <View style={{ justifyContent: 'center', alignItems: 'center', padding: 10, margin: 1, flexDirection: 'colum', }}>
+          <View style={{ backgroundColor:'#dcdcdc', justifyContent: 'center', alignItems: 'center', padding: 10, margin: 22, flexDirection: 'colum', }}>
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', marginVertical: 22 }}>
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#455d7a' }}>Alınan </Text>
 
@@ -122,7 +139,7 @@ export default function MyCalorieCart() {
           </View>
 
         </View>
-        <View style={{ alignItems: 'center', padding: 4, marginBottom: 24, flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{backgroundColor:'#dcdcdc', width:'95%', alignItems: 'center', padding: 8, marginBottom: 24, flexDirection: 'row', justifyContent: 'space-between',borderBottomEndRadius:24, borderBottomStartRadius:24,}}>
           <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
             <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#3498db' }}>Karbonhidrat </Text>
 
@@ -179,16 +196,16 @@ const styles = StyleSheet.create({
 
   mealContainer: {
 
-    backgroundColor: '#f0f8ff', height: 90, alignItems: 'center', width: '95%', flexDirection: 'row', borderRadius: 13, flex: 1, justifyContent: 'space-between', marginVertical: 2,
-    borderBottomRightRadius: 12, borderBottomWidth: 1, borderColor: '#4CAF50', borderRightWidth: 1,
+    backgroundColor: '#f8f8ff', height: 90, alignItems: 'center', width: '96%', flexDirection: 'row', borderRadius: 13, flex: 1, justifyContent: 'space-between', marginVertical: 2,
+    borderBottomRightRadius: 12, borderColor: '#4CAF50', borderRightWidth: 1,
+    elevation: 4,
 
-
-
+    marginLeft:4, 
 
   },
 
   mealContainerRchild: {
-    padding: 4, height: '100%', width: '50%', borderRadius: 10, borderBottomRightRadius: 44, position: 'relative', alignItems: 'center'
+  padding: 4, height: '100%', width: '50%', borderRadius: 10, borderBottomRightRadius: 44, position: 'relative', alignItems: 'center'
   },
   mealContainerLchild: {
 
@@ -230,15 +247,15 @@ const styles = StyleSheet.create({
     bottom: 18,
     right: -20,
     backgroundColor: 'white',
-    borderRadius: 50,
+    borderTopLeftRadius: 50,
+    borderBottomStartRadius: 50,
     width: 60,
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRightWidth: 1,
+    borderLeftWidth: 1,
     borderColor: '#4CAF50',
-
-
+ 
   },
   line: {
     width: '80%', // Çizgi uzunluğu
@@ -248,9 +265,9 @@ const styles = StyleSheet.create({
 
   },
   mealContainerTitle: {
-    fontSize: 16,
+    fontSize: 14,
     color: '#4CAF50',
-
+    padding:4
   }
 
 });

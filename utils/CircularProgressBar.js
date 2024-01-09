@@ -4,15 +4,10 @@ import { Button, Chip } from 'react-native-paper';
 import Svg, { Circle, G, Text as SvgText, Defs, LinearGradient, Stop, Filter, FeDropShadow } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
-export default function CircularProgressBar(){
+export default function CircularProgressBar({ totalCalories }){
  
  
-    const [calorieSum, setCalorieSum] = useState();
-    const totalCalories = useSelector((state) => state.cart.totalCalories);
-  
-    useEffect(() => {
-      setCalorieSum(totalCalories.toString());
-    }, [totalCalories]);
+
    
 
    
@@ -31,7 +26,7 @@ export default function CircularProgressBar(){
     const dotOffset = circumference - (fillPercentage / 100) * circumference;
   
     return (
-      <View style={{ justifyContent: 'center', width: '100%', padding: 10, flexDirection: 'row', alignItems: 'center' }}>
+     
         <Svg s height="220" width="280">
           <Defs>
             {/* Renk geçişi için lineer gradient tanımlaması */}
@@ -46,8 +41,8 @@ export default function CircularProgressBar(){
               cx="100"
               cy="100"
               r={radius} // İkinci çemberin yarıçapını biraz küçültün (isteğe bağlı)
-              stroke="#4CAF50" // İkinci çemberin kenar rengi
-              strokeWidth="4" // İkinci çemberin kenar kalınlığı
+              stroke="#f8f8ff" // İkinci çemberin kenar rengi
+              strokeWidth="8" // İkinci çemberin kenar kalınlığı
               fill="transparent" // İkinci çemberin içini boş bırakmak için
              
             />
@@ -57,9 +52,9 @@ export default function CircularProgressBar(){
               cy="100"
               r={radius}
               stroke="url(#gradient)" // Lineer gradienti kullan
-              strokeWidth="12"
+              strokeWidth="10"
               borderRadius='13'
-              fill="#ffffff"
+              fill="#dcdcdc"
               strokeDasharray={`${circumference} ${circumference}`}
               strokeDashoffset={dotOffset}
          
@@ -70,19 +65,19 @@ export default function CircularProgressBar(){
               cx={100 + radius * Math.cos(((fillPercentage / 100 * 360) * Math.PI) / 180)}
               cy={100 + radius * Math.sin(((fillPercentage / 100 * 360) * Math.PI) / 180)}
               r={dotRadius +1}
-              fill="#4CAF50" // Nokta rengi
+              fill="#fff" // Nokta rengi
             />
                     <Circle
               cx={100 + radius * Math.cos(((fillPercentage / 100 * 360) * Math.PI) / 180)}
               cy={100 + radius * Math.sin(((fillPercentage / 100 * 360) * Math.PI) / 180)}
               r={dotRadius}
-              fill="#fff" // Nokta rengi
+              fill="#4CAF50" // Nokta rengi
             />
         
             <Circle
                cx={100 + radius * Math.cos((0 * Math.PI) / 180)}
                cy={100 + radius * Math.sin((0 * Math.PI) / 180)}
-                r={dotRadius-1}
+                r={dotRadius-2}
                 fill="#4CAF50" // Nokta rengi
       />
   
@@ -106,7 +101,7 @@ export default function CircularProgressBar(){
         </Svg>
       
 
-      </View>
+
     );
   };
   

@@ -30,7 +30,7 @@ const myValue = totalCalories;
 
      <View style={{ flex: 1, flexDirection: 'column' }}>
     
-  
+      
 
       <View style={styles.mealContainer} >
         <View style={styles.mealContainerLchild}>
@@ -67,8 +67,53 @@ const myValue = totalCalories;
   
   return (
     <View>
+       <View style={{
+       alignItems: 'center',}}>
+        <View style={{ backgroundColor:'#dcdcdc' , justifyContent: 'center', width:'95%', alignItems: 'center', padding: 4, margin: 4, flexDirection: 'row', }}>
 
-    <CircularProgressBar/>
+        <View style={{ }}>
+        <CircularProgressBar totalCalories={mealTypeItemsCalories} />
+
+        </View>
+
+          <View style={{ backgroundColor:'#dcdcdc', justifyContent: 'center', alignItems: 'center', padding: 10, margin: 22, flexDirection: 'colum', }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', marginVertical: 22 }}>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#455d7a' }}>Alınan </Text>
+
+              <View style={styles.line} />
+
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}>{mealTypeItemsCalories} /kcal  </Text>
+
+            </View>
+
+          </View>
+
+        </View>
+        <View style={{backgroundColor:'#dcdcdc', width:'95%', alignItems: 'center', padding: 8, marginBottom: 24, flexDirection: 'row', justifyContent: 'space-between',borderBottomEndRadius:24, borderBottomStartRadius:24,}}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#3498db' }}>Karbonhidrat </Text>
+
+            <View style={styles.line} />
+
+            <Text style={{ fontSize: 14, fontWeight: 'bold' }}>{totalCarbo} gr  </Text>
+
+          </View>
+          <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#e74c3c' }}>Yağ  </Text>
+
+            <View style={styles.line} />
+            <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalFat}  gr </Text>
+          </View>
+          <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#2ecc71' }}>Protein  </Text>
+
+            <View style={styles.line} />
+            <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalPro}  gr </Text>
+          </View>
+        </View>
+
+
+      </View>
 
     <FlatList
           data={mealTypeItems}
@@ -107,7 +152,6 @@ mealContainer: {
 
   backgroundColor: 'white', height: 60, alignItems: 'center', width: '95%', flexDirection: 'row', borderRadius: 13, flex: 1, justifyContent: 'space-between', marginVertical: 2,marginLeft:12,
   borderBottomRightRadius: 12, borderWidth: 1, borderColor: '#ccc', borderRightWidth: 1,
-
 
 
 
