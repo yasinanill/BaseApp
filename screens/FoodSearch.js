@@ -7,7 +7,7 @@ import { addToCart } from '../utils/redux/store.js'
 import { Button } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export default function FoodSearch({route}) {
+export default function FoodSearch({ route }) {
 
 
   const { mealType } = route.params;
@@ -22,12 +22,12 @@ export default function FoodSearch({route}) {
   const handleSearch = (term) => {
 
     const results = FoodItems.filter((item) =>
-    item.productName && item.productName.toLowerCase().includes(term.toLowerCase())
+      item.productName && item.productName.toLowerCase().includes(term.toLowerCase())
     );
-    
+
     setSearchResults(results);
-  
-   
+
+
 
   };
   const handleAddToCart = async (item) => {
@@ -35,13 +35,13 @@ export default function FoodSearch({route}) {
       ...item,
       mealType: mealType,
     };
-  
+
     const allItemsFromStorage = await loadFromStorage('allItems') || [];
     const updatedItems = [...allItemsFromStorage, newItem];
     await saveToStorage('allItems', updatedItems);
-  
+
     dispatch(addToCart(newItem));
-    
+
   };
 
 
@@ -65,7 +65,7 @@ export default function FoodSearch({route}) {
       return null;
     }
   };
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const storedItems = await loadFromStorage('allItems');
@@ -73,7 +73,7 @@ export default function FoodSearch({route}) {
         dispatch(addToCartList(storedItems));
       }
     };
-    
+
     fetchData();
   }, [dispatch]);
 
@@ -82,29 +82,33 @@ export default function FoodSearch({route}) {
   // FlatList için özel öğe bileşeni
   const renderItem = ({ item }) => (
     <View style={styles.card}>
-            <View><Text style={styles.cardTitle}>{item.productName}</Text>
-      <Text>{`Kaloriler: ${item.productCalorie}`}</Text></View>
       <View>
-      <TouchableOpacity style={styles.mealAddButton} onPress={() => handleAddToCart(item)} >
-                <Text style={{
-                  color: 'white',
-                  fontSize: 24,
-                  fontWeight: 'bold',
-                }}>+</Text>
-              </TouchableOpacity></View>
+        <Text style={styles.cardTitle}>{item.productName}</Text>
+        <Text>{`Kaloriler: ${item.productCalorie}`}</Text>
+        <Text>{item.Amount}</Text>
+
+      </View>
+      <View>
+        <TouchableOpacity style={styles.mealAddButton} onPress={() => handleAddToCart(item)} >
+          <Text style={{
+            color: 'white',
+            fontSize: 24,
+            fontWeight: 'bold',
+          }}>+</Text>
+        </TouchableOpacity></View>
     </View>
   );
 
-    
+
 
 
   return (
-    
+
 
     <View style={styles.container}>
       {/* Arama çubuğu */}
 
-      
+
       <TextInput
         style={styles.input}
         placeholder="Besin adını girin..."
@@ -132,35 +136,38 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: '#fff',
-    
+
   },
   input: {
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1,
+    borderBottomWidth: 1,
     marginBottom: 16,
     paddingLeft: 8,
+    borderRadius: 2,
   },
   card: {
     backgroundColor: '#f0f0f0',
-    padding: 12,
-    marginBottom: 8,
+    padding: 4,
+    paddingHorizontal: 8,
+    marginBottom: 4,
     borderRadius: 8,
-    flexDirection:'row',
-    justifyContent:'space-between'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: 80,
   },
   cardTitle: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 6,
   },
   mealAddButton: {
-   
-    
+
+
     backgroundColor: '#4CAF50',
     borderRadius: 2,
-    width:60,
-    height: 60,
+    width: 40,
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     ...Platform.select({

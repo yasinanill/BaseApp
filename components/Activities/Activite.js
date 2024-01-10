@@ -59,7 +59,7 @@ resultByMinute =()=>{
       return (
  
         <SafeAreaView>
-            <View>
+            <View style={style.contents} >
                 <View style={style.content}>
                     <View >
                     {result !== 0 ? (
@@ -97,7 +97,7 @@ resultByMinute =()=>{
 
 
                     <Button compact mode="contained" onPress={resultByMinute}
-                        style={{ margin: 10, }}
+                        style={{ margin: 10,  borderRadius:4}}
                     > HESAPLA
 
                     </Button>
@@ -119,7 +119,7 @@ resultByMinute =()=>{
 
 
                     <Button compact mode="contained" onPress={resultByCalorie}
-                        style={{ margin: 10, }}
+                        style={{ margin: 10, borderRadius:4}}
                     > HESAPLA
                     </Button>
                 
@@ -153,23 +153,25 @@ resultByMinute =()=>{
 
 const style = StyleSheet.create({
 
-Image: { width: 100, height: 100, padding: 20, borderRadius: 20, },
-
+Image: { width: 100, height: 100, padding: 10, borderRadius: 20,  resizeMode:'contain'},
+contents: {
+    
+},
 content: {
     margin: 16,
-    borderRadius: 20, width: 360, height: 200, color: 'white', alignItems: "center", fontSize: 16, justifyContent: 'center', marginTop: 60, backgroundColor: "#ccc",flexDirection:'column'
+    borderRadius: 20, width: 360, height: 200, color: 'white', alignItems: "center", fontSize: 16, justifyContent: 'center', marginTop: 12, backgroundColor: "#ccc",flexDirection:'column'
 },
 input: { padding: 10, backgroundColor: "white", flex: 1, },
-button: { padding: 10, backgroundColor: 'blue', borderRadius: 5, },
+button: { padding: 10, backgroundColor: 'blue', borderRadius: 2, },
 text: { textAlign: "center", fontSize: 24, color: 'black', fontWeight: '700', },
 
 button: {
-  width: 100,
+  width: 10,
   height: 50,
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: 8,
-  transform: [{ rotate: '45deg' }],
+ 
 },
 buttonText: {
   color: 'white',

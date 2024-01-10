@@ -325,14 +325,16 @@ const style = StyleSheet.create({
         fontWeight: '700',
     },
     banner: {
-        backgroundColor: "#8a2be2",
+        backgroundColor: "white",
         padding: 8,
         justifyContent: "center",
         alignItems: "center",
+        borderWidth:1,
+        borderColor:"#8923e8",
 
     },
     bannertext: {
-        color: "white",
+        color: "#8a2be2",
         textAlign: "center",
         fontSize: 15,
 
@@ -458,7 +460,7 @@ const style = StyleSheet.create({
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
-        elevation: 20,
+        elevation: 5,
         backgroundColor: "white",
         borderRadius: 10,
         width: 75,
