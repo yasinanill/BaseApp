@@ -3,18 +3,19 @@ import React, { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { Text, TextInput, View, StyleSheet, TouchableOpacity, Picker, Image, Button, FlatList } from "react-native";
+import { Text, TextInput, View, StyleSheet, TouchableOpacity, Picker, Image, Button, FlatList, Modal, Pressable } from "react-native";
 import { useSelector } from 'react-redux';
 import ProgressBar from '../utils/ProgressBar';
 import WeightLossTracker from '../utils/ProgressBar';
 import WeightLossProgressBar from '../utils/ProgressBar';
-
+import Icon from 'react-native-vector-icons/FontAwesome'; 
+import Icons from 'react-native-vector-icons/Fontisto'; 
 
 const UserProfile = () => {
 
   const navigation = useNavigation();
   const user = useSelector((state) => state.user);
-
+  const [modalVisible, setModalVisible] = useState(false);
   console.log(user)
 
 
@@ -22,13 +23,46 @@ const UserProfile = () => {
   const SquareView = ({ data, user }) => {
     return (
       <View style={style.squareContainer}>
+  
+       
         {data.map((item, index) => (
           <View key={index} style={[style.square, { borderColor: getBackgroundColor(index) }]}>
-            <Text style={style.infoText}></Text>
+        <TouchableOpacity  onPress={() => setModalVisible(!modalVisible)} style={style.infoIcon}>
+        <Icon name="info-circle" size={20} color={getBackgroundColor(index)}/>
+        </TouchableOpacity>
+
+           <View style={style.UserInfoText} ></View>
+            <Text style={style.UserInfoText}>1000</Text>
 
             <Text style={style.infoText}>{item.isim}</Text>
+   
+
           </View>
+
+
+
         ))}
+
+
+<Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={style.centeredView}>
+          <View style={style.modalView}>
+            <Text style={style.modalText}>{data.infotitle}</Text>
+            <Text style={style.modalText}>{data.info}</Text>
+          
+            <TouchableOpacity  onPress={() => setModalVisible(!modalVisible)} >
+        <Icons name="like" size={40} color="#778899" />
+        </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
       </View>
     );
   };
@@ -49,10 +83,19 @@ const UserProfile = () => {
   };
 
   const data = [
-    { kilo: 70, isim: 'Vücut Kitle Endeksin (BMI)' },
-    { kilo: 65, isim: 'İdeal  Kilon' },
-    { kilo: 80, isim: 'Ayşe' },
-    { kilo: 60, isim: 'Fatma' },
+    { kilo: 70, isim: 'Vücut Kitle Endeksin (BMI)',
+    infotitle:'Bazal Metabolizma Hızı (BMH) Nedir?',
+    info:'Vücut kitle indeksi, boy kilo endeksi olarak da bilinen, kişinin ağırlık ve boy değerleri kullanılarak hesaplanan bir sayıdır. Formülde kullanılan vücut ağırlığı, kilogram, boy ise metre cinsinden alınarak hesaplama yapılır. Vücut kitle endeksi hesaplama sonucunda çıkan değer ile kişinin zayıf, normal ağırlıkta, hafif şişman ya da obez olması gibi bir sınıflama yapılır. Fakat bu değer ile vücut yağ oranı ölçülmez. Yağ, kas, su gibi değerlerin miktarları belirlemede sadece genel bir tablo çizilmiş olur. Ana kullanım amacı kişinin boyuna göre sağlıklı vücut ağırlığında olup olmadığını belirlemektir. Kısaca vücut kitle indeksi, kişinin fazla kilolu ya da zayıf olduğunu gösteren bir ölçüttür; fakat vücut içerisindeki yağ, kas gibi değerleri bize vermez.' },
+    { kilo: 65, isim: 'İdeal  Kilon',
+    infotitle:'Bazal Metabolizma Hızı (BMH) Nedir?',
+
+    info:'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.' },
+    { kilo: 80, isim: 'Ayşe' ,infotitle:'Bazal Metabolizma Hızı (BMH) Nedir?',
+
+    info:'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.'  },
+    { kilo: 60, isim: 'Fatma',  infotitle:'Bazal Metabolizma Hızı (BMH) Nedir?',
+
+    info:'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.' },
   ];
 
 
@@ -222,21 +265,75 @@ const style = StyleSheet.create({
   },
   square: {
     width: 160,
-    height: 120,
+    height: 90,
     backgroundColor: '#ffffff',
     margin: 8,
-    padding: 12,
+    padding: 4,
     borderRadius: 10,
     elevation: 5,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
+    position:'relative',
+  },
+  UserInfoText: {
+    fontSize: 16,
+    
+    fontWeight:'700',
+    marginBottom: 4,
   },
   infoText: {
-    fontSize: 16,
-    marginBottom: 5,
+    fontSize: 12,
+    marginBottom: 4,
   },
 
+  infoIcon: {
+    position: 'absolute',
+    top: 4,
+    right: 4,
+
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    padding: 30,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
 
 
 

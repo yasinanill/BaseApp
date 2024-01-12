@@ -18,21 +18,21 @@ export default function HomePage() {
         ],
         categories: [
 
-           // { id: 1, title: 'Kalori Listesi', icon: require('../assets/images/kalorilistesi.png'), items: 'Home' },
-           { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'), items: 'FoodInfo'  },
+            // { id: 1, title: 'Kalori Listesi', icon: require('../assets/images/kalorilistesi.png'), items: 'Home' },
+            { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'), items: 'FoodInfo' },
             { id: 4, title: 'Aktiviteler', icon: require('../assets/images/activities.png'), items: 'ActivitiesHome' },
-            { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'),  items:'CalorieCalculator'  },
+            { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'), items: 'CalorieCalculator' },
             { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png') },
 
 
 
         ],
-        products: [ 
-            { id: 4, title: 'Karpuz', Image: require('../components/database/images/foods/karpuz.jpg'), kalori:'150' },
-          
-            { id: 2, title: 'Dondurma', Image: require('../components/database/images/foods/dond.jpg'), kalori:'1333' },
-            { id: 3, title: 'Kandil Simidi ', Image:  require('../components/database/images/foods/kandil.jpg'), kalori:'150' },
-           
+        products: [
+            { id: 4, title: 'Karpuz', Image: require('../components/database/images/foods/karpuz.jpg'), kalori: '150' },
+
+            { id: 2, title: 'Dondurma', Image: require('../components/database/images/foods/dond.jpg'), kalori: '1333' },
+            { id: 3, title: 'Kandil Simidi ', Image: require('../components/database/images/foods/kandil.jpg'), kalori: '150' },
+
 
         ],
     };
@@ -62,17 +62,18 @@ export default function HomePage() {
     }
     renderProductItem = ({ item }) => {
         return <View style={style.productItem}>
-<TouchableOpacity 
- >
-       
-            <View style={style.productItemIconContainer}>
+            <TouchableOpacity
+            >
 
-                <Image source={item.Image} style={style.ProductItemimage} />
-            </View>
-            <View style={{padding:10}}>
-            <Text style={style.productItemTitle}>{item.title}</Text>
-       
-            </View></TouchableOpacity>
+                <View style={style.productItemIconContainer}>
+
+                    <Image source={item.Image} style={style.ProductItemimage} />
+                </View>
+                <View style={{ padding: 10 }}>
+                    <Text style={style.productItemTitle}>{item.title} </Text>
+                    <Text style={style.productItemTitle}>{item.kalori} /kcal</Text>
+
+                </View></TouchableOpacity>
         </View>
     }
 
@@ -84,8 +85,8 @@ export default function HomePage() {
     const addImage = () => {
 
         if (imageCount < 15) {
-            setImageCount((prevCount) => prevCount + 1 );
-            setWaterCount((prevCount) => prevCount + 0.2 );
+            setImageCount((prevCount) => prevCount + 1);
+            setWaterCount((prevCount) => prevCount + 0.2);
         }
     };
     const totalCalories = useSelector((state) => state.cart.totalCalories);
@@ -106,14 +107,14 @@ export default function HomePage() {
             </View>
             <ScrollView style={{ flex: 1 }}>
                 <View style={style.banner}>
-                    <Text style={style.bannertext}>Kalori takip uygulamasi</Text>
+                    <Text style={style.bannertext}>Zorlanıyorsanız, başarı yaklaşıyor demektir.</Text>
 
                 </View>
 
 
                 <View style={style.categoryArea}>
 
-              { /*    <View style={style.categoryAreaTopBar}>
+                    { /*    <View style={style.categoryAreaTopBar}>
                         <View><Text style={style.categoryone}>Kategoriler</Text></View>
                         <View><Text style={style.categorytwo}>Hepsini gor</Text></View>
 
@@ -130,111 +131,114 @@ export default function HomePage() {
                 </View>
 
 
-              
+
                 <TouchableOpacity onPress={() => navigation.navigate('MyCalorieCart')}>
-                <View style={{ borderWidth:1,  borderColor:'#F5B7B1',flex: 1, width: '95%', backgroundColor: '#FFFFFF50', margin: 8, padding: 2, borderRadius: 12,flexDirection:'row', justifyContent:'space-between' }}>
-                     
-              
-                    <View style={{ flex: 1,margin:4, width: '70%'}}>
-                               <Text style={{marginBottom:12, fontSize:18, fontWeight:'bold', color:'#556b2f'}}> Kalori Günlüğüm</Text>
-                               <Text style={{ fontSize:12, color:'#556b2f'}}> Alınan kalori</Text>
-                               <Text style={{marginLeft:4, fontSize:16, fontWeight:'bold', color:'#556b2f'}}>{totalCalories} / Kcal</Text>
+                    <View style={{ borderWidth: 1, borderColor: '#F5B7B1', flex: 1, width: '95%', backgroundColor: '#FFFFFF50', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
 
-                            </View>
-                            <View style={{ width: '30%' , opacity: 0.7 , alignItems:'center' ,backgroundColor: '#F5B7B1', justifyContent:'center',}}>
+
+                        <View style={{ flex: 1, margin: 4, width: '70%' }}>
+                            <Text style={{ marginBottom: 12, fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Kalori Günlüğüm</Text>
+                            <Text style={{ fontSize: 12, color: '#556b2f' }}> Alınan kalori</Text>
+                            <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalCalories} / Kcal</Text>
+
+                        </View>
+                        <View style={{ width: '30%', opacity: 0.8, alignItems: 'center', backgroundColor: '#F5B7B1', justifyContent: 'center', }}>
                             <Image
+
+                                style={{
+                                    width: 100,
+                                    height: 80,
                                     
-                                    style={{
-                                        width: 60,
-                                        height: 60,
-                                        marginBottom: 10,
-                                        margin:4
-                                    }}
-                                    source={require('../utils/Images/dinner.png')}/>
-                            </View>
+                                }}
+                                source={require('../utils/Images/foodburn.jpeg')} />
+                        </View>
 
-
-                </View>
-
-</TouchableOpacity>
-                <TouchableOpacity  onPress={() => navigation.navigate('ActivitiesHome')}>
-
-                <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#FFFFFF50', margin: 8, padding: 2, borderRadius: 12,flexDirection:'row', borderWidth:1,  borderColor:'#ABEBC6' ,justifyContent:'space-between' }}>
-                          
-                            <View style={{ flex: 1, width: '70%',margin:4}}>
-
-               
-                                <Text style={{marginBottom:12, fontSize:18, fontWeight:'bold', color:'#556b2f'}}> Egzersiz</Text>
-                                <Text style={{ fontSize:12, color:'#556b2f'}}> Yakılan kalori</Text>
-                               <Text style={{ marginLeft:4, fontSize:16, fontWeight:'bold', color:'#556b2f'}}>{totalActiviteCalories} / Kcal</Text>
-                   
- 
-                           
-                             </View>
-                           
-                           
-                             <View style={{ width: '30%' , opacity: 0.5 , alignItems:'center' ,backgroundColor: '#ABEBC6', justifyContent:'center',}}>
-                         
-                         
-                         
-                         
-                             <Image
-                                    
-                                    style={{
-                                        width: 60,
-                                        height: 60,
-                                        marginBottom: 10,
-                                        margin:4
-                                    }}
-                                    source={require('../utils/Images/futbol.png')}/>
-                             </View>
- 
- 
-                 </View>
-
-                 </TouchableOpacity>
-
-                <View style={{ flex: 1, width: '95%',  height: '100%',borderWidth:1,  borderColor:'#5DADE2',margin: 8, padding: 4, borderRadius: 12, }}>
-                    <View style={{ alignItems: 'center' ,margin:2}}>
-                        <Text> Su Takipcisi </Text>
-                 
-                        <Text style={{fontSize:16}}> {WaterCount.toFixed(1)} litre</Text>
 
                     </View>
-                    <View style={{ alignItems: 'center' , flex: 1 }}>
+
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('ActivitiesHome')}>
+
+                    <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#f8f8ff', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', borderWidth: 1, borderColor: '#ABEBC6', justifyContent: 'space-between' }}>
+
+                        <View style={{ flex: 1, width: '70%', margin: 4 }}>
+
+
+                            <Text style={{ marginBottom: 12, fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Egzersiz</Text>
+                            <Text style={{ fontSize: 12, color: '#556b2f' }}> Yakılan kalori</Text>
+                            <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalActiviteCalories} / Kcal</Text>
+
+
+
+                        </View>
+
+
+                        <View style={{ width: '30%', opacity: 0.8, alignItems: 'center', backgroundColor: '#ABEBC6', justifyContent: 'center', }}>
+
+
+
+
+                            <Image
+
+                                style={{
+                                    width: 100,
+                                    height: 80,
+                                   
+                                 
+                                    
+                                    
+                                }}
+                                source={require('../utils/Images/activiteburn.jpeg')} />
+                        </View>
+
+
+                    </View>
+
+                </TouchableOpacity>
+
+                <View style={{ flex: 1, width: '95%', height: '100%',backgroundColor: '#f8f8ff', borderWidth: 1, borderColor: '#5DADE2', margin: 8, padding: 4, borderRadius: 12, }}>
+                    <View style={{ alignItems: 'center', margin: 2 }}>
+                        <Text> Su Takipcisi </Text>
+
+                        <Text style={{ fontSize: 16 }}> {WaterCount.toFixed(1)} litre</Text>
+
+                    </View>
+                    <View style={{ alignItems: 'center', flex: 1 }}>
                         <View style={{
                             flex: 1,
                             justifyContent: 'center',
                             alignItems: 'center',
                             flexDirection: 'row',
-                          
+
                             flexWrap: 'wrap',
                         }}>
 
                             {Array.from({ length: imageCount }).map((_, index) => (
-                               
-                               <Image 
+
+                                <Image
                                     key={index}
-                                    style={{ aspectRatio: 1,
+                                    style={{
+                                       
                                         width: 50,
                                         height: 50,
                                         marginBottom: 10,
-                                        margin:2,
-                                        padding:8,
-                                       resizeMode:'contain'
+                                        margin: 2,
+                                        padding: 8,
+                                        resizeMode: 'contain'
                                     }}
                                     source={require('../utils/Images/full.png')} // Resmin yolu buraya eklenmeli
                                 />
                             ))}
-                              <TouchableOpacity onPress={addImage}>
-                              <Image
+                            <TouchableOpacity onPress={addImage}>
+                                <Image
                                     onPress={addImage}
                                     style={{
-                                        aspectRatio: 1,
-                                        width: 40,
-                                        height: 40,
+                                        
+                                        width: 50,
+                                        height: 50,
                                         marginBottom: 2,
-                                        margin:4
+                                        margin: 4,
+                                        resizeMode: 'contain'
                                     }}
                                     source={require('../utils/Images/empty.png')} // Resmin yolu buraya eklenmeli
                                 />
@@ -249,7 +253,7 @@ export default function HomePage() {
 
 
                     }}>
-          
+
                     </View>
 
                 </View>
@@ -269,14 +273,14 @@ export default function HomePage() {
 
                 <View style={style.foodArea}>
                     <View style={style.categoryAreaTopBar}>
-                        <View><Text style={style.categoryone}>Haftanın Favorileri</Text></View>
+                        <Text style={style.categoryone}>Haftanın Favorileri</Text>
 
 
 
                     </View>
                     <TouchableOpacity>
                         <View style={{ marginTop: 2 }}>
-                            <FlatList style={{ paddingHorizontal: 10, marginBottom:12 ,paddingVertical:12}}
+                            <FlatList style={{ paddingHorizontal: 10, marginBottom: 12, paddingVertical: 12 }}
                                 showsHorizontalScrollIndicator={false}
                                 data={products} horizontal={true} renderItem={this.renderProductItem} />
 
@@ -329,14 +333,14 @@ const style = StyleSheet.create({
         padding: 8,
         justifyContent: "center",
         alignItems: "center",
-        borderWidth:1,
-        borderColor:"#8923e8",
+        borderWidth: 1,
+        borderColor: "#8923e8",
 
     },
     bannertext: {
         color: "#8a2be2",
         textAlign: "center",
-        fontSize: 15,
+        fontSize: 12,
 
     },
     Searcharea: {
@@ -419,6 +423,7 @@ const style = StyleSheet.create({
     },
 
     categoryAreaTopBar: {
+
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 12,
@@ -426,15 +431,18 @@ const style = StyleSheet.create({
 
     categoryArea: {
         margin: 2,
+        
 
     },
     categoryone: {
-        fontSize: 16,
-        color: COLOURS.Purple,
-        margin: 2,
+        alignItems:'center',
+        fontSize: 14,
+        color: '#556b2f',
+        
     },
 
     categorytwo: {
+       
         color: "#8a2be2",
         fontWeight: '500',
 
@@ -478,16 +486,16 @@ const style = StyleSheet.create({
 
     productItem: {
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-        elevation: 20,
-        backgroundColor: "white",
-        padding: 10,
-        marginRight: 5,
-        borderRadius: 10,
-        width: 140,
-        height: 130,
+
+        elevation: 5,
+        backgroundColor: "#ffffff",
+        padding: 8,
+       
+        margin:2,
+        marginBottom:8,
+        borderRadius: 4,
+        width: 120,
+        height: 140,
 
     },
 
@@ -503,7 +511,7 @@ const style = StyleSheet.create({
 
     productItemTitle: {
 
-        fontSize: 16,
+        fontSize: 12,
 
         fontWeight: '500',
 
@@ -517,8 +525,8 @@ const style = StyleSheet.create({
     },
     ProductItemimage: {
 
-        width: 120,
-        height: 80,
+        width: 100,
+        height:80,
 
     },
     foodArea: {

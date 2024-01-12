@@ -27,7 +27,7 @@ export default function CircularProgressBar({ totalCalories }){
   
     return (
      
-        <Svg s height="220" width="280">
+        <Svg s height="220" width="200">
           <Defs>
             {/* Renk geçişi için lineer gradient tanımlaması */}
             <LinearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -35,14 +35,14 @@ export default function CircularProgressBar({ totalCalories }){
               
             </LinearGradient>
           </Defs>       
-          <G transform={`rotate(-90 130 100)`}>
+          <G transform={`rotate(-90 110 110)`}>
             
           <Circle
               cx="100"
               cy="100"
               r={radius} // İkinci çemberin yarıçapını biraz küçültün (isteğe bağlı)
               stroke="#f8f8ff" // İkinci çemberin kenar rengi
-              strokeWidth="8" // İkinci çemberin kenar kalınlığı
+              strokeWidth="10" // İkinci çemberin kenar kalınlığı
               fill="transparent" // İkinci çemberin içini boş bırakmak için
              
             />
@@ -92,7 +92,7 @@ export default function CircularProgressBar({ totalCalories }){
             dy=".1em"
             fontSize="16"
             textAnchor="middle"
-            fill="#4CAF50"
+            fill="#455d7a"
           > Kalan:
             {3000 - normalizedValue}
           </SvgText>

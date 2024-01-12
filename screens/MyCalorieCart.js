@@ -82,9 +82,9 @@ export default function MyCalorieCart() {
           </View>
         </View>
         <View style={styles.mealContainerRchild}>
-          <Text style={{ fontSize: 12, padding: 2 }}>Önerilen: 800/kcal </Text>
-          <Text style={{ fontSize: 18, padding: 2 }}>Toplam</Text>
-          <Text style={{ fontSize: 18, padding: 2 }}>{item.totalCalories} /kcal</Text>
+          <Text style={{ fontSize: 12, padding: 4 }}>Önerilen: 800/kcal </Text>
+          <Text style={{ fontSize: 15, marginTop:4}}>Toplam</Text>
+          <Text style={{ fontSize: 15, padding: 2 }}>{item.totalCalories} /kcal</Text>
           {/*
         <Image source={item.imageSource} style={styles.mealImage} />*/}
 
@@ -116,13 +116,8 @@ export default function MyCalorieCart() {
       <View style={{ flex: 1, alignItems: 'center',}}>
         <View style={{ backgroundColor:'#dcdcdc' , justifyContent: 'center', width:'95%', alignItems: 'center', padding: 4, margin: 4, flexDirection: 'row', }}>
 
-        <View style={{ }}>
-        <CircularProgressBar totalCalories={totalCalories} />
-
-        </View>
-
-          <View style={{ backgroundColor:'#dcdcdc', justifyContent: 'center', alignItems: 'center', padding: 10, margin: 22, flexDirection: 'colum', }}>
-            <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', marginVertical: 22 }}>
+          <View style={{ backgroundColor:'#dcdcdc', justifyContent: 'center', alignItems: 'center', padding: 4, margin: 2, flexDirection: 'row', }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', marginVertical: 20 }}>
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#455d7a' }}>Alınan </Text>
 
               <View style={styles.line} />
@@ -130,6 +125,12 @@ export default function MyCalorieCart() {
               <Text style={{ fontSize: 14, fontWeight: 'bold' }}>{totalCalories} /kcal  </Text>
 
             </View>
+
+            <View style={{ }}>
+        <CircularProgressBar totalCalories={totalCalories} />
+
+        </View>
+
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', }}>
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#f95959' }}>Yakılan  </Text>
 
