@@ -6,6 +6,7 @@ import { COLOURS } from '../components/database/Database';
 import { useNavigation } from '@react-navigation/native';
 import CircularProgressBar from '../utils/CircularProgressBar';
 import { useSelector } from 'react-redux';
+import { LinearGradient } from 'react-native-svg';
 
 export default function HomePage() {
 
@@ -142,12 +143,12 @@ export default function HomePage() {
                             <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalCalories} / Kcal</Text>
 
                         </View>
-                        <View style={{ width: '30%', opacity: 0.8, alignItems: 'center', backgroundColor: '#F5B7B1', justifyContent: 'center', }}>
+                        <View style={{ width: '40%',  height: '100%',opacity: 0.8, alignItems: 'center', backgroundColor: '#F5B7B1', justifyContent: 'center', }}>
                             <Image
 
                                 style={{
                                     width: 100,
-                                    height: 80,
+                                    height: '100%',
                                     
                                 }}
                                 source={require('../utils/Images/foodburn.jpeg')} />
@@ -173,16 +174,20 @@ export default function HomePage() {
                         </View>
 
 
-                        <View style={{ width: '30%', opacity: 0.8, alignItems: 'center', backgroundColor: '#ABEBC6', justifyContent: 'center', }}>
+                        <View style={{ width: '50%', opacity: 0.8, height: '100%', alignItems: 'center', backgroundColor: '#ABEBC6', justifyContent: 'center', }}>
 
 
-
+                        <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={style.linearGradient}>
+                             <Text style={style.buttonText}>
+                                                 Sign in with Facebook
+                                                  </Text>
+                                    </LinearGradient>
 
                             <Image
 
                                 style={{
                                     width: 100,
-                                    height: 80,
+                                    height: '100%',
                                    
                                  
                                     

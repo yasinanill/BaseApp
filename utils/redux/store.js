@@ -1,4 +1,16 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, createSlice ,getDefaultMiddleware   } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -54,27 +66,50 @@ const activiteCalorieSlice = createSlice({
   },
 });
 
+const persistConfigCart = {
+  key: 'cart',
+  storage: AsyncStorage,
+};
 
+const persistConfigUser = {
+  key: 'user',
+  storage: AsyncStorage,
+};
 
+const persistConfigActiviteCalorie = {
+  key: 'activiteCalories',
+  storage: AsyncStorage,
+};
 
-
+const persistedCartReducer = persistReducer(persistConfigCart, cartSlice.reducer);
+const persistedUserReducer = persistReducer(persistConfigUser, userSlice.reducer);
+const persistedActiviteCalorieReducer = persistReducer(persistConfigActiviteCalorie, activiteCalorieSlice.reducer);
 
 
 export const { addCalorie } = activiteCalorieSlice.actions;
 export const { setUserData } = userSlice.actions;
 export const { addToCart } = cartSlice.actions;
 
+
+
+const myCustomMiddleware = (store) => (next) => (action) => {
+  // Middleware logic
+  return next(action);
+};
+
+
+
 const store = configureStore({
+
   reducer: {
-    cart: cartSlice.reducer,
-    user: userSlice.reducer,
-    activiteCalories: activiteCalorieSlice.reducer,
-
+    cart: persistedCartReducer,
+    user: persistedUserReducer,
+    activiteCalories: persistedActiviteCalorieReducer,
     // Diğer reducer'ları buraya ekleyin
-  },
+  }, middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+ 
+
 });
-
-
-
+export const persistor = persistStore(store);
 
 export default store;

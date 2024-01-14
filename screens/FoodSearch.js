@@ -66,7 +66,7 @@ export default function FoodSearch({ route }) {
     }
   };
 
-  useEffect(() => {
+{/*  useEffect(() => {
     const fetchData = async () => {
       const storedItems = await loadFromStorage('allItems');
       if (storedItems) {
@@ -76,6 +76,8 @@ export default function FoodSearch({ route }) {
 
     fetchData();
   }, [dispatch]);
+  
+*/}
 
 
 

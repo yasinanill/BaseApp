@@ -113,7 +113,7 @@ export default function TabsNavigator() {
               style={{
                 width: 70,
                 height: 70,
-                color: focused ? '#2f4f4f' : '#778899',
+            
                 borderRadius:50,
                 top:-8,
               }}

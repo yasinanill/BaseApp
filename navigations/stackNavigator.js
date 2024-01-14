@@ -20,8 +20,8 @@ const Stack = createNativeStackNavigator()
 
 export default function AuthStack() {
 
-//  const bmiResult = useSelector((state) => state.user.bmiResults);
-  const bmiResult = 2;
+ const bmiResult = useSelector((state) => state.user.bmiResults);
+
 
   return (
    
