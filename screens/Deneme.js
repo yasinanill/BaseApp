@@ -23,7 +23,10 @@ export default function YourComponent({ route, navigation }) {
 
 
   const sorular = [
+   
     { id: 1, tip: 'numeric', state: height, setFunction: setHeight, soruMetni: 'Boyunuz nedir? (cm)' },
+    
+
     { id: 2, tip: 'numeric', state: weight, setFunction: setWeight, soruMetni: 'Kilonuz nedir? (kg)' },
     { id: 3, tip: 'numeric', state: age, setFunction: setAge, soruMetni: 'Yaşınız nedir?' },
     { id: 4, tip: 'select', state: gender, setFunction: setGender, soruMetni: 'Cinsiyetiniz nedir?', secenekler: ['Erkek','Kadın'] },

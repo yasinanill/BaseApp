@@ -30,21 +30,7 @@ const UserProfile = () => {
         <TouchableOpacity  onPress={() => setModalVisible(!modalVisible)} style={style.infoIcon}>
         <Icon name="info-circle" size={20} color={getBackgroundColor(index)}/>
         </TouchableOpacity>
-
-           <View style={style.UserInfoText} ></View>
-            <Text style={style.UserInfoText}>1000</Text>
-
-            <Text style={style.infoText}>{item.isim}</Text>
-   
-
-          </View>
-
-
-
-        ))}
-
-
-<Modal
+        <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -54,8 +40,8 @@ const UserProfile = () => {
         }}>
         <View style={style.centeredView}>
           <View style={style.modalView}>
-            <Text style={style.modalText}>{data.infotitle}</Text>
-            <Text style={style.modalText}>{data.info}</Text>
+            <Text style={style.modalText}>{item.infotitle}</Text>
+            <Text style={style.modalText}>{item.info}</Text>
           
             <TouchableOpacity  onPress={() => setModalVisible(!modalVisible)} >
         <Icons name="like" size={40} color="#778899" />
@@ -63,6 +49,13 @@ const UserProfile = () => {
           </View>
         </View>
       </Modal>
+
+           <View style={style.UserInfoText} ></View>
+            <Text style={style.UserInfoText}>1000</Text>
+
+            <Text style={style.infoText}>{item.isim}</Text>
+          </View>
+        ))}
       </View>
     );
   };
