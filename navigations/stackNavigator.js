@@ -15,6 +15,8 @@ import { useSelector } from 'react-redux'
 import MealCalorieCart from '../screens/MealCalorieCart'
 import RecipePage from '../screens/FoodInfo'
 import RecipesHome from '../screens/RecipesHome'
+import SignIn from '../screens/auth/SignIn'
+import SignUp from '../screens/auth/SignUp'
 
 
 const Stack = createNativeStackNavigator()
@@ -38,6 +40,8 @@ export default function AuthStack() {
         <Stack.Screen name="MealCalorieCart" component={MealCalorieCart} options={{ headerShown: false }} />
         <Stack.Screen name="FoodInfo" component={RecipePage} options={{ headerShown: false }} />
         <Stack.Screen name="RecipesHome" component={RecipesHome} options={{ headerShown: false }} />
+        <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
+        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
        
         
         <Stack.Screen name="FoodSearch" component={FoodSearch} options={({ route }) => ({ title: route.params.name })} />

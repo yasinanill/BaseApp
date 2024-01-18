@@ -19,7 +19,7 @@ export default function HomePage() {
             { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'), items: 'RecipesHome' },
             { id: 4, title: 'Aktiviteler', icon: require('../assets/images/activities.png'), items: 'ActivitiesHome' },
             { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'), items: 'CalorieCalculator' },
-            { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png') },
+            { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png') ,items: 'SignIn' },
         ],
         products: [
             { id: 4, title: 'Karpuz', Image: require('../components/database/images/foods/karpuz.jpg'), kalori: '150' },

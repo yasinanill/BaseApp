@@ -115,6 +115,44 @@ const RecipePage = () => {
         {/* Donut Chart */}
         {showChart && <DonutChart protein={recipe.protein} carbohydrate={recipe.carbohydrate} fat={recipe.fat} />}
       </View>
+
+
+
+          
+      <View style={style.foodArea}>
+                    <View style={style.categoryAreaTopBar}>
+                        <Text style={style.categoryone}>Haftanın Favorileri</Text>
+
+
+
+                    </View>
+                    <TouchableOpacity>
+                        <View style={{ marginTop: 2 }}>
+                            <FlatList style={{ paddingHorizontal: 10, marginBottom: 12, paddingVertical: 12 }}
+                                showsHorizontalScrollIndicator={false}
+                                data={products} horizontal={true} renderItem={this.renderProductItem} />
+
+
+
+                        </View>
+
+
+                    </TouchableOpacity>
+
+
+
+                </View>
+
+
+
+
+
+
+
+
+
+
+
     </View>
   );
 };

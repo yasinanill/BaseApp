@@ -5,6 +5,7 @@ import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, SafeAreaView
 import axios from 'axios'
 
 import { LinearGradient } from 'expo-linear-gradient';
+import { Circle, Path, Svg } from 'react-native-svg';
 
 export default function RecipesHome() {
 
@@ -66,6 +67,7 @@ export default function RecipesHome() {
                 style={styles.productItem} // Diğer stilleri buradan alabilir veya düzenleyebilirsiniz
             >
                 <TouchableOpacity>
+               
                     <View style={styles.productItemIconContainer}>
                         <Image source={item.Image} style={styles.ProductItemimage} />
                     </View>
@@ -77,20 +79,64 @@ export default function RecipesHome() {
             </LinearGradient>
         );
     };
+    const data2 = [
+        { range: '100-200', calorie: 'KALORİ' },
+        { range: '200-300', calorie: 'KALORİ' },
+        { range: '300-400', calorie: 'KALORİ' },
+        { range: '400-500', calorie: 'KALORİ' },
+      ];
+
+    const SquareWithSvg = ({ range, calorie }) => (
+        <View style={styles.square}>
+        <View style={styles.svgContainerTop}>
+          <Svg
+            height="62%"
+            width="100%"
+            viewBox="0 0 1410 310"
+            style={{ position: 'absolute', top: -1, borderRadius: 30,overflow: 'hidden'}}
+          >
+           <Path
+            fill="#0099ff"
+            d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+          />
+          </Svg>
+        </View>
+      
+        <View style={styles.svgContainerBottom}>
+          <Svg
+            height="80%"
+            width="100%"
+            viewBox="0 0 1420 200"
+            style={{ position: 'absolute', bottom: -8, borderRadius: 30,
+            overflow: 'hidden' }}
+          >
+            <Path fill="#0099ff"  d="M0,96L34.3,101.3C68.6,107,137,117,206,106.7C274.3,96,343,64,411,69.3C480,75,549,117,617,144C685.7,171,754,181,823,176C891.4,171,960,149,1029,144C1097.1,139,1166,149,1234,165.3C1302.9,181,1371,203,1406,213.3L1440,224L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></Path>
+          </Svg>
+        </View>
+      
+        <Text style={styles.UserInfoText}>{range}</Text>
+        <Text style={styles.infoText}>{calorie}</Text>
+      </View>
+      );
+
+
+
+
+
 
 
 
     return (
 
 
-        <SafeAreaView style={{ flex: 1, padding: 16, marginVertical: 21 }}>
+        <SafeAreaView style={{  padding: 2, marginVertical: 21 }}>
             <View style={styles.categoryAreaContainer}>
             <View style={styles.categoryAreaTopBar}>
                         <Text style={styles.categoryone}>ÖGÜNLER</Text>
                     </View>
                 <View style={styles.categoryArea}>
                     <FlatList
-                        style={{ paddingHorizontal: 4 }}
+                        style={{ paddingHorizontal: 16 }}
                         showsHorizontalScrollIndicator={false}
                         data={categories}
                         horizontal={true}
@@ -105,8 +151,10 @@ export default function RecipesHome() {
                     </View>
                     <View>
                         <View style={{ marginTop: 2 }}>
-                            <FlatList
-                                style={{ paddingHorizontal: 2, marginBottom: 12, paddingVertical: 12 }}
+                        
+                        
+                           <FlatList
+                                style={{ paddingHorizontal: 12, marginBottom: 12, paddingVertical: 12 }}
                                 showsHorizontalScrollIndicator={false}
                                 data={products}
                                 horizontal={true}
@@ -120,33 +168,11 @@ export default function RecipesHome() {
             <View style={styles.categoryAreaTopBar}>
                 <Text style={styles.categoryone}>KALORİ SAYAÇLARI</Text>
             </View>
-
             <View style={styles.squareContainer}>
-
-                <View style={styles.square}>
-                    <Text style={styles.UserInfoText}>100-200</Text>
-
-                    <Text style={styles.infoText}>KALORİ</Text>
-                </View>
-                <View style={styles.square}>
-
-                    <Text style={styles.UserInfoText}>200-300</Text>
-
-                    <Text style={styles.infoText}>KALORİ</Text>
-                </View>
-
-                <View style={styles.square}>
-                    <Text style={styles.UserInfoText}>300-400</Text>
-
-                    <Text style={styles.infoText}>KALORİ</Text>
-                </View>
-                <View style={styles.square}>
-                    <Text style={styles.UserInfoText}>400-500</Text>
-
-                    <Text style={styles.infoText}>KALORİ</Text>
-                </View>
-
-            </View>
+      {data2.map((item, index) => (
+        <SquareWithSvg key={index} {...item} />
+      ))}
+    </View>
 
 
 
@@ -238,10 +264,22 @@ const styles = StyleSheet.create({
         height: 240,
 
     },
-
+    svgContainerTop: {
+        width: '100%',
+        height: '62%',
+        position: 'absolute',
+        top: 0,
+      },
+      svgContainerBottom: {
+        width: '100%',
+        height: '80%',
+        position: 'absolute',
+        bottom: 0,
+      },
 
     productItemIconContainer: {
-
+        justifyContent: 'center',
+        alignItems: 'center',
 
     },
 
@@ -261,8 +299,9 @@ const styles = StyleSheet.create({
     },
     ProductItemimage: {
 
-        width: 180,
-        height: 120,
+        width: 160,
+        height: 140,
+        borderRadius:10
 
     },
     foodArea: {
@@ -280,17 +319,19 @@ const styles = StyleSheet.create({
       
     },
     square: {
-        
+        position: 'relative',
+  
         width: 160,
         height: 100,
-        margin: 10,
+        marginHorizontal: 16,
+        marginVertical:8,
        
         borderRadius: 10,
         elevation: 5,
         justifyContent: 'center',
         alignItems: 'center',
       
-        backgroundColor: 'rgba(21, 135, 229, 0.9)',
+        backgroundColor: 'white',
 
 
     },
