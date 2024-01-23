@@ -8,8 +8,8 @@ import { useSelector } from 'react-redux';
 import ProgressBar from '../utils/ProgressBar';
 import WeightLossTracker from '../utils/ProgressBar';
 import WeightLossProgressBar from '../utils/ProgressBar';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
-import Icons from 'react-native-vector-icons/Fontisto'; 
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Icons from 'react-native-vector-icons/Fontisto';
 
 const UserProfile = () => {
 
@@ -20,75 +20,31 @@ const UserProfile = () => {
 
 
 
-  const SquareView = ({ data, user }) => {
-    return (
-      <View style={style.squareContainer}>
-  
-       
-        {data.map((item, index) => (
-          <View key={index} style={[style.square, { borderColor: getBackgroundColor(index) }]}>
-        <TouchableOpacity  onPress={() => setModalVisible(!modalVisible)} style={style.infoIcon}>
-        <Icon name="info-circle" size={20} color={getBackgroundColor(index)}/>
-        </TouchableOpacity>
-        <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-          setModalVisible(!modalVisible);
-        }}>
-        <View style={style.centeredView}>
-          <View style={style.modalView}>
-            <Text style={style.modalText}>{item.infotitle}</Text>
-            <Text style={style.modalText}>{item.info}</Text>
-          
-            <TouchableOpacity  onPress={() => setModalVisible(!modalVisible)} >
-        <Icons name="like" size={40} color="#778899" />
-        </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
 
-           <View style={style.UserInfoText} ></View>
-            <Text style={style.UserInfoText}>1000</Text>
 
-            <Text style={style.infoText}>{item.isim}</Text>
-          </View>
-        ))}
-      </View>
-    );
-  };
-
-  const getBackgroundColor = (index) => {
-    switch (index) {
-      case 0:
-        return 'red';
-      case 1:
-        return 'blue';
-      case 2:
-        return 'green';
-      case 3:
-        return 'yellow';
-      default:
-        return 'white';
-    }
-  };
 
   const data = [
-    { kilo: 70, isim: 'Vücut Kitle Endeksin (BMI)',
-    infotitle:'Bazal Metabolizma Hızı (BMH) Nedir?',
-    info:'Vücut kitle indeksi, boy kilo endeksi olarak da bilinen, kişinin ağırlık ve boy değerleri kullanılarak hesaplanan bir sayıdır. Formülde kullanılan vücut ağırlığı, kilogram, boy ise metre cinsinden alınarak hesaplama yapılır. Vücut kitle endeksi hesaplama sonucunda çıkan değer ile kişinin zayıf, normal ağırlıkta, hafif şişman ya da obez olması gibi bir sınıflama yapılır. Fakat bu değer ile vücut yağ oranı ölçülmez. Yağ, kas, su gibi değerlerin miktarları belirlemede sadece genel bir tablo çizilmiş olur. Ana kullanım amacı kişinin boyuna göre sağlıklı vücut ağırlığında olup olmadığını belirlemektir. Kısaca vücut kitle indeksi, kişinin fazla kilolu ya da zayıf olduğunu gösteren bir ölçüttür; fakat vücut içerisindeki yağ, kas gibi değerleri bize vermez.' },
-    { kilo: 65, isim: 'İdeal  Kilon',
-    infotitle:'Bazal Metabolizma Hızı (BMH) Nedir?',
+    {
+      kilo: 70, isim: 'Vücut Kitle Endeksin (BMI)',
+      infotitle: 'Bazal Metabolizma Hızı (BMH) Nedir?',
+      info: 'Vücut kitle indeksi, boy kilo endeksi olarak da bilinen, kişinin ağırlık ve boy değerleri kullanılarak hesaplanan bir sayıdır. Formülde kullanılan vücut ağırlığı, kilogram, boy ise metre cinsinden alınarak hesaplama yapılır. Vücut kitle endeksi hesaplama sonucunda çıkan değer ile kişinin zayıf, normal ağırlıkta, hafif şişman ya da obez olması gibi bir sınıflama yapılır. Fakat bu değer ile vücut yağ oranı ölçülmez. Yağ, kas, su gibi değerlerin miktarları belirlemede sadece genel bir tablo çizilmiş olur. Ana kullanım amacı kişinin boyuna göre sağlıklı vücut ağırlığında olup olmadığını belirlemektir. Kısaca vücut kitle indeksi, kişinin fazla kilolu ya da zayıf olduğunu gösteren bir ölçüttür; fakat vücut içerisindeki yağ, kas gibi değerleri bize vermez.'
+    },
+    {
+      kilo: 65, isim: 'İdeal  Kilon',
+      infotitle: 'Bazal Metabolizma Hızı (BMH) Nedir?',
 
-    info:'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.' },
-    { kilo: 80, isim: 'Ayşe' ,infotitle:'Bazal Metabolizma Hızı (BMH) Nedir?',
+      info: 'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.'
+    },
+    {
+      kilo: 80, isim: 'Ayşe', infotitle: 'Bazal Metabolizma Hızı (BMH) Nedir?',
 
-    info:'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.'  },
-    { kilo: 60, isim: 'Fatma',  infotitle:'Bazal Metabolizma Hızı (BMH) Nedir?',
+      info: 'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.'
+    },
+    {
+      kilo: 60, isim: 'Fatma', infotitle: 'Bazal Metabolizma Hızı (BMH) Nedir?',
 
-    info:'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.' },
+      info: 'Bazal metabolizma hızı, kişinin vücudunun temel yaşamsal fonksiyonları yerine getirmek için ihtiyaç duyduğu minimum kalori miktarına karşılık gelir ve kişiden kişiye farklılık gösterir. Bazal metabolizma ve dinlenme metabolizması sıklıkla karıştırılmaktadır. Dinlenme metabolizma hızı hesaplanırken vücudun yaşamsal fonksiyonlar dışında dinlenme halindeyken harcadığı kalorilerin de hesaba katılması gerekmektedir. Ancak her iki durumda da vücudun başka herhangi bir aktivite yapmıyor iken harcadığı enerji/kalori miktarı söz konusudur.Bazal metabolizma hızı genellikle yaşla birlikte vücuttaki yağsız vücut kütlesinin azalması sebebiyle düşer. Ortalama olarak kişilerin günlük kalori ihtiyacının %60-75’ini bazal metabolizma oluşturur. 20’li yaşlardan itibaren bazal metabolizma hızı her on yılda bir %1-2 oranında azalır. Ancak kişilerin genetik yapısı, aktivite miktarı ve beslenme biçimlerine göre bazal metabolizma hızında farklılıklar görülebilir.'
+    },
   ];
 
 
@@ -98,61 +54,133 @@ const UserProfile = () => {
 
   return (
 
-    <View style={{ alignItems: 'center' }}>
+    <View style={{ alignItems: 'center' ,flex:1}}>
 
       <View style={style.header}>
 
 
-        <View>
+        <View style={{flex:1,  justifyContent:'center', alignItems:'center' ,flexDirection:'column' , marginTop: 20,}}>
           <Image source={{ uri: "https://images.unsplash.com/photo-1633037404710-c88b4abcb71d" }} style={style.Avatar} />
+          <Text style={{ fontSize: 16, fontWeight: '400',color:'white',marginTop:2 }}> Yasin Kaya</Text>
         </View>
-        <View style={style.UserName} >
-          <Text style={{ fontSize: 16, fontWeight: '400', fontFamily: '' }}> Yasin Kaya</Text>
+        <View style={{flex:2,flexDirection:'row', justifyContent:'center', marginLeft:4,marginBottom:12}}>
+          <View style={{ justifyContent:'center', marginBottom:12}}>
+        
+          <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white',justifyContent:'' }}><Icon name="bars" color="#FFFFFF" size={20} />   Kilo : {user.weight}</Text>
+          <Text style={{ fontSize: 12,marginTop:12, fontWeight: 'bold', color: 'white' }}><Icon name="bars" color="#FFFFFF" size={20} />   Boy :  {user.height}</Text>
+          </View>
+           <View style={{ justifyContent:'center',marginHorizontal:8,marginBottom:12}}> 
+          <Text style={{ fontSize: 12, fontWeight: 'bold', color:'white' }}><Icon name="child" color="#FFFFFF" size={20} />    Yaş:  {user.age}</Text>
+          <Text style={{ fontSize: 12,marginTop:12, fontWeight: 'bold', color:'white' }}><Icon name="line-chart" color="#FFFFFF" size={20} />   Hedef:  Kilo Vermek</Text>
+          </View>
+
+        </View>
+      </View>
+
+      <View style={{top:-40, width: '100%', backgroundColor: '#f0f0f0',borderTopLeftRadius: 50,
+    borderTopRightRadius:50, height:25 }}></View>
+
+
+      <View style={{top:-12, width: '85%', height: 100, backgroundColor: '#ffffff', margin: 2, padding: 2, elevation: 5, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between',borderWidth:1, borderColor: '#89168D' }}>
+
+
+
+        <View style={{ flex: 1, margin: 2, justifyContent: 'center', width: '30%', alignItems: 'center' }}>
+          <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#444241' }}>Hedef Kilo</Text>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#444241' }}>{user.weight - 10}</Text>
+
+
+        </View>
+        <View style={{ flex: 1, margin: 1, justifyContent: 'center', width: '20%', alignItems: 'center' }}>
+          <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#444241' }}>İdeal Kilo</Text>
+          <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#444241' }}>{user.idealWeights}</Text>
+
 
         </View>
       </View>
 
 
 
-
-      <View style={{ width: '85%', height: 100, backgroundColor: '#ffffff', margin: 8, padding: 2, elevation: 5, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
-
-        <View style={{ flex: 1, margin: 4, width: '70%', alignItems: 'flex-start' }}>
-          <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#444241' }}>Kilo : </Text>
-          <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#444241' }}>Boy :  {user.weight}</Text>
-          <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#444241' }}>Yaş:  {user.weight}</Text>
-          <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#444241' }}>Hedef: Kilo Vermek</Text>
+      <View style={style.squareContainer}>
 
 
+
+        <View  style={[style.square,]}>
+          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={style.infoIcon}>
+            <Icon name="info-circle" size={20}  />
+          </TouchableOpacity>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+            }}>
+            <View style={style.centeredView}>
+              <View style={style.modalView}>
+                <Text style={style.modalText}> ffffffffffff</Text>
+                <Text style={style.modalText}></Text>
+
+                <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} >
+                  <Icons name="like" size={40} color="#778899" />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+
+          <View style={style.UserInfoText} ></View>
+          <Text style={style.UserInfoText}>{user.bmiResults}</Text>
+
+          <Text style={style.infoText}>Vucuk Kitle Endeksin</Text>
         </View>
 
-        <View style={{ flex: 1, margin: 4, width: '70%', alignItems: 'center' }}>
-          <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#444241' }}>Hedef Kilo</Text>
-          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#444241' }}>{user.weight - 10}</Text>
 
+        <View  style={[style.square,]}>
+          <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={style.infoIcon}>
+            <Icon name="info-circle" size={20}  />
+          </TouchableOpacity>
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+            }}>
+            <View style={style.centeredView}>
+              <View style={style.modalView}>
+                <Text style={style.modalText}></Text>
+                <Text style={style.modalText}></Text>
 
+                <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} >
+                  <Icons name="like" size={40} color="#778899" />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
+
+          <View style={style.UserInfoText} ></View>
+          <Text style={style.UserInfoText}>{user.calorieResults}</Text>
+
+          <Text style={style.infoText}>Günlük Kalori İhtiyacın</Text>
         </View>
+
+
       </View>
 
+  
 
+      <View style={{ width: '85%', height: 120,borderWidth:1, borderColor: '#89168D' , backgroundColor: '#ffffff', margin: 8, padding: 2, elevation: 5, borderRadius: 12, flexDirection: 'column', }}>
 
-
-
-      <View style={style.container}>
-        <SquareView data={data} />
-      </View>
-
-
-      <View style={{ width: '85%', height: 120, backgroundColor: '#ffffff', margin: 8, padding: 2, elevation: 5, borderRadius: 12, flexDirection: 'column', }}>
-
-        <View style={{  margin: 4, alignItems: 'center' }}>
+        <View style={{ margin: 4, alignItems: 'center' }}>
           <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#444241' }}>Gelişimin</Text>
 
           <WeightLossProgressBar initialWeight={100} currentWeight={90} targetWeight={85} />
 
         </View>
 
-        <View style={{ justifyContent:'space-between',padding:10, flexDirection:'row'}}>
+        <View style={{ justifyContent: 'space-between', padding: 10, flexDirection: 'row' }}>
           <Text style={{ fontSize: 14, fontWeight: 'bold', color: '#444241' }}>{user.weight}</Text>
           <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#444241' }}>{user.weight - 10}</Text>
 
@@ -183,42 +211,27 @@ const style = StyleSheet.create({
   header: {
 
 
-    justifyContent: "center",
-    alignItems: "center",
+   flexDirection:'row',
     backgroundColor: "#89168D",
     width: '100%',
-    height: 120,
-    marginBottom: 30,
+    height: 190,
+    marginBottom: 20,
 
+    position: 'relative',
+  
   },
   Avatar: {
     width: 60,
     height: 60,
     borderRadius: 50,
-    marginTop: 50,
-
-
-
-
-  },
-  UserName: {
-
-    flexDirection: "row",
+ 
+   
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#EC93EF",
-    width: 200,
-    height: 40,
-    borderRadius: 10,
-    marginTop: 15,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 20,
-
+    alignItems: "flex-start",
+   
 
   },
+
   ItemList: {
 
 
@@ -267,12 +280,13 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    position:'relative',
+    position: 'relative',
+    borderColor: '#89168D'
   },
   UserInfoText: {
     fontSize: 16,
-    
-    fontWeight:'700',
+
+    fontWeight: '700',
     marginBottom: 4,
   },
   infoText: {

@@ -60,10 +60,7 @@ export default function RecipesHome() {
     renderProductItem = ({ item }) => {
         return (
 
-            <LinearGradient
-                start={{ x: 0.0, y: 0.25 }} end={{ x: 0.5, y: 1.0 }}
-                locations={[0, 0.5, 0.6]}
-                colors={['#FFECB3', '#FFCCBC', '#FFAB91']} // İki renk arasında geçiş yapacak şekilde renkleri ayarlayabilirsiniz
+            <View
                 style={styles.productItem} // Diğer stilleri buradan alabilir veya düzenleyebilirsiniz
             >
                 <TouchableOpacity>
@@ -76,7 +73,7 @@ export default function RecipesHome() {
                         <Text style={styles.productItemTitle}>{item.kalori} /kcal</Text>
                     </View>
                 </TouchableOpacity>
-            </LinearGradient>
+            </View>
         );
     };
     const data2 = [
@@ -89,17 +86,7 @@ export default function RecipesHome() {
     const SquareWithSvg = ({ range, calorie }) => (
         <View style={styles.square}>
         <View style={styles.svgContainerTop}>
-          <Svg
-            height="62%"
-            width="100%"
-            viewBox="0 0 1410 310"
-            style={{ position: 'absolute', top: -1, borderRadius: 30,overflow: 'hidden'}}
-          >
-           <Path
-            fill="#0099ff"
-            d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-          />
-          </Svg>
+
         </View>
       
         <View style={styles.svgContainerBottom}>
@@ -225,8 +212,8 @@ const styles = StyleSheet.create({
     },
 
     categoryItemIcon: {
-        width: 90,
-        height: 90,
+        width: 70,
+        height: 70,
         borderRadius: 10,
 
     },
@@ -238,8 +225,8 @@ const styles = StyleSheet.create({
         elevation: 5,
         backgroundColor: "white",
         borderRadius: 10,
-        width: 90,
-        height: 90,
+        width: 80,
+        height: 80,
         alignItems: 'center',
         justifyContent: "center",
     },
@@ -256,12 +243,13 @@ const styles = StyleSheet.create({
         elevation: 5,
         backgroundColor: "#ffffff",
         padding: 8,
-
+        borderWidth:1,
+        borderColor:'#2f4f4f',
         margin: 2,
         marginBottom: 8,
-        borderRadius: 15,
+        borderRadius: 8,
         width: 200,
-        height: 240,
+        height: 220,
 
     },
     svgContainerTop: {
@@ -315,6 +303,7 @@ const styles = StyleSheet.create({
     squareContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        
 
       
     },

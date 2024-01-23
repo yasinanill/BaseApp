@@ -92,10 +92,6 @@ export const { addToCart } = cartSlice.actions;
 
 
 
-const myCustomMiddleware = (store) => (next) => (action) => {
-  // Middleware logic
-  return next(action);
-};
 
 
 
@@ -106,8 +102,12 @@ const store = configureStore({
     user: persistedUserReducer,
     activiteCalories: persistedActiviteCalorieReducer,
     // Diğer reducer'ları buraya ekleyin
-  }, middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
- 
+  }, middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [ PERSIST, PURGE, REGISTER],
+    },
+  }),
 
 });
 export const persistor = persistStore(store);

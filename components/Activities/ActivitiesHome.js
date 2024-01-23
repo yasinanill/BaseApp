@@ -2,8 +2,9 @@ import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, 
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { TextInput } from 'react-native-paper';
 
-export default function ActivitiesHome({}) {
+export default function ActivitiesHome({ }) {
 
     const ActivitieItems = [
         { id: 1, title: 'Koşma(Orta Tempo)', ActiviteMET: 3.5, imagePath: require('./images/runm.png') },
@@ -16,12 +17,12 @@ export default function ActivitiesHome({}) {
         { id: 9, title: 'basketbol', ActiviteMET: 3, imagePath: require('./images/basketbol.png') },
         { id: 10, title: 'Tırmanma', ActiviteMET: 3, imagePath: require('./images/climbing.png') },
         { id: 11, title: 'Merdiven Çıkma', ActiviteMET: 3, imagePath: require('./images/climbingstairs.png') },
-        { id: 11, title: 'Dövüş Sporları', ActiviteMET: 3, imagePath: require('./images/combatsports.png') },
-        { id: 11, title: 'Golf', ActiviteMET: 3, imagePath: require('./images/golf.png') },
-        { id: 11, title: 'Egzersiz', ActiviteMET: 3, imagePath: require('./images/squat.png') },
-        { id: 11, title: 'Voleybol', ActiviteMET: 3, imagePath: require('./images/voleybool.png') },
-        { id: 11, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/gymm.png') },
-        { id: 11, title: 'Masa Tenisi', ActiviteMET: 3, imagePath: require('./images/table.png') },
+        { id: 12, title: 'Dövüş Sporları', ActiviteMET: 3, imagePath: require('./images/combatsports.png') },
+        { id: 13, title: 'Golf', ActiviteMET: 3, imagePath: require('./images/golf.png') },
+        { id: 14, title: 'Egzersiz', ActiviteMET: 3, imagePath: require('./images/squat.png') },
+        { id: 15, title: 'Voleybol', ActiviteMET: 3, imagePath: require('./images/voleybool.png') },
+        { id: 16, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/gymm.png') },
+        { id: 17, title: 'Masa Tenisi', ActiviteMET: 3, imagePath: require('./images/table.png') },
     ];
     const navigation = useNavigation();
 
@@ -32,60 +33,82 @@ export default function ActivitiesHome({}) {
 
             <View style={style.imageText}>
 
-          
-            <TouchableOpacity   onPress={()=> navigation.navigate('Activite', { item })} style={style.imageTap}>
+
+                <TouchableOpacity onPress={() => navigation.navigate('Activite', { item })} style={style.imageTap}>
                     <Image
                         style={style.image}
                         source={item.imagePath}
                     />
-                <Text style={style.text}> {item.title}
-                </Text>
-        </TouchableOpacity>
+                    <Text style={style.text}> {item.title}
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
 
- 
-     
+
+
 
     return (
-        <SafeAreaView>
-           
-                <Text style={{ padding: 10, fontSize: 18, marginVertical: 8, fontWeight: '400' }}> Favoriler
-                </Text>
+        <SafeAreaView style={style.container}>
+          
+          <View >
+              <TextInput
+                style={style.input}
+                placeholder="Aktivite adını girin..."
+
+            //  onChangeText={(text) => setSearchTerm(text)}
+            />
+            <Text style={{ padding: 10, fontSize: 18, marginVertical: 8, fontWeight: '400' }}> Favoriler
+            </Text>
+     
+
+            <ScrollView style={{ }}>
 
 
-                <View style={style.container}>
-              
 
-               
-                    <FlatList
-                        data={ActivitieItems}
-                        renderItem={renderImageItem}
-                        keyExtractor={(item) => item.id.toString()}
-                        numColumns={3}
-                    />
-                    
-                </View>
+                <FlatList
+                    data={ActivitieItems}
+                    renderItem={renderImageItem}
+                    keyExtractor={(item) => item.id.toString()}
+                    numColumns={3}
+                />
 
+            </ScrollView>
 
+            </View>
 
         </SafeAreaView>
     )
 }
 const style = StyleSheet.create({
+    container: {
+        height: '100%',
+        padding: 10,
+        backgroundColor: '#fff',
 
+    },
     imageContainer: {
         flex: 1,
     },
     text: {
-      fontSize:14,
-      fontWeight:'400',
-      padding:1,
-      margin:1, 
+        fontSize: 14,
+        fontWeight: '400',
+        padding: 1,
+        margin: 1,
 
     },
-
+    input: {
+      
+        margin:12,
+        height: 40,
+        borderColor: 'gray',
+        borderBottomWidth: 1,
+        marginBottom: 4,
+        paddingLeft: 10,
+        borderRadius: 2,
+        backgroundColor: '#fff',
+    },
 
     imageText: {
         ...Platform.select({
@@ -112,12 +135,8 @@ const style = StyleSheet.create({
         width: '100%',
         height: 100,
         aspectRatio: 1,
-        resizeMode:'contain'
+        resizeMode: 'contain'
 
     },
-    container: {
 
-       
-
-    }
 });

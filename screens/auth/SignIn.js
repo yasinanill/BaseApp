@@ -23,9 +23,7 @@ export default function SignIn() {
 
  
       setIsLoading(true); // Set loading to true when starting the sign-up process
-  
-      
-      signInWithEmailAndPassword(auth,email, password)
+ signInWithEmailAndPassword(auth,email, password)
     .then((userCredential) => {
       // User signed in successfully
       const user = userCredential.user;

@@ -45,7 +45,7 @@ export default function AuthStack() {
        
         
         <Stack.Screen name="FoodSearch" component={FoodSearch} options={({ route }) => ({ title: route.params.name })} />
-        <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} options={{ }} />
+        <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} options={{headerShown: false  }} />
         <Stack.Screen name="UserActivities" component={UserActivities} options={{ headerShown: false }} />
           </>
       ) : (

@@ -1,7 +1,7 @@
 
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { Button, Chip } from 'react-native-paper';
 import Svg, { Circle, G, Text as SvgText, Defs, LinearGradient, Stop, Filter, FeDropShadow } from 'react-native-svg';
 import { useSelector } from 'react-redux';
@@ -111,14 +111,25 @@ export default function MyCalorieCart() {
 
   return (
 
-    <ScrollView >
+    <SafeAreaView style={{ flex: 1, }} >
 
-      <View style={{ flex: 1, alignItems: 'center',}}>
-        <View style={{ backgroundColor:'#dcdcdc' , justifyContent: 'center', width:'95%', alignItems: 'center', padding: 4, margin: 4, flexDirection: 'row', }}>
-
-          <View style={{ backgroundColor:'#dcdcdc', justifyContent: 'center', alignItems: 'center', padding: 4, margin: 2, flexDirection: 'row', }}>
+      <View style={{  alignItems: 'center',}}>
+      <View style={{ backgroundColor:'#79d27d' , justifyContent: 'center', width:'100%', alignItems: 'center', padding: 8, margin: 2, flexDirection: 'row', }}>
+      <Image
+        source={require('../assets/green.jpg')} // veya başka bir kaynak
+        style={{    flex: 1,
+          resizeMode: 'cover', // Resmi kaplaması için
+          position: 'absolute',
+          top: 0,
+          left: -1,
+          width: 400,
+          height: '100%', }}
+      />
+          <View style={{  justifyContent: 'center', alignItems: 'center', padding: 4, margin: 2, flexDirection: 'row', }}>
+         
+    
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', marginVertical: 20 }}>
-              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#455d7a' }}>Alınan </Text>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#ffffff' }}>Alınan </Text>
 
               <View style={styles.line} />
 
@@ -126,13 +137,13 @@ export default function MyCalorieCart() {
 
             </View>
 
-            <View style={{ }}>
-        <CircularProgressBar totalCalories={totalCalories} />
+       
+                 <CircularProgressBar totalCalories={totalCalories} />
 
-        </View>
+      
 
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', }}>
-              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#f95959' }}>Yakılan  </Text>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#ffffff' }}>Yakılan  </Text>
 
               <View style={styles.line} />
               <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalActiviteCalories}  /kcal </Text>
@@ -140,9 +151,11 @@ export default function MyCalorieCart() {
           </View>
 
         </View>
-        <View style={{backgroundColor:'#dcdcdc', width:'95%', alignItems: 'center', padding: 8, marginBottom: 24, flexDirection: 'row', justifyContent: 'space-between',borderBottomEndRadius:24, borderBottomStartRadius:24,}}>
+        <View style={{ top:-22,backgroundColor:'#79d27d', width:'100%', alignItems: 'center', padding: 2,margin:1, marginBottom: 24, flexDirection: 'row', justifyContent: 'center',borderBottomEndRadius:30, borderBottomStartRadius:30,}}>
+       
+        <View style={{ top:20,padding:8,backgroundColor:'#f8f8ff', width:'90%', alignItems: 'center',  flexDirection: 'row', justifyContent: 'space-between',borderRadius:8}}>
           <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#3498db' }}>Karbonhidrat </Text>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Karbonhidrat </Text>
 
             <View style={styles.line} />
 
@@ -150,18 +163,18 @@ export default function MyCalorieCart() {
 
           </View>
           <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#e74c3c' }}>Yağ  </Text>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Yağ  </Text>
 
             <View style={styles.line} />
             <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalFat}  gr </Text>
           </View>
           <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#2ecc71' }}>Protein  </Text>
+            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Protein  </Text>
 
             <View style={styles.line} />
             <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalPro}  gr </Text>
           </View>
-        </View>
+        </View></View>
 
         <FlatList
           data={mealData}
@@ -171,7 +184,7 @@ export default function MyCalorieCart() {
         />
       </View>
 
-    </ScrollView>
+    </SafeAreaView>
 
 
   );
@@ -245,13 +258,15 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
-    bottom: 18,
-    right: -20,
-    backgroundColor: 'white',
+    bottom: 20,
+    right: -16,
+    backgroundColor: '#f0f0f0',
     borderTopLeftRadius: 50,
     borderBottomStartRadius: 50,
-    width: 60,
-    height: 60,
+    borderTopStartRadius: 50, 
+    borderRadius:50,
+    width: 55,
+    height: 55,
     alignItems: 'center',
     justifyContent: 'center',
     borderLeftWidth: 1,

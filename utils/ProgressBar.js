@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
   progressBar: {
     height: '100%',
-    backgroundColor: '#e74c3c', // Kırmızı renk kullanılabilir
+    backgroundColor: '#89168D', // Kırmızı renk kullanılabilir
   },
 });
 

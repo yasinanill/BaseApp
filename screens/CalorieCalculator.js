@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity, Keyboard, } from 'react-native';
+import { View, TextInput, Button, Text, StyleSheet, TouchableOpacity, Keyboard, SafeAreaView, } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../utils/redux/store';
@@ -85,7 +85,7 @@ export default function CalorieCalculator (){
     ];
   
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.header}>HESAPLA</Text>
         <View style={styles.form}>
           <View style={styles.inputRow}>
@@ -152,33 +152,42 @@ export default function CalorieCalculator (){
             </Picker>
           </View>
           <TouchableOpacity style={styles.submitButton} onPress={validateForm}>
-            <Text style={styles.submitButtonText}>Hesapla</Text>
+            <Text style={styles.submitButtonText}>Sonuçları Gör</Text>
           </TouchableOpacity>
- 
+          <View style={styles.resultContainer}>
+
+
+            <Text style={styles.resultText}>Ideal Kilo:                                {idealWeight}kg</Text>
+            <Text style={styles.resultText}>Vücüt Kitle Endeksi:              {bmiResult}</Text>
+            <Text style={styles.resultText}>Günlük Kalori İhtiyacı:           {calorieResult}/kcal</Text>
+          </View>
         </View>
-      </View>
+      </SafeAreaView>
     );
   };
   
   const styles = StyleSheet.create({
     container: {
       height:'100%',
-      
+      flex:1,
       backgroundColor: '#eef2f3',
       alignItems: 'center',
       justifyContent: 'center',
+      width:'100%',
     },
     header: {
       fontSize: 28,
       fontWeight: 'bold',
       color: '#289df6',
       marginBottom: 20,
+    
     },
     form: {
       backgroundColor: '#fff',
       borderRadius: 20,
       padding: 20,
       width: '90%',
+      height: '80%',
       elevation: 5,
     },
     inputRow: {
@@ -239,13 +248,17 @@ export default function CalorieCalculator (){
     },
     resultContainer: {
       marginTop: 40,
+      justifyContent: 'center'
     },
     resultLabel: {
       fontSize: 18,
       fontWeight: 'bold',
       marginBottom: 5,
+      padding:5
     },
     resultText: {
       fontSize: 16,
+      padding:5,
+      fontWeight: 'bold',
     },
   });

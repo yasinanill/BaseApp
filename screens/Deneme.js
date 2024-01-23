@@ -3,6 +3,8 @@ import { View, Text, TextInput, Button, StyleSheet, ImageBackground, } from 'rea
 import { Picker } from '@react-native-picker/picker';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../utils/redux/store';
+import { auth, uid } from '../config/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export default function YourComponent({ route, navigation }) {
 
@@ -21,7 +23,6 @@ export default function YourComponent({ route, navigation }) {
   const [idealWeight, setIdealWeight] = useState(null);
 
 
-
   const sorular = [
    
     { id: 1, tip: 'numeric', state: height, setFunction: setHeight, soruMetni: 'Boyunuz nedir? (cm)' },
@@ -36,6 +37,14 @@ export default function YourComponent({ route, navigation }) {
   const handleCevapla = (cevap, setFunction) => {
     setFunction(cevap);
   };
+
+
+
+
+
+
+
+
 
 
   const calculateBMI = () => {
@@ -118,6 +127,15 @@ export default function YourComponent({ route, navigation }) {
    
   }
 
+
+
+
+
+
+
+
+
+
   useEffect(() => {
     dispatch(
       setUserData({
@@ -135,6 +153,23 @@ export default function YourComponent({ route, navigation }) {
   }, [calorieResult]);
 
 
+  useEffect(() => {
+   
+   
+    if (uid) {
+      const userDocRef = firebase.firestore().collection('users').doc(uid);
+      userDocRef.set({
+        age,
+        height,
+        weight,
+        gender,
+        bmiResults: bmiResult,
+        calorieResults: calorieResult,
+        idealWeights: idealWeight,
+      });
+    }
+    console.log(uid)
+  }, [calorieResult]);
 
 
 

@@ -89,8 +89,9 @@ export default function SignUp ()  {
                         marginBottom: 10,
                         margin: 2,
                         padding: 8,
+                        width: 400,
                         borderRadius: 10,
-                        resizeMode: "contain",
+                        resizeMode: "",
                       }}
                       source={require("../../assets/kn.jpeg")}
                     />

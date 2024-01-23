@@ -31,7 +31,7 @@ export default function CircularProgressBar({ totalCalories }){
           <Defs>
             {/* Renk geçişi için lineer gradient tanımlaması */}
             <LinearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <Stop offset="0%" stopColor="#4CAF50" />
+              <Stop offset="0%" stopColor="#40bf45" stopOpacity='0.5' />
               
             </LinearGradient>
           </Defs>       
@@ -41,7 +41,7 @@ export default function CircularProgressBar({ totalCalories }){
               cx="100"
               cy="100"
               r={radius} // İkinci çemberin yarıçapını biraz küçültün (isteğe bağlı)
-              stroke="#f8f8ff" // İkinci çemberin kenar rengi
+              stroke="#dcdcdc" // İkinci çemberin kenar rengi
               strokeWidth="10" // İkinci çemberin kenar kalınlığı
               fill="transparent" // İkinci çemberin içini boş bırakmak için
              
@@ -54,7 +54,7 @@ export default function CircularProgressBar({ totalCalories }){
               stroke="url(#gradient)" // Lineer gradienti kullan
               strokeWidth="10"
               borderRadius='13'
-              fill="#dcdcdc"
+              fill="#transparent"
               strokeDasharray={`${circumference} ${circumference}`}
               strokeDashoffset={dotOffset}
          
@@ -71,14 +71,14 @@ export default function CircularProgressBar({ totalCalories }){
               cx={100 + radius * Math.cos(((fillPercentage / 100 * 360) * Math.PI) / 180)}
               cy={100 + radius * Math.sin(((fillPercentage / 100 * 360) * Math.PI) / 180)}
               r={dotRadius}
-              fill="#4CAF50" // Nokta rengi
+              fill="#dcdcdc" // Nokta rengi
             />
         
             <Circle
                cx={100 + radius * Math.cos((0 * Math.PI) / 180)}
                cy={100 + radius * Math.sin((0 * Math.PI) / 180)}
                 r={dotRadius-2}
-                fill="#4CAF50" // Nokta rengi
+                fill="#40bf45" // Nokta rengi
       />
   
           </G>
@@ -92,7 +92,7 @@ export default function CircularProgressBar({ totalCalories }){
             dy=".1em"
             fontSize="16"
             textAnchor="middle"
-            fill="#455d7a"
+            fill="#40bf45"
           > Kalan:
             {3000 - normalizedValue}
           </SvgText>

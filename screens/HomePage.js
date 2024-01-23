@@ -7,7 +7,11 @@ import { useNavigation } from '@react-navigation/native';
 import CircularProgressBar from '../utils/CircularProgressBar';
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'react-native-svg';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 export default function HomePage() {
+
     const data = {
         promations: [
             { id: 1, title: 'Aralıklı Oruç (If Diyeti) ', description: 'Aralıklı oruç diyeti, günümüzde if diyeti veya intermittent fasting olarak da bilinmektedir. Aralıklı oruç diyetinin asıl amacı, diğer diyetlerin aksine alınan kalorileri kontrol etmek değil, yiyeceklerin tüketildiği zaman aralığını kontrol etmektir' },
@@ -19,7 +23,7 @@ export default function HomePage() {
             { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'), items: 'RecipesHome' },
             { id: 4, title: 'Aktiviteler', icon: require('../assets/images/activities.png'), items: 'ActivitiesHome' },
             { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'), items: 'CalorieCalculator' },
-            { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png') ,items: 'SignIn' },
+            { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png'), items: 'SignIn' },
         ],
         products: [
             { id: 4, title: 'Karpuz', Image: require('../components/database/images/foods/karpuz.jpg'), kalori: '150' },
@@ -27,6 +31,16 @@ export default function HomePage() {
             { id: 3, title: 'Kandil Simidi ', Image: require('../components/database/images/foods/kandil.jpg'), kalori: '150' },
         ],
     };
+
+
+    const today = new Date();
+    const formattedDate = today.toLocaleString('default', { day: 'numeric', month: 'long' });
+
+
+    const handleCalendarPress = () => {
+        navigation.navigate('Calendar');
+    };
+
     const promations = data.promations;
     const categories = data.categories;
     const totalActiviteCalories = useSelector(state => state.activiteCalories.totalCalories);
@@ -70,10 +84,14 @@ export default function HomePage() {
                 <View>
                     <Text style={style.AppName}> KaloriNet</Text>
                 </View>
-                <TouchableOpacity >
-                    <View>
-                        <Image source={{ uri: "https://images.unsplash.com/photo-1633037404710-c88b4abcb71d" }} style={style.Avatar} />
-                    </View></TouchableOpacity>
+                <View>
+                    <TouchableOpacity style={style.calendar} onPress={handleCalendarPress}>
+
+                        <Text style={{padding: 10,color: '#2f4f4f'}}>{formattedDate}</Text>
+                        <Icon name="calendar" color="#2f4f4f" size={32} />
+
+                    </TouchableOpacity>
+                </View>
             </View>
             <ScrollView style={{ flex: 1 }}>
                 <View style={style.banner}>
@@ -93,16 +111,17 @@ export default function HomePage() {
                 <TouchableOpacity onPress={() => navigation.navigate('MyCalorieCart')}>
                     <View style={{ borderWidth: 1, borderColor: '#F5B7B1', flex: 1, width: '95%', backgroundColor: '#F5B7B1', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <View style={{ flex: 1, margin: 4, width: '70%' }}>
-                            <Text style={{ marginBottom: 12, fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Kalori Günlüğüm</Text>
+                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Kalori Günlüğüm</Text>
+                            <View style={style.line} />
                             <Text style={{ fontSize: 12, color: '#556b2f' }}> Alınan kalori</Text>
                             <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalCalories} / Kcal</Text>
                         </View>
-                        <View style={{ width: '40%',  height: '100%',opacity: 0.8, alignItems: 'center', backgroundColor: '#F5B7B1', justifyContent: 'center', }}>
+                        <View style={{ width: '40%', height: '100%', opacity: 0.8, alignItems: 'center', backgroundColor: '#F5B7B1', justifyContent: 'center', }}>
                             <Image
                                 style={{
                                     width: 100,
                                     height: '100%',
-                                    
+
                                 }}
                                 source={require('../utils/Images/foodburn.png')} />
                         </View>
@@ -111,24 +130,26 @@ export default function HomePage() {
                 <TouchableOpacity onPress={() => navigation.navigate('ActivitiesHome')}>
                     <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#ABEBC6', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', borderWidth: 1, borderColor: '#ABEBC6', justifyContent: 'space-between' }}>
                         <View style={{ flex: 1, width: '70%', margin: 4 }}>
-                            <Text style={{ marginBottom: 12, fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Egzersiz</Text>
+                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Egzersiz</Text>
+                            <View style={style.line} />
                             <Text style={{ fontSize: 12, color: '#556b2f' }}> Yakılan kalori</Text>
                             <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalActiviteCalories} / Kcal</Text>
                         </View>
                         <View style={{ width: '40%', opacity: 0.8, height: '100%', alignItems: 'center', backgroundColor: '#ABEBC6', justifyContent: 'center', }}>
-                      
+
                             <Image
                                 style={{
                                     width: 100,
-                                    height: '100%', }}
+                                    height: '100%',
+                                }}
                                 source={require('../utils/Images/activiteburn.png')} />
                         </View>
                     </View>
                 </TouchableOpacity>
-                <View style={{ flex: 1, width: '95%', height: '100%',   backgroundColor: 'rgba(21, 135, 229, 0.3)',  borderWidth: 1, borderColor: '#ffffff', margin: 8, padding: 4, borderRadius: 12, }}>
-                    <View style={{ alignItems: 'center', margin: 2 }}>
-                        <Text> Su Takipcisi </Text>
-                        <Text style={{ fontSize: 16 }}> {WaterCount.toFixed(1)} litre</Text>
+                <View style={{ flex: 1, width: '95%', height: '100%', backgroundColor: '#ffffff', borderWidth: 1, borderColor: '#ffffff', margin: 8, padding: 4, borderRadius: 12, }}>
+                    <View style={{ alignItems: 'center', margin: 2,paddingRight:18, flexDirection:'row', justifyContent:'space-between'}}>
+                        <Text style={{ fontSize: 16 ,fontWeight: 'bold',}}> Su Takipcisi </Text>
+                        <Text style={{ fontSize: 16 ,fontWeight: 'bold',}}> {WaterCount.toFixed(1)} L</Text>
                     </View>
                     <View style={{ alignItems: 'center', flex: 1 }}>
                         <View style={{
@@ -142,7 +163,7 @@ export default function HomePage() {
                                 <Image
                                     key={index}
                                     style={{
-                                       
+
                                         width: 50,
                                         height: 50,
                                         marginBottom: 10,
@@ -157,7 +178,7 @@ export default function HomePage() {
                                 <Image
                                     onPress={addImage}
                                     style={{
-                                        
+
                                         width: 50,
                                         height: 50,
                                         marginBottom: 2,
@@ -194,8 +215,8 @@ const style = StyleSheet.create({
     header: {
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingHorizontal: 16,
-        paddingTop: 8,
+        paddingHorizontal: 12,
+        paddingTop: 4,
         paddingBottom: 2,
     },
     Avatar: {
@@ -204,9 +225,9 @@ const style = StyleSheet.create({
         borderRadius: 50,
     },
     AppName: {
-        padding: 6,
+        padding: 2,
         fontSize: 24,
-        color: "#8a2be2",
+        color: "#2f4f4f",
         fontWeight: '700',
     },
     banner: {
@@ -215,10 +236,10 @@ const style = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderWidth: 1,
-        borderColor: "#8923e8",
+        borderColor: "#2f4f4f",
     },
     bannertext: {
-        color: "#8a2be2",
+        color: "#2f4f4f",
         textAlign: "center",
         fontSize: 12,
     },
@@ -241,13 +262,13 @@ const style = StyleSheet.create({
     Searchbar: {
         padding: 1,
         borderWidth: 1,
-        borderColor: "#8a2be2",
+        borderColor: "#2f4f4f",
         borderRadius: 8,
     },
     SearchButtoncontainer: {
         padding: 12,
         borderWidth: 1,
-        borderColor: "#8a2be2",
+        borderColor: "#2f4f4f",
         borderRadius: 5,
         marginLeft: 12,
         shadowColor: "#000",
@@ -293,17 +314,17 @@ const style = StyleSheet.create({
     },
     categoryArea: {
         margin: 2,
-        
+
     },
     categoryone: {
-        alignItems:'center',
+        alignItems: 'center',
         fontSize: 14,
         color: '#556b2f',
-        
+
     },
     categorytwo: {
-       
-        color: "#8a2be2",
+
+        color: "#2f4f4f",
         fontWeight: '500',
     },
     categoryItem: {
@@ -318,7 +339,7 @@ const style = StyleSheet.create({
         borderRadius: 10,
     },
     categoryItemIconContainer: {
-        shadowColor: "#8a2be2",
+        shadowColor: "#2f4f4f",
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
@@ -339,9 +360,9 @@ const style = StyleSheet.create({
         elevation: 5,
         backgroundColor: "#ffffff",
         padding: 8,
-       
-        margin:2,
-        marginBottom:8,
+
+        margin: 2,
+        marginBottom: 8,
         borderRadius: 4,
         width: 120,
         height: 140,
@@ -362,7 +383,7 @@ const style = StyleSheet.create({
     },
     ProductItemimage: {
         width: 100,
-        height:80,
+        height: 80,
     },
     foodArea: {
         marginTop: 10,
@@ -394,6 +415,24 @@ const style = StyleSheet.create({
                 elevation: 6,
             },
         }),
+    },
+
+
+    line: {
+        width: '100%', // Çizgi uzunluğu
+        height: 1,
+        backgroundColor: '#131313',
+        marginVertical: 2,
+        marginHorizontal: 1,
+        marginBottom: 12,
+        opacity: 0.2
+    },
+    calendar: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+
     },
 }
 );
