@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../utils/redux/store.js'
 import { Button } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { firestoreDB } from '../config/firebase.js';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { Feather } from '@expo/vector-icons';
 
 export default function FoodSearch({ route }) {
 
@@ -31,18 +34,61 @@ export default function FoodSearch({ route }) {
 
   };
   const handleAddToCart = async (item) => {
-    const newItem = {
-      ...item,
-      mealType: mealType,
+ 
+    userId = 'fafafafa'
+
+    const userDocRef = doc(firestoreDB, "userscart", userId);
+  
+    try {
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        const existingData = userDoc.data();
+        const updatedData = {
+          ...existingData,
+          items: [...(existingData.items || []), item]
+        };
+        await updateDoc(userDocRef, updatedData);
+        console.log("User document updated successfully with new item");
+      } else {
+        // Belge henüz mevcut değilse, yeni belge oluştur
+        await setDoc(userDocRef, { items: [item] });
+        console.log("User document created successfully with new item");
+      }
+    } catch (error) {
+      console.error("Error updating/creating user document:", error);
+      // Hataları uygun şekilde işleyin, örneğin, kullanıcıya hata mesajlarını gösterin
+    }
+    fetchItemsFromFirebase();
+    
+  };
+
+  const fetchItemsFromFirebase = async () => {
+    userId = 'fafafafa'
+      const userDocRef = doc(firestoreDB, "userscart", userId);
+  
+      try {
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          console.log("User data:", userData.items);
+
+
+          // userData içinde bulunan items dizisini Redux store'a dispatch ederek kaydedebilirsiniz
+          dispatch(addToCart(userData.items));
+           // Örnek action fonksiyonu ve action türüne göre değişebilir
+        } else {
+          // Belge bulunamadığında yapılacak işlemleri burada ele alabilirsiniz
+        }
+      } catch (error) {
+        console.error("Error fetching items from Firebase:", error);
+        // Hataları uygun şekilde işleyin, örneğin, kullanıcıya hata mesajlarını gösterin
+      }
     };
 
-    const allItemsFromStorage = await loadFromStorage('allItems') || [];
-    const updatedItems = [...allItemsFromStorage, newItem];
-    await saveToStorage('allItems', updatedItems);
 
-    dispatch(addToCart(newItem));
 
-  };
+
+
 
 
   const saveToStorage = async (key, data) => {

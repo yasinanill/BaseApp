@@ -43,7 +43,7 @@ export default function MyCalorieCart() {
 
 
   const [calorieSum, setCalorieSum] = useState();
- 
+
 
   useEffect(() => {
     setCalorieSum(totalCalories.toString());
@@ -68,22 +68,22 @@ export default function MyCalorieCart() {
 
   const renderItem = ({ item }) => (
 
-    <View style={{ flex: 1, flexDirection: 'column' , }}>
-      <TouchableOpacity style={styles.mealContainer}  onPress={item.onPressDetail}>
+    <View style={{ flex: 1, flexDirection: 'column', padding: 2 }}>
+      <TouchableOpacity style={styles.mealContainer} onPress={item.onPressDetail}>
         <View style={styles.mealContainerLchild}>
           <Text style={styles.mealContainerTitle}>{item.title}</Text>
           <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
             {item.items.map((item, index) => (
               index < 3 && (
-                <Text key={index} style={{ fontSize: 10, padding:1 }}> {item.productName}, </Text>
+                <Text key={index} style={{ fontSize: 10, padding: 1 }}> {item.productName}, </Text>
               )
             ))}
-            {item.items.length > 3 && <Text style={{ fontSize: 12,  }}> Devamı...</Text>}
+            {item.items.length > 3 && <Text style={{ fontSize: 12, }}> Devamı...</Text>}
           </View>
         </View>
         <View style={styles.mealContainerRchild}>
           <Text style={{ fontSize: 12, padding: 4 }}>Önerilen: 800/kcal </Text>
-          <Text style={{ fontSize: 15, marginTop:4}}>Toplam</Text>
+          <Text style={{ fontSize: 15, marginTop: 4 }}>Toplam</Text>
           <Text style={{ fontSize: 15, padding: 2 }}>{item.totalCalories} /kcal</Text>
           {/*
         <Image source={item.imageSource} style={styles.mealImage} />*/}
@@ -113,21 +113,25 @@ export default function MyCalorieCart() {
 
     <SafeAreaView style={{ flex: 1, }} >
 
-      <View style={{  alignItems: 'center',}}>
-      <View style={{ backgroundColor:'#79d27d' , justifyContent: 'center', width:'100%', alignItems: 'center', padding: 8, margin: 2, flexDirection: 'row', }}>
-      <Image
-        source={require('../assets/green.jpg')} // veya başka bir kaynak
-        style={{    flex: 1,
-          resizeMode: 'cover', // Resmi kaplaması için
-          position: 'absolute',
-          top: 0,
-          left: -1,
-          width: 400,
-          height: '100%', }}
-      />
-          <View style={{  justifyContent: 'center', alignItems: 'center', padding: 4, margin: 2, flexDirection: 'row', }}>
-         
-    
+      <View style={{ alignItems: 'center', }}>
+        <Image
+          source={require('../assets/green.jpg')} // veya başka bir kaynak
+          style={{
+            resizeMode: 'cover', // Resmi kaplaması için
+            position: 'absolute',
+
+            width: 400,
+            height: 300,
+            borderBottomRightRadius: 40,
+            borderBottomLeftRadius: 40
+          }}
+        />
+
+        <View style={{ justifyContent: 'center', width: '100%', alignItems: 'center', padding: 8, margin: 2, flexDirection: 'row', }}>
+
+          <View style={{ justifyContent: 'center', alignItems: 'center', padding: 4, margin: 2, flexDirection: 'row', }}>
+
+
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', marginVertical: 20 }}>
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#ffffff' }}>Alınan </Text>
 
@@ -137,10 +141,10 @@ export default function MyCalorieCart() {
 
             </View>
 
-       
-                 <CircularProgressBar totalCalories={totalCalories} />
 
-      
+            <CircularProgressBar totalCalories={totalCalories} />
+
+
 
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', }}>
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#ffffff' }}>Yakılan  </Text>
@@ -151,37 +155,46 @@ export default function MyCalorieCart() {
           </View>
 
         </View>
-        <View style={{ top:-22,backgroundColor:'#79d27d', width:'100%', alignItems: 'center', padding: 2,margin:1, marginBottom: 24, flexDirection: 'row', justifyContent: 'center',borderBottomEndRadius:30, borderBottomStartRadius:30,}}>
-       
-        <View style={{ top:20,padding:8,backgroundColor:'#f8f8ff', width:'90%', alignItems: 'center',  flexDirection: 'row', justifyContent: 'space-between',borderRadius:8}}>
-          <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Karbonhidrat </Text>
 
-            <View style={styles.line} />
 
-            <Text style={{ fontSize: 14, fontWeight: 'bold' }}>{totalCarbo} gr  </Text>
+        <View style={{ top: -22, width: '100%', alignItems: 'center', padding: 2, margin: 1, marginBottom: 24, flexDirection: 'row', justifyContent: 'center', borderBottomEndRadius: 30, borderBottomStartRadius: 30, }}>
 
-          </View>
-          <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Yağ  </Text>
+          <View style={{ top: 20, padding: 8, backgroundColor: '#f8f8ff', width: '90%', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', borderRadius: 8 }}>
+            <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Karbonhidrat </Text>
 
-            <View style={styles.line} />
-            <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalFat}  gr </Text>
-          </View>
-          <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
-            <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Protein  </Text>
+              <View style={styles.line} />
 
-            <View style={styles.line} />
-            <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalPro}  gr </Text>
-          </View>
-        </View></View>
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}>{totalCarbo} gr  </Text>
 
-        <FlatList
-          data={mealData}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.title}
-          scrollEnabled={false}
-        />
+            </View>
+            <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Yağ  </Text>
+
+              <View style={styles.line} />
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalFat}  gr </Text>
+            </View>
+            <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Protein  </Text>
+
+              <View style={styles.line} />
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalPro}  gr </Text>
+            </View>
+          </View></View>
+
+
+        <View style={{ padding:2,marginVertical:2 }}>
+
+          <FlatList
+            data={mealData}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.title}
+            scrollEnabled={false}
+          />
+        </View>
+
+
+
       </View>
 
     </SafeAreaView>
@@ -214,12 +227,12 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 12, borderColor: '#4CAF50', borderRightWidth: 1,
     elevation: 4,
 
-    marginLeft:4, 
+    marginLeft: 4,
 
   },
 
   mealContainerRchild: {
-  padding: 4, height: '100%', width: '50%', borderRadius: 10, borderBottomRightRadius: 44, position: 'relative', alignItems: 'center'
+    padding: 4, height: '100%', width: '50%', borderRadius: 10, borderBottomRightRadius: 44, position: 'relative', alignItems: 'center'
   },
   mealContainerLchild: {
 
@@ -263,15 +276,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     borderTopLeftRadius: 50,
     borderBottomStartRadius: 50,
-    borderTopStartRadius: 50, 
-    borderRadius:50,
+    borderTopStartRadius: 50,
+    borderRadius: 50,
     width: 55,
     height: 55,
     alignItems: 'center',
     justifyContent: 'center',
     borderLeftWidth: 1,
     borderColor: '#4CAF50',
- 
+
   },
   line: {
     width: '80%', // Çizgi uzunluğu
@@ -283,7 +296,7 @@ const styles = StyleSheet.create({
   mealContainerTitle: {
     fontSize: 14,
     color: '#4CAF50',
-    padding:4
+    padding: 4
   }
 
 });

@@ -8,6 +8,8 @@ import CircularProgressBar from '../utils/CircularProgressBar';
 import { useSelector } from 'react-redux';
 import { LinearGradient } from 'react-native-svg';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { firestoreDB } from '../config/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 
 export default function HomePage() {
@@ -38,8 +40,31 @@ export default function HomePage() {
 
 
     const handleCalendarPress = () => {
-        navigation.navigate('Calendar');
+        navigation.navigate('YourComponent');
     };
+
+
+
+  
+    const fetchUserData = async (userId) => {
+        try {
+          const userDocRef = doc(firestoreDB, "users", userId);
+          const userDoc = await getDoc(userDocRef);
+          if (userDoc.exists()) {
+            console.log("User data:", userDoc.data());
+            // Kullanıcı verilerini kullanmak için burada işlemleri gerçekleştirin
+          } else {
+            console.log("No such user document!");
+            // Kullanıcı verisi bulunamazsa uygun şekilde işlem yapın
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          // Hataları uygun şekilde işleyin, örneğin, kullanıcıya hata mesajlarını gösterin
+        }
+      };
+      
+   
+
 
     const promations = data.promations;
     const categories = data.categories;
@@ -76,6 +101,7 @@ export default function HomePage() {
             setImageCount((prevCount) => prevCount + 1);
             setWaterCount((prevCount) => prevCount + 0.2);
         }
+        fetchUserData('faagağogjspodjgpsj');
     };
     const totalCalories = useSelector((state) => state.cart.totalCalories);
     return (
@@ -129,6 +155,16 @@ export default function HomePage() {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('ActivitiesHome')}>
                     <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#ABEBC6', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', borderWidth: 1, borderColor: '#ABEBC6', justifyContent: 'space-between' }}>
+                    <Image
+        source={require('../assets/green.jpg')} // veya başka bir kaynak
+        style={{   
+          resizeMode: 'cover', // Resmi kaplaması için
+          position: 'absolute',
+          top: 0,
+          left: -1,
+          width:'100%',	
+          height:90, }}
+      />
                         <View style={{ flex: 1, width: '70%', margin: 4 }}>
                             <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Egzersiz</Text>
                             <View style={style.line} />

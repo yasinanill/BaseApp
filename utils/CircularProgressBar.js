@@ -31,7 +31,7 @@ export default function CircularProgressBar({ totalCalories }){
           <Defs>
             {/* Renk geçişi için lineer gradient tanımlaması */}
             <LinearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <Stop offset="0%" stopColor="#40bf45" stopOpacity='0.5' />
+              <Stop offset="0%" stopColor="#40bf45" stopOpacity='0.4' />
               
             </LinearGradient>
           </Defs>       
@@ -43,7 +43,7 @@ export default function CircularProgressBar({ totalCalories }){
               r={radius} // İkinci çemberin yarıçapını biraz küçültün (isteğe bağlı)
               stroke="#dcdcdc" // İkinci çemberin kenar rengi
               strokeWidth="10" // İkinci çemberin kenar kalınlığı
-              fill="transparent" // İkinci çemberin içini boş bırakmak için
+              fill="none" // İkinci çemberin içini boş bırakmak için
              
             />
             {/* Yuvarlak barın tamamını çizen gri renkli daire */}
@@ -54,7 +54,7 @@ export default function CircularProgressBar({ totalCalories }){
               stroke="url(#gradient)" // Lineer gradienti kullan
               strokeWidth="10"
               borderRadius='13'
-              fill="#transparent"
+              fill="none"
               strokeDasharray={`${circumference} ${circumference}`}
               strokeDashoffset={dotOffset}
          

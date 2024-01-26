@@ -3,13 +3,16 @@ import { View, Text, TextInput, Button, StyleSheet, ImageBackground, } from 'rea
 import { Picker } from '@react-native-picker/picker';
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../utils/redux/store';
-import { auth, uid } from '../config/firebase';
+
 import { onAuthStateChanged } from 'firebase/auth';
+import { auth, firestoreDB } from '../config/firebase';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 
-export default function YourComponent({ route, navigation }) {
+export default function YourComponent({ route}) {
 
- 
- 
+  
+  const navigation = useNavigation();
   const dispatch = useDispatch();
   const [soruIndex, setSoruIndex] = useState(0);
   const [age, setAge] = useState('');
@@ -72,7 +75,9 @@ export default function YourComponent({ route, navigation }) {
     }
   };
 
-  const handleBaslayalim = () => {
+  const  handleBaslayalim =  () => {
+  
+  
     const bmrResult = bmrHesapla(age, height, weight, gender, activityLevel);
     setCalorieResult(bmrResult)
     calculateBMI()
@@ -84,7 +89,54 @@ export default function YourComponent({ route, navigation }) {
     console.log(bmrResult)
     console.log(idealWeight)
     console.log(bmiResult)
+   
+
+    saveUserData();  
+ 
+  
   };
+
+
+  const userId = auth.currentUser.uid;
+
+  const saveUserData = async () => {
+
+
+    const userDocRef = doc(firestoreDB, "users", userId);
+    const data 
+      = {
+          height : height,
+          weight : weight,  
+          age : age,
+          gender : gender,
+          activityLevel : activityLevel,
+          bmrResult : calorieResult,
+          idealWeight : idealWeight,
+          bmiResult : bmiResult
+      }
+
+
+ 
+    try {
+      await setDoc(userDocRef, data);
+      console.log("User document created successfully with user and user info data");
+    } catch (error) {
+      console.error("Error creating user document:", error);
+      // Handle errors appropriately, e.g., display error messages to the user
+    }
+
+    navigation.navigate('HomePage');
+};
+
+
+
+  
+
+
+
+
+
+
 
   const bmrHesapla = (age, height, weight, gender, activityLevel) => {
    
@@ -128,9 +180,21 @@ export default function YourComponent({ route, navigation }) {
   }
 
 
+  useEffect(() => {
+   
+   
+   
+    const frankDocRef = doc(firestoreDB, "users", "frank");
+     setDoc(frankDocRef, {
+        name: "Frank",
+        favorites: { food: "Pizza", color: "Blue", subject: "recess" },
+        age: 12
+    });
+    // Reset the form
+  }, [calorieResult]);
 
-
-
+   
+   
 
 
 
@@ -153,23 +217,6 @@ export default function YourComponent({ route, navigation }) {
   }, [calorieResult]);
 
 
-  useEffect(() => {
-   
-   
-    if (uid) {
-      const userDocRef = firebase.firestore().collection('users').doc(uid);
-      userDocRef.set({
-        age,
-        height,
-        weight,
-        gender,
-        bmiResults: bmiResult,
-        calorieResults: calorieResult,
-        idealWeights: idealWeight,
-      });
-    }
-    console.log(uid)
-  }, [calorieResult]);
 
 
 

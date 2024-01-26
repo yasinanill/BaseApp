@@ -66,7 +66,7 @@ const UserProfile = () => {
         <View style={{flex:2,flexDirection:'row', justifyContent:'center', marginLeft:4,marginBottom:12}}>
           <View style={{ justifyContent:'center', marginBottom:12}}>
         
-          <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white',justifyContent:'' }}><Icon name="bars" color="#FFFFFF" size={20} />   Kilo : {user.weight}</Text>
+          <Text style={{ fontSize: 12, fontWeight: 'bold', color: 'white', }}><Icon name="bars" color="#FFFFFF" size={20} />   Kilo : {user.weight}</Text>
           <Text style={{ fontSize: 12,marginTop:12, fontWeight: 'bold', color: 'white' }}><Icon name="bars" color="#FFFFFF" size={20} />   Boy :  {user.height}</Text>
           </View>
            <View style={{ justifyContent:'center',marginHorizontal:8,marginBottom:12}}> 

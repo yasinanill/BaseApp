@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyC2ryRWkrHtwQ3U8qmfs3U9jIt3OAfQ3B8",
@@ -13,7 +14,31 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const firestoreDB = getFirestore(app);
 
-
-export const auth = getAuth(app);
+const signOutUser = async () => {
+    try {
+      await signOut(auth);
+      console.log("User signed out successfully");
+      // Oturumu kapattıktan sonra kullanıcıyı isteğe bağlı olarak başka bir sayfaya yönlendirebilirsiniz
+    } catch (error) {
+      console.error("Sign out error: ", error);
+      // Hataları uygun şekilde işleyin, örneğin, kullanıcıya hata mesajlarını gösterin
+    }
+  };
+  const watchAuthState = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Kullanıcı oturum açık
+        console.log("Kullanıcı oturum açık");
+        // Kullanıcı oturum bilgilerini kontrol etme veya diğer işlemleri burada yapabilirsiniz
+      } else {
+        // Kullanıcı oturum kapalı
+        console.log("Kullanıcı oturum kapalı");
+        // Kullanıcı oturum bilgilerini kontrol etme veya diğer işlemleri burada yapabilirsiniz
+      }
+    });
+  };
+export { auth, firestoreDB, signOutUser };
 

@@ -1,37 +1,47 @@
-import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, Platform } from 'react-native'
-import React from 'react'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View, Platform, ScrollView } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native-paper';
-
+import { FontAwesome } from '@expo/vector-icons';
 export default function ActivitiesHome({ }) {
 
-    const ActivitieItems = [
-        { id: 1, title: 'Koşma(Orta Tempo)', ActiviteMET: 3.5, imagePath: require('./images/runm.png') },
-        { id: 2, title: 'Yürüyüş', ActiviteMET: 3, imagePath: require('./images/walk.png') },
-        { id: 3, title: 'Koşma(Hızlı Tempo)', ActiviteMET: 3, imagePath: require('./images/fastrun.png') },
-        { id: 5, title: 'Bisiklet Sürmek', ActiviteMET: 3, imagePath: require('./images/byc.png') },
-        { id: 6, title: 'Ev Temizliği', ActiviteMET: 3, imagePath: require('./images/evisleri.png') },
-        { id: 7, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/gym.png') },
-        { id: 8, title: 'futbol', ActiviteMET: 3, imagePath: require('./images/futbol.png') },
-        { id: 9, title: 'basketbol', ActiviteMET: 3, imagePath: require('./images/basketbol.png') },
-        { id: 10, title: 'Tırmanma', ActiviteMET: 3, imagePath: require('./images/climbing.png') },
-        { id: 11, title: 'Merdiven Çıkma', ActiviteMET: 3, imagePath: require('./images/climbingstairs.png') },
-        { id: 12, title: 'Dövüş Sporları', ActiviteMET: 3, imagePath: require('./images/combatsports.png') },
-        { id: 13, title: 'Golf', ActiviteMET: 3, imagePath: require('./images/golf.png') },
-        { id: 14, title: 'Egzersiz', ActiviteMET: 3, imagePath: require('./images/squat.png') },
-        { id: 15, title: 'Voleybol', ActiviteMET: 3, imagePath: require('./images/voleybool.png') },
-        { id: 16, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/gymm.png') },
-        { id: 17, title: 'Masa Tenisi', ActiviteMET: 3, imagePath: require('./images/table.png') },
-    ];
+    const [activitieItems, setActivitieItems] = useState([
+        { id: 1, title: 'Koşma(Orta Tempo)', ActiviteMET: 3.5, imagePath: require('./images/runm.png') ,isFavorite:"false", },
+        { id: 2, title: 'Yürüyüş', ActiviteMET: 3, imagePath: require('./images/walk.png'), isFavorite:"false", },
+        { id: 3, title: 'Koşma(Hızlı Tempo)', ActiviteMET: 3, imagePath: require('./images/fastrun.png'),isFavorite:"false", },
+        { id: 5, title: 'Bisiklet Sürmek', ActiviteMET: 3, imagePath: require('./images/byc.png') ,isFavorite:"true",},
+        { id: 6, title: 'Ev Temizliği', ActiviteMET: 3, imagePath: require('./images/evisleri.png') ,isFavorite:"false",},
+        { id: 7, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/gym.png'),isFavorite:"false", },
+        { id: 8, title: 'futbol', ActiviteMET: 3, imagePath: require('./images/futbol.png') ,isFavorite:"true",},
+        { id: 9, title: 'basketbol', ActiviteMET: 3, imagePath: require('./images/basketbol.png'),isFavorite:"false", },
+        { id: 10, title: 'Tırmanma', ActiviteMET: 3, imagePath: require('./images/climbing.png') ,isFavorite:"false",},
+        { id: 11, title: 'Merdiven Çıkma', ActiviteMET: 3, imagePath: require('./images/climbingstairs.png') ,isFavorite:"false",},
+        { id: 12, title: 'Dövüş Sporları', ActiviteMET: 3, imagePath: require('./images/combatsports.png') ,isFavorite:"false",},
+        { id: 13, title: 'Golf', ActiviteMET: 3, imagePath: require('./images/golf.png'),isFavorite:"false", },
+        { id: 14, title: 'Egzersiz', ActiviteMET: 3, imagePath: require('./images/squat.png') ,isFavorite:"true",},
+        { id: 15, title: 'Voleybol', ActiviteMET: 3, imagePath: require('./images/voleybool.png'),isFavorite:"false", },
+        { id: 16, title: 'Ağırlık Antremanı', ActiviteMET: 3, imagePath: require('./images/gymm.png'),isFavorite:"false", },
+        { id: 17, title: 'Masa Tenisi', ActiviteMET: 3, imagePath: require('./images/table.png'),isFavorite:"false", },
+    ]);
     const navigation = useNavigation();
-
-
+    const [isFavorite, setIsFavorite] = useState(false);
+   
+   
+    const favoriteItems = activitieItems.filter(item => item.isFavorite === 'true');
+    console.log(favoriteItems);
+    const toggleFavorite = (itemId) => {
+        setActivitieItems(prevItems => (
+          prevItems.map(item => (
+            item.id === itemId ? { ...item, isFavorite: !item.isFavorite } : item
+          ))
+        ));
+      };
 
     const renderImageItem = ({ item }) => (
         <View style={style.imageContainer}>
 
-            <View style={style.imageText}>
+            <View  style={style.imageText}>
 
 
                 <TouchableOpacity onPress={() => navigation.navigate('Activite', { item })} style={style.imageTap}>
@@ -51,30 +61,51 @@ export default function ActivitiesHome({ }) {
 
     return (
         <SafeAreaView style={style.container}>
-          
-          <View >
-              <TextInput
-                style={style.input}
-                placeholder="Aktivite adını girin..."
 
-            //  onChangeText={(text) => setSearchTerm(text)}
-            />
-            <Text style={{ padding: 10, fontSize: 18, marginVertical: 8, fontWeight: '400' }}> Favoriler
-            </Text>
-     
+            <View >
+                <TextInput
+                    style={style.input}
+                    placeholder="Aktivite adını girin..."
 
-            <ScrollView style={{ }}>
-
-
-
-                <FlatList
-                    data={ActivitieItems}
-                    renderItem={renderImageItem}
-                    keyExtractor={(item) => item.id.toString()}
-                    numColumns={3}
+                //  onChangeText={(text) => setSearchTerm(text)}
                 />
+                <Text style={{ padding: 10, fontSize: 18, marginVertical: 8, fontWeight: '400' }}> Favoriler
+                </Text>
 
-            </ScrollView>
+
+                <ScrollView style={{}}>
+
+
+
+
+                    <View style={style.imageContainer}>
+                        {favoriteItems.map(item => (
+
+
+
+                            <View key={item.id} style={style.imageText}>
+
+                                <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={style.favoriteButton}>
+                                <FontAwesome name={item.isFavorite == 'true' ? 'star' : 'star-0'} size={24} color={item.isFavorite == 'true' ? 'gold' : 'gray'} />
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => navigation.navigate('Activite', { item })} style={style.imageTap}>
+                                    <Image
+                                        style={style.image}
+                                        source={item.imagePath}
+                                    />
+                                    <Text style={style.text}>{item.title}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+
+
+
+
+                        ))}
+
+
+                    </View>
+                </ScrollView>
 
             </View>
 
@@ -89,18 +120,22 @@ const style = StyleSheet.create({
 
     },
     imageContainer: {
-        flex: 1,
+
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+ 
+
     },
     text: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: '400',
         padding: 1,
         margin: 1,
 
     },
     input: {
-      
-        margin:12,
+
+        margin: 12,
         height: 40,
         borderColor: 'gray',
         borderBottomWidth: 1,
@@ -110,7 +145,21 @@ const style = StyleSheet.create({
         backgroundColor: '#fff',
     },
 
+    favoriteButton: {
+        position: 'absolute',
+        top: 7,
+        right: 7,
+        zIndex: 1,
+      },
+
+
     imageText: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 140,
+        width: '30%',
+        position: 'relative',
+
         ...Platform.select({
             ios: {
                 shadowColor: 'black',
@@ -133,7 +182,7 @@ const style = StyleSheet.create({
 
     image: {
         width: '100%',
-        height: 100,
+        height: 90,
         aspectRatio: 1,
         resizeMode: 'contain'
 

@@ -30,7 +30,7 @@ export default function AuthStack() {
    
      <Stack.Navigator screenOptions={{ cardStyle: { backgroundColor: 'red' } }}>
     
-    {bmiResult ? (
+    
         <>
           <Stack.Screen name='TabsNavigation' component={TabsNavigator} options={{ headerShown: false }} /> 
           <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
@@ -48,13 +48,10 @@ export default function AuthStack() {
         <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} options={{headerShown: false  }} />
         <Stack.Screen name="UserActivities" component={UserActivities} options={{ headerShown: false }} />
           </>
-      ) : (
-
+   
 
           <Stack.Screen name='YourComponent' component={YourComponent} options={{ headerShown: false }} />
-          
-        )}
-      
+    
       </Stack.Navigator>
 
   )

@@ -4,8 +4,9 @@ import react, { useState } from "react";
 import { Image, SafeAreaView, Text } from "react-native";
 import { View ,TouchableOpacity} from "react-native";
 import { Avatar, Title, Subheading, Button, TextInput } from "react-native-paper";
-import { auth } from "../../config/firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, firestoreDB } from "../../config/firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 
 
@@ -23,44 +24,34 @@ export default function SignUp ()  {
 
 
       
-        const signUpTest = () => {
-          setIsLoading(true); // Set loading to true when starting the sign-up process
-      
-          
-            createUserWithEmailAndPassword(auth,email, password)
-            .then((userCredential) => {
-              // User signed up successfully
-              const user = userCredential.user;
-      
-              // Update display name (if provided)
-              if (displayName) {
-                user.updateProfile({
-                  displayName: displayName,
-                }).then(() => {
-                  // Profile updated successfully
-                  console.log('User signed up:', user);
-                  setIsLoading(false); // Set loading to false after successful sign-up
-                  navigation.navigate('SignIn');
-                }).catch((profileUpdateError) => {
-                  console.log('Profile update error:', profileUpdateError);
-                  setIsLoading(false);
-                  setError("Error updating profile");
-                });
+        const signUpTest = async () => {
+          setIsLoading(true);
+        
+          try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        
+            const datas = {
+              _id: "faagağogjspodjgpsj",
+              FullName:'displayName',
+              email: userCredential.user.email,
+           
+            };
+        
+            const userDocRef = await setDoc(doc(collection(firestoreDB, "users", userCredential.user.uid, "userdata")), datas);
+            console.log("User data added for user with ID: ")
+        
+        
+            await signInWithEmailAndPassword(auth, email, password);
+            console.log("User signed in automatically after sign up");     
 
-              } else {
-                console.log('User signed up:', user);
-                setIsLoading(false); // Set loading to false after successful sign-up
-              }
-            })
-            .catch((signUpError) => {
-              // Handle sign-up errors
-              console.log('Sign up error:', signUpError);
-              setIsLoading(false); // Set loading to false on error
-              setError(signUpError.message); // Set the error message for display
-            });
-            navigation.navigate('SignIn');
+            navigation.navigate("YourComponent");
+          } catch (error) {
+            console.error("Sign up error: ", error);
+            // Handle errors appropriately, e.g., display error messages to the user
+          } finally {
+            setIsLoading(false);
+          }
         };
-      
 
 
 
@@ -91,7 +82,7 @@ export default function SignUp ()  {
                         padding: 8,
                         width: 400,
                         borderRadius: 10,
-                        resizeMode: "",
+                        resizeMode: "cover",
                       }}
                       source={require("../../assets/kn.jpeg")}
                     />

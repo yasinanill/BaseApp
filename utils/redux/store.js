@@ -26,10 +26,12 @@ const cartSlice = createSlice({
       
       const newItem = action.payload;
       state.items.push(newItem);
-      state.totalCalories += newItem.productCalorie;
-      state.totalCarbo += newItem.productCarbo;
-      state.totalPro += newItem.productProtein;
-      state.totalFat += newItem.productFAt;
+      state.totalCalories = newItem.reduce((total, item) => total + item.productCalorie, 0);
+      state.totalCarbo = newItem.reduce((total, item) => total + item.productCarbo, 0);
+      state.totalPro = newItem.reduce((total, item) => total + item.productProtein, 0);
+      state.totalFat = newItem.reduce((total, item) => total + item.productFAt, 0);
+  
+      console.log('wwwwww' ,state.totalCalories)
     },
     // Diğer reducer'ları buraya ekleyin (örneğin, ürünü sepetten çıkarma)
   },
@@ -51,6 +53,7 @@ const userSlice = createSlice({
     setUserData: (state, action) => {
         return { ...state, ...action.payload };
     },
+    
     // Diğer reducer'ları buraya ekleyin
   },
 });
@@ -66,50 +69,19 @@ const activiteCalorieSlice = createSlice({
   },
 });
 
-const persistConfigCart = {
-  key: 'cart',
-  storage: AsyncStorage,
-};
-
-const persistConfigUser = {
-  key: 'user',
-  storage: AsyncStorage,
-};
-
-const persistConfigActiviteCalorie = {
-  key: 'activiteCalories',
-  storage: AsyncStorage,
-};
-
-const persistedCartReducer = persistReducer(persistConfigCart, cartSlice.reducer);
-const persistedUserReducer = persistReducer(persistConfigUser, userSlice.reducer);
-const persistedActiviteCalorieReducer = persistReducer(persistConfigActiviteCalorie, activiteCalorieSlice.reducer);
-
 
 export const { addCalorie } = activiteCalorieSlice.actions;
 export const { setUserData } = userSlice.actions;
 export const { addToCart } = cartSlice.actions;
 
-
-
-
-
-
 const store = configureStore({
-
   reducer: {
-    cart: persistedCartReducer,
-    user: persistedUserReducer,
-    activiteCalories: persistedActiviteCalorieReducer,
+    cart: cartSlice.reducer,
+    user: userSlice.reducer,
+    activiteCalories: activiteCalorieSlice.reducer,
+  
     // Diğer reducer'ları buraya ekleyin
-  }, middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [ PERSIST, PURGE, REGISTER],
-    },
-  }),
-
+  },
 });
-export const persistor = persistStore(store);
 
 export default store;
