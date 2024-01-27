@@ -165,20 +165,20 @@ export default function MyCalorieCart() {
 
               <View style={styles.line} />
 
-              <Text style={{ fontSize: 14, fontWeight: 'bold' }}>{totalCarbo} gr  </Text>
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}>{totalCarbo.toFixed(1)} gr  </Text>
 
             </View>
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Yağ  </Text>
 
               <View style={styles.line} />
-              <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalFat}  gr </Text>
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalFat.toFixed(1)}  gr </Text>
             </View>
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Protein  </Text>
 
               <View style={styles.line} />
-              <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalPro}  gr </Text>
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}> {totalPro.toFixed(1)}  gr </Text>
             </View>
           </View></View>
 

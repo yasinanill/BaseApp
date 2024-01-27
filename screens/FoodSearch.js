@@ -13,6 +13,50 @@ import { Feather } from '@expo/vector-icons';
 export default function FoodSearch({ route }) {
 
 
+
+
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleAddToCarts = async (item) => {
+    try {
+      // AsyncStorage'den sepeti al
+      const existingCartItems = await AsyncStorage.getItem('cartItems');
+     
+     
+      let updatedCartItems = existingCartItems ? JSON.parse(existingCartItems) : [];
+      
+     // Yeni ürünü sepete ekle
+     updatedCartItems.push(item);
+
+     // Güncellenmiş sepet verisini AsyncStorage'e kaydet
+     await AsyncStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+ 
+
+      // State'i güncelle
+      setCartItems(updatedCartItems);
+      dispatch(addToCart(updatedCartItems));
+      console.log('Urun sepete eklendi:', cartItems);
+    } catch (error) {
+      console.error('Hata:', error);
+    }
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const { mealType } = route.params;
   console.log('Meal Type:', mealType);
   const [searchTerm, setSearchTerm] = useState('');
@@ -137,7 +181,7 @@ export default function FoodSearch({ route }) {
 
       </View>
       <View>
-        <TouchableOpacity style={styles.mealAddButton} onPress={() => handleAddToCart(item)} >
+        <TouchableOpacity style={styles.mealAddButton} onPress={() => handleAddToCarts(item)} >
           <Text style={{
             color: 'white',
             fontSize: 24,
