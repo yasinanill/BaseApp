@@ -25,17 +25,12 @@ export const COLOURS = {
       potasyum: 127,
       kalsium: 685,
       
-      description:
-        ' Ekmek tercihleri posa ve tam buğday içeriği yüksek olan ve glisemik indeksi daha düşük olan tahıllı ekmeklerden yana yapılmalıdır.',
+  
       isOff: true,
       offPercentage: 10,
       productImage: require('../database/images/foods/ekmek.jpg'),
       isAvailable: true,
-      productImageList: [
-        require('../database/images/foods/1.jpg'),
-        require('../database/images/foods/2.jpg'),
-        require('../database/images/foods/foodss.png'),
-      ],
+   
     },
     {
         id: 2,
@@ -51,17 +46,12 @@ export const COLOURS = {
         sodyum: 29.7,
         potasyum: 44.7,
         kalsium: 2.4,
-        description:
-          'Fıstık ezmesi, her ne kadar yüksek yağ ve kalori miktarına sahip olsa da vücuda çok faydası olan bir yiyecek. Zaten sporcuların sık sık fıstık ezmesi tüketmesi bunun bir işareti. Fıstık ezmeleri yüksek oranda trans yağ içermeyen yapılarıyla öne çıkıyor. Bu nedenle fıstık ezmesi, sağlıklı yağ içeren besin kategorisine dahil diyebiliriz',
+      
         isOff: true,
         offPercentage: 10,
         productImage: require('../database/images/foods/fistik.jpg'),
         isAvailable: true,
-        productImageList: [
-            require('../database/images/foods/1.jpg'),
-            require('../database/images/foods/2.jpg'),
-            require('../database/images/foods/foodss.png'),
-        ],
+       
       },
       
       {
@@ -77,17 +67,11 @@ export const COLOURS = {
         sodyum: 163.5,
         potasyum: 127.7,
         kalsium: 28.5,
-        description:
-          'Tavuk suyunda bulunan vitamin ve mineraller, vücuda zarar veren maddelerin atılmasını kolaylaştırır. Bu nedenle grip ve nezle gibi hastalıklarda, hastanın bolca tavuk suyu içmesi istenir. Gribe neden olan virüslerin, vücuttan kolayca atılması tavuk suyu çorbası sayesindedir.',
-        isOff: true,
+      
         offPercentage: 10,
         productImage: require('../database/images/foods/tavuk.jpg'),
         isAvailable: true,
-        productImageList: [
-            require('../database/images/foods/1.jpg'),
-            require('../database/images/foods/2.jpg'),
-            require('../database/images/foods/foodss.png'),
-        ],
+      
       },
       {
         id: 4,
@@ -102,17 +86,12 @@ export const COLOURS = {
         sodyum: 235,
         potasyum: 12,
         kalsium: 234.5,
-        description:
-          ' Tavuk eti, protein, potasyum, fosfor, demir, çinko açısından zengindir. Derisiz olarak, haşlama, fırın ya da ızgara pişirme yöntemleriyle tüketilmesi önerilir.',
+      
         isOff: true,
         offPercentage: 10,
         productImage: require('../database/images/foods/but.jpg'),
         isAvailable: true,
-        productImageList: [
-            require('../database/images/foods/1.jpg'),
-            require('../database/images/foods/2.jpg'),
-            require('../database/images/foods/foodss.png'),
-        ],
+       
       },
       {
         id: 5,
@@ -127,17 +106,11 @@ export const COLOURS = {
         sodyum: 0,
         potasyum: 25,
         kalsium: 3,
-        description:
-          'Ceviz %65 oranında yağ ile yaklaşık %15 oranında protein içeriyor. Yaklaşık 654 kaloriye sahip 100 gram cevizde 6.7 gram lif bulunuyor. Çoklu doymamış yağ asitleri ve özellikle de ‌linoleik asit olarak adlandırılan ‌Omega-6 yağ asidi açısından zengin olan cevizin toplam yağ içeriğinin yaklaşık %‌8-14’lük kısmı ‌alfa-linolenik asit (ALA) olarak bilinen ‌Omega-3 yağ asidinden oluşuyor. Ceviz vitamin ve mineraller açısından da oldukça zengin bir besin. Bakır, fosfor, manganez gibi mineraller ile ‌folik asit, ‌B6  ve E vitamini gibi vitaminler içeriyor. Aynı zamanda antioksidan bileşenler açısından da zengin bir besin olan cevizde bulunan flavonoidler de vücut için önemli görevler üstleniyor.',
-        isOff: true,
+       
         offPercentage: 10,
         productImage: require('../database/images/foods/ceviz.jpg'),
         isAvailable: true,
-        productImageList: [
-            require('../database/images/foods/1.jpg'),
-            require('../database/images/foods/2.jpg'),
-            require('../database/images/foods/foodss.png'),
-        ],
+      
       },
 
       {
@@ -154,19 +127,12 @@ export const COLOURS = {
         sodyum: 163.5,
         potasyum: 127.7,
         kalsium: 28.5,
-        description:
-          'Süt, yumurta sarısı ve pirinç ununu karıştırıp ocakta kaynayana kadar pişirilir. Kaynamaya yakın vanilin, bal ilave edilir. Bisküviler ufalanır, bir bardağa veya kaseye önce muhallebi, sonra çilekler ve bisküviler ilave edilir Sonra tekrar muhallebi ilave edilir ve isteğe göre süslenir.',
-
         
         isOff: true,
         offPercentage: 10,
         productImage: require('../database/images/foods/22.png'),
         isAvailable: true,
-        productImageList: [
-            require('../database/images/foods/1.jpg'),
-            require('../database/images/foods/2.jpg'),
-            require('../database/images/foods/foodss.png'),
-        ],
+     
       },
       {
         id: 25,
@@ -181,17 +147,11 @@ export const COLOURS = {
         sodyum: 163.5,
         potasyum: 127.7,
         kalsium: 28.5,
-        description:
-          'Yumurta ve şeker köpük olana kadar çırpılır. Un hariç tüm malzemeler eklenir, ardından un eklenir. Havuç ve cevizde eklenir fırına verilir. 180 derecede pişirilir Glutensiz unda 1-2 su bardağı kıvama göre eklenebilir. Ancak yulaf unu gibi tam olarak unlarda 2 su bardağı eklemeniz gerekebilir.',
         isOff: true,
         offPercentage: 10,
         productImage: require('../database/images/foods/havuc.png'),
         isAvailable: true,
-        productImageList: [
-            require('../database/images/foods/1.jpg'),
-            require('../database/images/foods/2.jpg'),
-            require('../database/images/foods/foodss.png'),
-        ],
+     
       },
       {
         id: 24,
@@ -413,8 +373,7 @@ export const COLOURS = {
         sodyum: 21,
         potasyum: 227,
         kalsium: 35,
-        description:
-          'Beyaz peynirin 100 gramında 310 kalori bulunmaktadır. Beyaz peynirin 1 dilimi (30 gr) 93 kalori, 1 çorba kaşığı (10 gr) 31 kaloridir. Beyaz peynirin 100 gramı 2.53 gram karbonhidrat, 20.38 gram protein, 24.31 gram yağ içermektedir Kahvaltılık ürünler denildiği zaman ilk olarak peynir çeşitleri akla geliyor. Fermente bir süt ürünü olan peynir, her yaştan tüketicinin sağlıklı beslenme tercihinde yer alıyor. Piyasada birçok çeşidi bulunan peynir grubu ürünler, sofralara zenginlik katıyor. Kendine has dokusu ve tadı ile girdiği tüm tariflere uyum sağlayan peynir, içerdiği kalsiyum, potasyum ve protein sayesinde vücudun tüm gereksinimlerini karşılamayı sağlıyor',
+       
         isOff: true,
         offPercentage: 10,
         isAvailable: true,
@@ -438,8 +397,7 @@ export const COLOURS = {
         sodyum: 197,
         potasyum: 627,
         kalsium: 185,
-        description:
-          'Orta boy pizza için değerler şu şekilde: 1 dilim karışık pizza 130 gram için 241 kcal. 1 porsiyon orta boy karışık pizza 185 gram için 344 kcal. 100 gram karışık pizza 186 kcal.',
+       
         isOff: true,
         offPercentage: 10,
         productImage: require('../database/images/foods/pizza.jpg'),

@@ -10,6 +10,7 @@ import { LinearGradient } from 'react-native-svg';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { firestoreDB } from '../config/firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { useCartActions } from '../utils/CartUtils';
 
 
 export default function HomePage() {
@@ -37,7 +38,7 @@ export default function HomePage() {
 
     const today = new Date();
     const formattedDate = today.toLocaleString('default', { day: 'numeric', month: 'long' });
-
+    const { handleClearCartData } = useCartActions();
 
     const handleCalendarPress = () => {
         navigation.navigate('YourComponent');
@@ -45,25 +46,25 @@ export default function HomePage() {
 
 
 
-  
+
     const fetchUserData = async (userId) => {
         try {
-          const userDocRef = doc(firestoreDB, "users", userId);
-          const userDoc = await getDoc(userDocRef);
-          if (userDoc.exists()) {
-            console.log("User data:", userDoc.data());
-            // Kullanıcı verilerini kullanmak için burada işlemleri gerçekleştirin
-          } else {
-            console.log("No such user document!");
-            // Kullanıcı verisi bulunamazsa uygun şekilde işlem yapın
-          }
+            const userDocRef = doc(firestoreDB, "users", userId);
+            const userDoc = await getDoc(userDocRef);
+            if (userDoc.exists()) {
+                console.log("User data:", userDoc.data());
+                // Kullanıcı verilerini kullanmak için burada işlemleri gerçekleştirin
+            } else {
+                console.log("No such user document!");
+                // Kullanıcı verisi bulunamazsa uygun şekilde işlem yapın
+            }
         } catch (error) {
-          console.error("Error fetching user data:", error);
-          // Hataları uygun şekilde işleyin, örneğin, kullanıcıya hata mesajlarını gösterin
+            console.error("Error fetching user data:", error);
+            // Hataları uygun şekilde işleyin, örneğin, kullanıcıya hata mesajlarını gösterin
         }
-      };
-      
-   
+    };
+
+
 
 
     const promations = data.promations;
@@ -96,16 +97,32 @@ export default function HomePage() {
     }
     const [imageCount, setImageCount] = useState(0);
     const [WaterCount, setWaterCount] = useState(0);
+
+
+
+
+
+
+
+
+
+
     const addImage = () => {
         if (imageCount < 15) {
             setImageCount((prevCount) => prevCount + 1);
             setWaterCount((prevCount) => prevCount + 0.2);
         }
         fetchUserData('faagağogjspodjgpsj');
+
+
+        handleClearCartData();
+
+
+
     };
     const totalCalories = useSelector((state) => state.cart.totalCalories);
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1,  justifyContent: 'center' 	}}>
             <View style={style.header}>
                 <View>
                     <Text style={style.AppName}> KaloriNet</Text>
@@ -113,13 +130,13 @@ export default function HomePage() {
                 <View>
                     <TouchableOpacity style={style.calendar} onPress={handleCalendarPress}>
 
-                        <Text style={{padding: 10,color: '#2f4f4f'}}>{formattedDate}</Text>
+                        <Text style={{ padding: 10, color: '#2f4f4f' }}>{formattedDate}</Text>
                         <Icon name="calendar" color="#2f4f4f" size={32} />
 
                     </TouchableOpacity>
                 </View>
             </View>
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView style={{ }}>
                 <View style={style.banner}>
                     <Text style={style.bannertext}>Zorlanıyorsanız, başarı yaklaşıyor demektir.</Text>
                 </View>
@@ -155,23 +172,14 @@ export default function HomePage() {
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('ActivitiesHome')}>
                     <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#ABEBC6', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', borderWidth: 1, borderColor: '#ABEBC6', justifyContent: 'space-between' }}>
-                    <Image
-        source={require('../assets/green.jpg')} // veya başka bir kaynak
-        style={{   
-          resizeMode: 'cover', // Resmi kaplaması için
-          position: 'absolute',
-          top: 0,
-          left: -1,
-          width:'100%',	
-          height:90, }}
-      />
+                  
                         <View style={{ flex: 1, width: '70%', margin: 4 }}>
-                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Egzersiz</Text>
+                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#ffffff' }}> Egzersiz</Text>
                             <View style={style.line} />
-                            <Text style={{ fontSize: 12, color: '#556b2f' }}> Yakılan kalori</Text>
-                            <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalActiviteCalories} / Kcal</Text>
+                            <Text style={{ fontSize: 12, color: '#ffffff' }}> Yakılan kalori</Text>
+                            <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#ffffff' }}>{totalActiviteCalories} / Kcal</Text>
                         </View>
-                        <View style={{ width: '40%', opacity: 0.8, height: '100%', alignItems: 'center', backgroundColor: '#ABEBC6', justifyContent: 'center', }}>
+                        <View style={{ width: '40%', opacity: 0.8, height: '100%', alignItems: 'center', justifyContent: 'center', }}>
 
                             <Image
                                 style={{
@@ -182,10 +190,24 @@ export default function HomePage() {
                         </View>
                     </View>
                 </TouchableOpacity>
-                <View style={{ flex: 1, width: '95%', height: '100%', backgroundColor: '#ffffff', borderWidth: 1, borderColor: '#ffffff', margin: 8, padding: 4, borderRadius: 12, }}>
-                    <View style={{ alignItems: 'center', margin: 2,paddingRight:18, flexDirection:'row', justifyContent:'space-between'}}>
-                        <Text style={{ fontSize: 16 ,fontWeight: 'bold',}}> Su Takipcisi </Text>
-                        <Text style={{ fontSize: 16 ,fontWeight: 'bold',}}> {WaterCount.toFixed(1)} L</Text>
+                <View style={{ flex: 1, width: '95%', height: '100%', backgroundColor: '#ffffff', borderColor: '#ffffff', margin:8, borderRadius: 12, }}>
+                    <Image
+                        source={require('../assets/blue.jpg')} // veya başka bir kaynak
+                        style={{
+                            resizeMode: 'cover', // Resmi kaplaması için
+                            position: 'absolute',
+                          
+                            opacity: 0.5,
+                            width: '100%',
+                            height: '100%', borderRadius: 12,
+                        }}
+                    />
+
+
+
+                    <View style={{ alignItems: 'center', margin: 2, paddingRight: 18, flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', }}> Su Takipcisi </Text>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', }}> {WaterCount.toFixed(1)} L</Text>
                     </View>
                     <View style={{ alignItems: 'center', flex: 1 }}>
                         <View style={{

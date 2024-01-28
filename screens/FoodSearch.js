@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../utils/redux/store.js'
 import { Button } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { firestoreDB } from '../config/firebase.js';
+
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { Feather } from '@expo/vector-icons';
 
@@ -17,30 +17,68 @@ export default function FoodSearch({ route }) {
 
   const [cartItems, setCartItems] = useState([]);
 
+
+
+
+
   const handleAddToCarts = async (item) => {
     try {
+
+    
+      const newItem = {
+        ...item,
+        mealType: mealType,
+      };
+
+
+
+      let itemArray = await AsyncStorage.getItem('cartItems');
+      itemArray = JSON.parse(itemArray);
+      if (itemArray) {
+        let array = itemArray;
+
+        array.push(newItem);
+        
+        
+          await AsyncStorage.setItem('cartItems', JSON.stringify(array));
+           
+          setCartItems(array);
+          dispatch(addToCart(array));
+
+        } else {
+          let array = [];
+          array.push(item);
+          try {
+            await AsyncStorage.setItem('cartItems', JSON.stringify(array));
+     
+            navigation.navigate('Home');
+          } catch (error) {
+            return error;
+          }
+          
+          console.log('Urun sepete eklendi:', itemArray);
+        }
+      
+
       // AsyncStorage'den sepeti al
-      const existingCartItems = await AsyncStorage.getItem('cartItems');
+    //  const existingCartItems = await AsyncStorage.getItem('cartItems');     
      
-     
-      let updatedCartItems = existingCartItems ? JSON.parse(existingCartItems) : [];
+  //    let updatedCartItems = existingCartItems ? JSON.parse(existingCartItems) : [];
       
      // Yeni ürünü sepete ekle
-     updatedCartItems.push(item);
+     //updatedCartItems.push(newItem);
 
      // Güncellenmiş sepet verisini AsyncStorage'e kaydet
-     await AsyncStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    // await AsyncStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
  
 
       // State'i güncelle
-      setCartItems(updatedCartItems);
-      dispatch(addToCart(updatedCartItems));
+     
       console.log('Urun sepete eklendi:', cartItems);
     } catch (error) {
       console.error('Hata:', error);
     }
   };
-
 
 
 

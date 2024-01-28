@@ -2,7 +2,7 @@ import react, { useState } from "react";
 import { Text, Image, SafeAreaView } from "react-native";
 import { View } from "react-native";
 import { Avatar, Title, Subheading, Button, TextInput } from "react-native-paper";
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from "@react-navigation/native";
 import { auth } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -45,7 +45,8 @@ export default function SignIn() {
 
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, justifyContent: 'center'} }>
+       
         <View
           style={{
             alignItems: "center",

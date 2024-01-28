@@ -111,19 +111,18 @@ export default function MyCalorieCart() {
 
   return (
 
-    <SafeAreaView style={{ flex: 1, }} >
+    <SafeAreaView style={{ flex: 1 }} >
 
       <View style={{ alignItems: 'center', }}>
         <Image
-          source={require('../assets/green.jpg')} // veya başka bir kaynak
+          source={require('../assets/gren.jpg')} // veya başka bir kaynak
           style={{
             resizeMode: 'cover', // Resmi kaplaması için
             position: 'absolute',
-
+            borderRadius:40,
             width: 400,
-            height: 300,
-            borderBottomRightRadius: 40,
-            borderBottomLeftRadius: 40
+            height: '30%',
+         
           }}
         />
 
@@ -155,11 +154,11 @@ export default function MyCalorieCart() {
           </View>
 
         </View>
+        <View style={{top:0, width: '100%', backgroundColor: '#f0f0f0', height:7 }}></View>
 
+        <View style={{ top: -16, width: '100%', alignItems: 'center', padding: 1, margin: 1, marginBottom: 24, flexDirection: 'row', justifyContent: 'center', borderBottomEndRadius: 30, borderBottomStartRadius: 30, }}>
 
-        <View style={{ top: -22, width: '100%', alignItems: 'center', padding: 2, margin: 1, marginBottom: 24, flexDirection: 'row', justifyContent: 'center', borderBottomEndRadius: 30, borderBottomStartRadius: 30, }}>
-
-          <View style={{ top: 20, padding: 8, backgroundColor: '#f8f8ff', width: '90%', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', borderRadius: 8 }}>
+          <View style={{ top: 20, padding: 8, width: '90%', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', borderRadius: 8 }}>
             <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'colum', flex: 1 }}>
               <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#1b0a0a' }}>Karbonhidrat </Text>
 
@@ -223,7 +222,7 @@ const styles = StyleSheet.create({
 
   mealContainer: {
 
-    backgroundColor: '#f8f8ff', height: 90, alignItems: 'center', width: '96%', flexDirection: 'row', borderRadius: 13, flex: 1, justifyContent: 'space-between', marginVertical: 2,
+    backgroundColor: '#f8f8ff', height: 90, alignItems: 'center', width: '98%', flexDirection: 'row', borderRadius: 13, flex: 1, justifyContent: 'space-between', marginVertical: 2,
     borderBottomRightRadius: 12, borderColor: '#4CAF50', borderRightWidth: 1,
     elevation: 4,
 
@@ -249,8 +248,8 @@ const styles = StyleSheet.create({
   mealAddButton: {
     position: 'absolute',
     bottom: 28,
-    right: -6,
-    backgroundColor: '#4CAF50',
+    right: 2,
+    backgroundColor: '#2a5d54',
     borderRadius: 50,
     width: 40,
     height: 40,
@@ -272,8 +271,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     position: 'absolute',
     bottom: 20,
-    right: -16,
-    backgroundColor: '#f0f0f0',
+    right: -8,
+    
     borderTopLeftRadius: 50,
     borderBottomStartRadius: 50,
     borderTopStartRadius: 50,
@@ -283,7 +282,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderLeftWidth: 1,
-    borderColor: '#4CAF50',
+    borderColor: '#0c393f',
 
   },
   line: {
@@ -295,7 +294,7 @@ const styles = StyleSheet.create({
   },
   mealContainerTitle: {
     fontSize: 14,
-    color: '#4CAF50',
+    color: '#2a5d54',
     padding: 4
   }
 

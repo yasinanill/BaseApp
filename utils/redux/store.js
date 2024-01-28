@@ -20,19 +20,39 @@ const cartSlice = createSlice({
     totalCarbo: 0,
     totalPro: 0,
     totalFat: 0,
+    
   },
   reducers: {
     addToCart: (state, action) => {
       
-      const newItem = action.payload;
-      state.items.push(newItem);
-      state.totalCalories = newItem.reduce((total, item) => total + item.productCalorie, 0);
-      state.totalCarbo = newItem.reduce((total, item) => total + item.productCarbo, 0);
-      state.totalPro = newItem.reduce((total, item) => total + item.productProtein, 0);
-      state.totalFat = newItem.reduce((total, item) => total + item.productFAt, 0);
-  
-      console.log('wwwwww' ,state.totalCalories)
+      if (state.items) {
+      state.items = action.payload; 
+    
+      
+        state.totalCalories = state.items.reduce((total, item) => total + item.productCalorie, 0);
+        state.totalCarbo = state.items.reduce((total, item) => total + item.productCarbo, 0);
+        state.totalPro = state.items.reduce((total, item) => total + item.productProtein, 0);
+        state.totalFat = state.items.reduce((total, item) => total + item.productFAt, 0);
+      }
+    
+      
     },
+    
+    removeFromCart: (state, action) => {
+      const itemToRemove = action.payload;
+      state.items = state.items.filter(item => item.id !== itemToRemove.id);
+    },
+    clearCart: (state) => {
+      state.items = [];
+      state.totalCalories = 0;
+      state.totalCarbo = 0;
+      state.totalPro = 0;
+      state.totalFat = 0;
+      
+  
+    },
+
+
     // Diğer reducer'ları buraya ekleyin (örneğin, ürünü sepetten çıkarma)
   },
 });
@@ -72,7 +92,7 @@ const activiteCalorieSlice = createSlice({
 
 export const { addCalorie } = activiteCalorieSlice.actions;
 export const { setUserData } = userSlice.actions;
-export const { addToCart } = cartSlice.actions;
+export const { addToCart , removeFromCart, clearCart } = cartSlice.actions;
 
 const store = configureStore({
   reducer: {

@@ -72,9 +72,9 @@ export default function TabsNavigator() {
 
     <Tabs.Navigator screenOptions={{
       tabBarStyle:
-        { postion: "absolute", bottom: 12, left: 0, right: 0, margin: 12, elevation: 0, backgroundColor: '#ffffff', height: 80, borderRadius: 15 }
+        { postion: "absolute", bottom: 12, left: 0, right: 0, marginHorizontal: 10, elevation: 2, height: 80, borderRadius: 15 }
 
-      ,
+    
     }}>
 
 
