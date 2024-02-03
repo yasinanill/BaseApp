@@ -119,7 +119,8 @@ export default function MyCalorieCart() {
           style={{
             resizeMode: 'cover', // Resmi kaplaması için
             position: 'absolute',
-            borderRadius:40,
+            borderBottomRightRadius:40,
+            borderBottomLeftRadius:40,
             width: 400,
             height: '30%',
          

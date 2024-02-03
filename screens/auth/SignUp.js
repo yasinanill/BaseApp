@@ -93,22 +93,22 @@ export default function SignUp() {
       </View>
 
       <View style={{ margin: 10, color: "purple", justifyContent: "center", alignItems: "center", marginTop: 10 }}>
-        <Text style={{ margin: 10, color: "purple", fontSize: 32 }}>Kaydol</Text>
+        <Text style={{ margin: 8, color: "black", fontSize: 20 }}>Hoşgeldiniz</Text>
       </View>
 
-      <TextInput label="Email" style={{ margin: 10, backgroundColor: "#ffd65a", opacity: 0.5 }} value={email} onChangeText={(text) => setEmail(text)} />
-      <TextInput label="Sifre" style={{ margin: 10, backgroundColor: "#ffd65a", opacity: 0.5 }} value={password} onChangeText={(text) => setPassword(text)} />
-      <TextInput label="Kullanıcı Adı" style={{ margin: 10, backgroundColor: "#ffd65a", opacity: 0.5 }} value={displayName} onChangeText={(text) => setName(text)} />
+      <TextInput label="Email" style={{ margin: 8, backgroundColor: "#f0f0f0", borderWidth:1 , borderColor:'#ffd65a'  }} value={email} onChangeText={(text) => setEmail(text)} />
+      <TextInput label="Sifre"style={{ margin: 8, backgroundColor: "#f0f0f0", borderWidth:1 , borderColor:'#ffd65a'  }} value={password} onChangeText={(text) => setPassword(text)} />
+      <TextInput label="Kullanıcı Adı"style={{ margin: 8, backgroundColor: "#f0f0f0", borderWidth:1 , borderColor:'#ffd65a'  }} value={displayName} onChangeText={(text) => setName(text)} />
 
 
-      <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10 }}>
+      <View style={{ margin: 5 }}>
 
-        <Button style={{ margin: 10, backgroundColor: "#ffd65a" }} mode="contained" onPress={signUpTest} loading={isLoading}>
+        <Button style={{ margin: 2, backgroundColor: "#ffd65a",borderRadius:0 }} mode="contained" onPress={signUpTest} loading={isLoading}>
           Kaydol
         </Button></View>
       <View>
-        <Text style={{ textAlign: 'center', color: '#666', marginBottom: 30 }}>
-          Or, login with ...
+        <Text style={{margin: 5,  textAlign: 'center', color: '#666', marginBottom: 30 }}>
+         Yada , ile giriş yap
         </Text>
 
         <View
@@ -175,9 +175,9 @@ export default function SignUp() {
             justifyContent: 'center',
             marginBottom: 30,
           }}>
-          <Text>New to the app?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-            <Text style={{ color: '#AD40AF', fontWeight: '700' }}> Register</Text>
+          <Text>Zaten Hesabın var mı ?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+            <Text style={{ color: '#ffd65a', fontWeight: '700' }}> Giriş Yap </Text>
           </TouchableOpacity>
         </View>
       </View>

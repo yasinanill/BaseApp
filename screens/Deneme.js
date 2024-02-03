@@ -106,7 +106,7 @@ export default function YourComponent({ route}) {
     const data 
       = {
           height : height,
-          weight : weight,  
+          weight : [weight],  
           age : age,
           gender : gender,
           activityLevel : activityLevel,
@@ -222,7 +222,7 @@ export default function YourComponent({ route}) {
 
   return (
     <ImageBackground
-      source={require('../components/database/images/foods/kosu.png')}
+      source={require('../components/database/images/foods/kk.jpeg')}
       style={styles.container}
     >
       <View style={styles.content}>

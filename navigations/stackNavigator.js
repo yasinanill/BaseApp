@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import HomePage from '../screens/HomePage'
@@ -17,6 +17,7 @@ import RecipePage from '../screens/FoodInfo'
 import RecipesHome from '../screens/RecipesHome'
 import SignIn from '../screens/auth/SignIn'
 import SignUp from '../screens/auth/SignUp'
+import Fooddetails from '../screens/FoodDetails'
 
 
 const Stack = createNativeStackNavigator()
@@ -28,7 +29,7 @@ export default function AuthStack() {
 
   return (
    
-     <Stack.Navigator screenOptions={{ cardStyle: { backgroundColor: 'red' } }}>
+     <Stack.Navigator screenOptions={{headerShown: false}}>
     
     
         <>
@@ -42,6 +43,7 @@ export default function AuthStack() {
         <Stack.Screen name="RecipesHome" component={RecipesHome} options={{ headerShown: false }} />
         <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+        <Stack.Screen name="FoodDetails" component={Fooddetails} options={{ headerShown: false }} />
        
         
         <Stack.Screen name="FoodSearch" component={FoodSearch} options={({ route }) => ({ title: route.params.name })} />

@@ -26,7 +26,26 @@ export default function ActivitiesHome({ }) {
     ]);
     const navigation = useNavigation();
     const [isFavorite, setIsFavorite] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+     const [searchResults, setSearchResults] = useState([]);
    
+
+
+     const handleSearch = (term) => {
+
+        const results = activitieItems.filter((item) =>
+          item.title && item.title.toLowerCase().includes(term.toLowerCase())
+        );
+    
+        setSearchResults(results);
+    
+    
+    
+      };
+
+
+
+
    
     const favoriteItems = activitieItems.filter(item => item.isFavorite === 'true');
     console.log(favoriteItems);
@@ -38,11 +57,16 @@ export default function ActivitiesHome({ }) {
         ));
       };
 
+
+
+
     const renderImageItem = ({ item }) => (
         <View style={style.imageContainer}>
 
             <View  style={style.imageText}>
-
+            <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={style.favoriteButton}>
+                                <FontAwesome name={item.isFavorite == 'true' ? 'star' : 'star-o'} size={24} color={item.isFavorite == 'true' ? 'gold' : 'gray'} />
+                                </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate('Activite', { item })} style={style.imageTap}>
                     <Image
@@ -63,12 +87,27 @@ export default function ActivitiesHome({ }) {
         <SafeAreaView style={style.container}>
 
             <View >
-                <TextInput
-                    style={style.input}
-                    placeholder="Aktivite adını girin..."
+   
+    <TextInput
+        style={style.input}
+        placeholder="Aktivite adını girin..."
+        value={searchTerm}
+        onChangeText={(text) => {
+          setSearchTerm(text);
+          if (text.length >= 1) {
+            handleSearch(text);
+          }
+        }}
+      />
+                <FlatList
+                data={searchResults}
+                renderItem={renderImageItem}
 
-                //  onChangeText={(text) => setSearchTerm(text)}
-                />
+                 keyExtractor={(item) => item.id.toString()} numColumns={3}
+         />    
+
+
+
                 <Text style={{ padding: 10, fontSize: 18, marginVertical: 8, fontWeight: '400' }}> Favoriler
                 </Text>
 
@@ -83,7 +122,7 @@ export default function ActivitiesHome({ }) {
 
 
 
-                            <View key={item.id} style={style.imageText}>
+                            <View key={item.id} style={style.imageContain}>
 
                                 <TouchableOpacity onPress={() => toggleFavorite(item.id)} style={style.favoriteButton}>
                                 <FontAwesome name={item.isFavorite == 'true' ? 'star' : 'star-0'} size={24} color={item.isFavorite == 'true' ? 'gold' : 'gray'} />
@@ -121,9 +160,9 @@ const style = StyleSheet.create({
     },
     imageContainer: {
 
-        flexDirection: 'row',
+        flexGrow: 1,
         flexWrap: 'wrap',
- 
+        flexDirection: 'row',
 
     },
     text: {
@@ -154,6 +193,32 @@ const style = StyleSheet.create({
 
 
     imageText: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 140,
+        width: 100,
+        position: 'relative',
+
+        ...Platform.select({
+            ios: {
+                shadowColor: 'black',
+                shadowOffset: { width: 0, height: 2 },
+                shadowOpacity: 0.6,
+                shadowRadius: 3,
+            },
+            android: {
+                elevation: 6,
+            },
+        }),
+
+        backgroundColor: 'white',
+        padding: 5,
+        alignItems: 'center',
+        borderRadius: 10,
+        margin: 6
+
+    },
+    imageContain: {
         alignItems: 'center',
         justifyContent: 'center',
         height: 140,

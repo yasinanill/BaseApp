@@ -8,8 +8,9 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/knn.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#2f4f4f"
+      "resizeMode": "contain"
+    
+
     },
     "assetBundlePatterns": [
       "**/*"
@@ -18,14 +19,26 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/kn.jpeg",
+
+      "name": "KaloriNET",
+      "slug": "BaseApp",
+      "version": "1.0.0",
+      "orientation": "portrait",
+      "icon": "./assets/kn.jpeg",
+      "userInterfaceStyle": "light",
+      "splash": {
+        "image": "./assets/knn.png",
+        "resizeMode": "contain",
         "backgroundColor": "#2f4f4f"
+      },
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/kn.jpeg"
+       
       },
       "package": "com.yaskay7.BaseApp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/kn.jpeg"
     },
     "extra": {
       "eas": {

@@ -45,7 +45,7 @@ export default function SignIn() {
 
 
     return (
-      <SafeAreaView style={{ flex: 1, justifyContent: 'center'} }>
+      <SafeAreaView style={{ justifyContent: 'center'} }>
        
         <View
           style={{
@@ -57,40 +57,40 @@ export default function SignIn() {
           }}
         >
           <View>
-            <Image
-              style={{
-                height: "100%",
-                marginBottom: 10,
-                margin: 2,
-                padding: 8,
-                borderRadius: 10,
-                resizeMode: "contain",
-              }}
+          <Image
+            style={{
+              height: "100%",
+              marginBottom: 10,
+              margin: 2,
+              padding: 8,
+              width: 400,
+              borderRadius: 10,
+              resizeMode: "cover",
+            }}
               source={require("../../assets/kn.jpeg")}
             />
           </View>
         </View>
   
         <View style={{ margin: 10, color: "purple", justifyContent: "center", alignItems: "center", marginTop: 10 }}>
-          <Text style={{ margin: 10, color: "purple", fontSize: 32 }}>KaloriNet</Text>
-          <Text style={{ margin: 10, color: "black", fontSize: 16 }}>Hoşgeldiniz</Text>
+        
+          <Text style={{ margin: 10, color: "black", fontSize: 22 ,fontFamily:"serif"}}>Giriş Yap</Text>
         </View>
   
-        <TextInput label="Email" style={{ margin: 10, backgroundColor: "#ffd65a", opacity: 0.5 }} value={email} onChangeText={(text) => setEmail(text)} />
-        <TextInput label="Sifre" style={{ margin: 10, backgroundColor: "#ffd65a", opacity: 0.5 }} value={password} onChangeText={(text) => setPassword(text)} />
-        <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10 }}>
-          {isSignedIn === false ? (
-            <Button style={{ margin: 10, backgroundColor: "#ffd65a" }} mode="contained" onPress={() => navigation.navigate("SignUp")} loading={isLoading}>
-                Hesabım Yok
+        <TextInput label="Email" style={{ margin: 10, backgroundColor: "#ffd65a", opacity: 0.4 }} value={email} onChangeText={(text) => setEmail(text)} />
+        <TextInput label="Sifre" style={{ margin: 10, backgroundColor: "#ffd65a", opacity: 0.4 }} value={password} onChangeText={(text) => setPassword(text)} />
+        <View style={{  justifyContent: "center", marginTop: 10 }}>
+        
+            <Button  style={{ margin: 10, backgroundColor: "#ffd65a",borderRadius:0 }}  mode="contained" onPress={() => navigation.navigate("SignUp")} loading={isLoading}>
+               Giriş Yap
             </Button>
-          ) : (
-            <Button style={{ margin: 10, textcolor: "black" }} Title="Sing Out" onPress={() => {}}>
-              Cikis Yap
-            </Button>
-          )}
-          <Button Title="Sing In" onPress={signInTest} style={{ margin: 10, textcolor: "black" }}>
-            Giris Yap
-          </Button>
+    
+ 
+ 
+
+
+
+
         </View>
       </SafeAreaView>
     );

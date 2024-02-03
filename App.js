@@ -11,8 +11,12 @@ export default function App() {
 
  
   return (
+
+
     <Provider store={store}>
       <NavigationContainer>
+   
+      <StatusBar barStyle="light-content"  />
         <AuthStack />
       </NavigationContainer>
     </Provider>

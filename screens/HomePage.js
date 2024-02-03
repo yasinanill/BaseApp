@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { LinearGradient } from 'react-native-svg';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { firestoreDB } from '../config/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useCartActions } from '../utils/CartUtils';
 
 
@@ -26,12 +26,13 @@ export default function HomePage() {
             { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'), items: 'RecipesHome' },
             { id: 4, title: 'Aktiviteler', icon: require('../assets/images/activities.png'), items: 'ActivitiesHome' },
             { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'), items: 'CalorieCalculator' },
-            { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png'), items: 'SignIn' },
+            { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png'), items: 'SignUp' },
         ],
         products: [
-            { id: 4, title: 'Karpuz', Image: require('../components/database/images/foods/karpuz.jpg'), kalori: '150' },
-            { id: 2, title: 'Dondurma', Image: require('../components/database/images/foods/dond.jpg'), kalori: '1333' },
-            { id: 3, title: 'Kandil Simidi ', Image: require('../components/database/images/foods/kandil.jpg'), kalori: '150' },
+            { id: 4, title:'Peynirli Karnabahar', Image: require('../components/database/images/foods/h.png'), calorie: '522 kcal' , Amount:'1 Porsiyon (255 gr)' ,description:'Evinizde kolayca bulabileceğiniz malzemelerle hazırlanan graten, özellikle yoğun günlerde hızlı bir alternatif sunacak. Haşlanmış karnabaharları nefis bir sos ve peynirle buluşturarak, fırında muhteşem bir lezzet elde ediyoruz!' },
+            { id: 5, title: 'Kuskuslu  Çorba', Image: require('../components/database/images/foods/e.jpg'), calorie: '333 kcal' , Amount:'1 Porsiyon (624 gr)' ,description:'Kilo almak isteyenler buraya! İçerisinde sağlıklı pek çok yağ ve protein kaynağının bulunduğu nefis salatanın tarifini sizinle paylaşıyoruz!' },
+            { id: 6, title: 'Pane Tavuklu Salata', Image: require('../components/database/images/foods/d.png'), calorie: '1005 kcal' , Amount:'1 Porsiyon (519 gr)' ,description:'Kilo almak isteyenler buraya! İçerisinde sağlıklı pek çok yağ ve protein kaynağının bulunduğu nefis salatanın tarifini sizinle paylaşıyoruz!' },
+       
         ],
     };
 
@@ -48,12 +49,52 @@ export default function HomePage() {
 
 
     const fetchUserData = async (userId) => {
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+
+          
+    
+    
         try {
             const userDocRef = doc(firestoreDB, "users", userId);
             const userDoc = await getDoc(userDocRef);
+            console.log("User data:", userDoc.data());
+         
+            const userdata = userDoc.data();
+            const userdatass = userdata.weight;
+            userdatass.push(200);
+            const newWeightData = 150;
+
             if (userDoc.exists()) {
-                console.log("User data:", userDoc.data());
+                
+               
+                console.log("User data:",userdatass);
+                
+
                 // Kullanıcı verilerini kullanmak için burada işlemleri gerçekleştirin
+
+               
+                await updateDoc(userDocRef, {
+                    weight: userdatass // Yeni kilo verisi doğrudan güncellenir
+                  });
+
+
+
+                  console.log("User data:",userdata.weight);
+
+
+
+
+
             } else {
                 console.log("No such user document!");
                 // Kullanıcı verisi bulunamazsa uygun şekilde işlem yapın
@@ -82,16 +123,23 @@ export default function HomePage() {
             <Text style={style.categoryItemTitle}>{item.title}</Text>
         </View>
     }
+
+
+
+
+    const goToDetails = (item) => {
+        navigation.navigate('FoodDetails', { item}); // Detaylar sayfasına yönlendirirken veriyi taşıyoruz
+      };
+
     renderProductItem = ({ item }) => {
         return <View style={style.productItem}>
-            <TouchableOpacity
-            >
+            <TouchableOpacity onPress={() => goToDetails(item)}>
                 <View style={style.productItemIconContainer}>
                     <Image source={item.Image} style={style.ProductItemimage} />
                 </View>
-                <View style={{ padding: 10 }}>
+                <View style={{ padding: 4 , alignItems: 'center' }}>
                     <Text style={style.productItemTitle}>{item.title} </Text>
-                    <Text style={style.productItemTitle}>{item.kalori} /kcal</Text>
+                    <Text style={style.productItemTitle}>{item.calorie}</Text>
                 </View></TouchableOpacity>
         </View>
     }
@@ -112,9 +160,9 @@ export default function HomePage() {
             setImageCount((prevCount) => prevCount + 1);
             setWaterCount((prevCount) => prevCount + 0.2);
         }
-        fetchUserData('faagağogjspodjgpsj');
+       
 
-
+        fetchUserData('20rJyW850SP5c1g6t15t7tEjD7h2');
         handleClearCartData();
 
 
@@ -154,8 +202,8 @@ export default function HomePage() {
                 <TouchableOpacity onPress={() => navigation.navigate('MyCalorieCart')}>
                     <View style={{ borderWidth: 1, borderColor: '#F5B7B1', flex: 1, width: '95%', backgroundColor: '#F5B7B1', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <View style={{ flex: 1, margin: 4, width: '70%' }}>
-                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Kalori Günlüğüm</Text>
-                            <View style={style.line} />
+                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' ,marginBottom:12}}> Kalori Günlüğüm</Text>
+                          
                             <Text style={{ fontSize: 12, color: '#556b2f' }}> Alınan kalori</Text>
                             <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalCalories} / Kcal</Text>
                         </View>
@@ -174,10 +222,10 @@ export default function HomePage() {
                     <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#ABEBC6', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', borderWidth: 1, borderColor: '#ABEBC6', justifyContent: 'space-between' }}>
                   
                         <View style={{ flex: 1, width: '70%', margin: 4 }}>
-                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#ffffff' }}> Egzersiz</Text>
+                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Egzersiz</Text>
                             <View style={style.line} />
-                            <Text style={{ fontSize: 12, color: '#ffffff' }}> Yakılan kalori</Text>
-                            <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#ffffff' }}>{totalActiviteCalories} / Kcal</Text>
+                            <Text style={{ fontSize: 12, color: '#556b2f' }}> Yakılan kalori</Text>
+                            <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalActiviteCalories} / Kcal</Text>
                         </View>
                         <View style={{ width: '40%', opacity: 0.8, height: '100%', alignItems: 'center', justifyContent: 'center', }}>
 
@@ -205,9 +253,9 @@ export default function HomePage() {
 
 
 
-                    <View style={{ alignItems: 'center', margin: 2, paddingRight: 18, flexDirection: 'row', justifyContent: 'space-between' }}>
-                        <Text style={{ fontSize: 16, fontWeight: 'bold', }}> Su Takipcisi </Text>
-                        <Text style={{ fontSize: 16, fontWeight: 'bold', }}> {WaterCount.toFixed(1)} L</Text>
+                    <View style={{ alignItems: 'center', margin: 2, paddingRight: 18, flexDirection: 'row', justifyContent: 'space-between',marginHorizontal:8 }}>
+                        <Text style={{ fontSize: 16, fontWeight:800,color:'#556b2f' }}> Su Takipcisi </Text>
+                        <Text style={{ fontSize: 16,fontWeight:800,color:'#556b2f'  }}> {WaterCount.toFixed(1)} L</Text>
                     </View>
                     <View style={{ alignItems: 'center', flex: 1 }}>
                         <View style={{
@@ -257,13 +305,13 @@ export default function HomePage() {
                     <View style={style.categoryAreaTopBar}>
                         <Text style={style.categoryone}>Haftanın Favorileri</Text>
                     </View>
-                    <TouchableOpacity>
+                
                         <View style={{ marginTop: 2 }}>
                             <FlatList style={{ paddingHorizontal: 10, marginBottom: 12, paddingVertical: 12 }}
                                 showsHorizontalScrollIndicator={false}
                                 data={products} horizontal={true} renderItem={this.renderProductItem} />
                         </View>
-                    </TouchableOpacity>
+                   
                 </View>
             </ScrollView>
         </SafeAreaView>
@@ -417,12 +465,12 @@ const style = StyleSheet.create({
         shadowColor: "#000",
         elevation: 5,
         backgroundColor: "#ffffff",
-        padding: 8,
+        padding: 4,
 
         margin: 2,
         marginBottom: 8,
         borderRadius: 4,
-        width: 120,
+        width: 140,
         height: 140,
     },
     productItemIconContainer: {
@@ -432,6 +480,7 @@ const style = StyleSheet.create({
         justifyContent: "center",
     },
     productItemTitle: {
+       padding:2,
         fontSize: 12,
         fontWeight: '500',
     },
@@ -440,7 +489,7 @@ const style = StyleSheet.create({
         fontWeight: '500',
     },
     ProductItemimage: {
-        width: 100,
+        width: 120,
         height: 80,
     },
     foodArea: {

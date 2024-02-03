@@ -14,7 +14,7 @@ export default function Activite({route}) {
     const {item } = route.params;
     const user = useSelector((state) => state.user);
     const  [content,setContent] = useState(true)
-    const  [weight,setWeight] = useState(user.weight ? user.weight.toString() : '0')
+    const  [weight,setWeight] = useState(user.weight ? user.weight.toString() : 0 )
     const  [minute,setMinute] = useState(0)
     const  [calorie,setCalorie] = useState(0)
     const  [result,setResult] = useState(0)
@@ -92,7 +92,7 @@ resultByMinute =()=>{
                     <TextInput label="Dakika" keyboardType="numeric"  style={{ margin: 10, }} onChangeText={setMinute}
                        
                     />
-                    <TextInput label="Kilo"  keyboardType="numeric" style={{ margin: 10, }}   value={user.weight} onChangeText={(text) => setWeight(text)}/>
+                    <TextInput label="Kilo"  keyboardType="numeric" style={{ margin: 10, }}   value={weight} onChangeText={(text) => setWeight(text)}/>
 
 
 
