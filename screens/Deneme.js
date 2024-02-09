@@ -125,7 +125,7 @@ export default function YourComponent({ route}) {
       // Handle errors appropriately, e.g., display error messages to the user
     }
 
-    navigation.navigate('HomePage');
+    navigation.navigate('TabsNavigation');
 };
 
 

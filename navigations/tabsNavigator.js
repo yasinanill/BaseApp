@@ -13,6 +13,7 @@ import ActivitiesHome from '../components/Activities/ActivitiesHome'
 import FoodSearch from '../screens/FoodSearch'
 import CalorieCalculator from '../screens/CalorieCalculator'
 import { useSelector } from 'react-redux'
+import SignUp from '../screens/auth/SignUp'
 
 
 export default function TabsNavigator() {
@@ -21,7 +22,7 @@ export default function TabsNavigator() {
 
 
 
-
+  const bmiResult = useSelector((state) => state.user.bmiResults);
   const Tabs = createBottomTabNavigator()
   const CustomTabBarButton = ({children, onPress }) => (
 
@@ -78,7 +79,7 @@ export default function TabsNavigator() {
     }}>
 
 
-      <Tabs.Screen name='home' component={HomePage} options={{
+      <Tabs.Screen name='home'       component={HomePage} options={{
         headerShown: false, tabBarLabel: '', tabBarIcon: ({ focused }) => (
           <View style={{
             alignItems: 'center',
@@ -126,6 +127,8 @@ export default function TabsNavigator() {
       }} />
 
     
+{bmiResult ?   (
+  
 
       <Tabs.Screen name="UserData" component={User} options={{
       tabBarLabel: '',  headerShown: false, tabBarIcon: ({ focused }) => (
@@ -153,6 +156,44 @@ export default function TabsNavigator() {
           </View>
         )
       }} />
+  ) : (
+
+
+
+
+    <Tabs.Screen name="UserData" component={SignUp} options={{
+      tabBarLabel: '',  headerShown: false, tabBarIcon: ({ focused }) => (
+          <View style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            top: 10,
+
+
+          }}>
+            <Image source={require('../utils/Images/user.png')}
+              resizeMode='contain'
+              style={{
+                width: 30,
+                height: 30,
+                tintColor: focused ? '#2f4f4f' : '#778899'
+
+              }}
+            />
+            <Text style={{
+              fontSize: 12,
+              color: focused ? '#2f4f4f' : '#778899'
+
+            }}>Profil</Text>
+          </View>
+        )
+      }} />
+
+
+
+
+  )}
+
+
 
     </Tabs.Navigator>
 

@@ -96,7 +96,7 @@ export default function SignUp() {
         <Text style={{ margin: 8, color: "black", fontSize: 20 }}>Hoşgeldiniz</Text>
       </View>
 
-      <TextInput label="Email" style={{ margin: 8, backgroundColor: "#f0f0f0", borderWidth:1 , borderColor:'#ffd65a'  }} value={email} onChangeText={(text) => setEmail(text)} />
+      <TextInput label="Email" style={{ margin: 8, backgroundColor: "#f0f0f0", borderWidth:1 , borderColor:'#ffd65a',  }} value={email} onChangeText={(text) => setEmail(text)} />
       <TextInput label="Sifre"style={{ margin: 8, backgroundColor: "#f0f0f0", borderWidth:1 , borderColor:'#ffd65a'  }} value={password} onChangeText={(text) => setPassword(text)} />
       <TextInput label="Kullanıcı Adı"style={{ margin: 8, backgroundColor: "#f0f0f0", borderWidth:1 , borderColor:'#ffd65a'  }} value={displayName} onChangeText={(text) => setName(text)} />
 
@@ -114,8 +114,10 @@ export default function SignUp() {
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: 'space-around',
             marginBottom: 30,
+       
+
           }}>
           <TouchableOpacity
             onPress={() => { }}
@@ -133,22 +135,7 @@ export default function SignUp() {
   />
 
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => { }}
-            style={{
-              borderColor: '#ddd',
-              borderWidth: 2,
-              borderRadius: 10,
-              paddingHorizontal: 30,
-              paddingVertical: 10,
-            }}>
-              <SvgUri
-    width={40}
-    height={40}
-    uri="https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/facebook.svg"
-  />
 
-          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => { }}
             style={{

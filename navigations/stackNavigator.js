@@ -18,6 +18,7 @@ import RecipesHome from '../screens/RecipesHome'
 import SignIn from '../screens/auth/SignIn'
 import SignUp from '../screens/auth/SignUp'
 import Fooddetails from '../screens/FoodDetails'
+import MyCalorieCart from '../screens/MyCalorieCart'
 
 
 const Stack = createNativeStackNavigator()
@@ -29,10 +30,9 @@ export default function AuthStack() {
 
   return (
    
-     <Stack.Navigator screenOptions={{headerShown: false}}>
+     <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='TabsNavigation'>
     
-    
-        <>
+  
           <Stack.Screen name='TabsNavigation' component={TabsNavigator} options={{ headerShown: false }} /> 
           <Stack.Screen name="HomePage" component={HomePage} options={{ headerShown: false }} />
         <Stack.Screen name="Profil" component={User} options={{ headerShown: false }} />
@@ -42,18 +42,19 @@ export default function AuthStack() {
         <Stack.Screen name="FoodInfo" component={RecipePage} options={{ headerShown: false }} />
         <Stack.Screen name="RecipesHome" component={RecipesHome} options={{ headerShown: false }} />
         <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
-        <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+    
         <Stack.Screen name="FoodDetails" component={Fooddetails} options={{ headerShown: false }} />
-       
+         <Stack.Screen name='YourComponent' component={YourComponent} options={{ headerShown: false }} />
+         <Stack.Screen name='MyCalorieCart' component={MyCalorieCart} options={{headerShown: false  }} />
         
         <Stack.Screen name="FoodSearch" component={FoodSearch} options={({ route }) => ({ title: route.params.name })} />
         <Stack.Screen name="CalorieCalculator" component={CalorieCalculator} options={{headerShown: false  }} />
         <Stack.Screen name="UserActivities" component={UserActivities} options={{ headerShown: false }} />
-          </>
-   
+  
+            <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
 
-          <Stack.Screen name='YourComponent' component={YourComponent} options={{ headerShown: false }} />
-    
+
+  
       </Stack.Navigator>
 
   )

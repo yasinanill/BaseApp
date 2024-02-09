@@ -71,7 +71,8 @@ export default function MyCalorieCart() {
     <View style={{ flex: 1, flexDirection: 'column', padding: 2 }}>
       <TouchableOpacity style={styles.mealContainer} onPress={item.onPressDetail}>
         <View style={styles.mealContainerLchild}>
-          <Text style={styles.mealContainerTitle}>{item.title}</Text>
+          <Text style={styles.mealContainerTitle}>{item.title} (Önerilen: 800/kcal)</Text>
+          
           <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap' }}>
             {item.items.map((item, index) => (
               index < 3 && (
@@ -82,8 +83,7 @@ export default function MyCalorieCart() {
           </View>
         </View>
         <View style={styles.mealContainerRchild}>
-          <Text style={{ fontSize: 12, padding: 4 }}>Önerilen: 800/kcal </Text>
-          <Text style={{ fontSize: 15, marginTop: 4 }}>Toplam</Text>
+          <Text style={{ fontSize: 15, marginTop: 14 }}>Toplam</Text>
           <Text style={{ fontSize: 15, padding: 2 }}>{item.totalCalories} /kcal</Text>
           {/*
         <Image source={item.imageSource} style={styles.mealImage} />*/}

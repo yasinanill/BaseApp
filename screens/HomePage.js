@@ -26,7 +26,7 @@ export default function HomePage() {
             { id: 3, title: 'Öğünler', icon: require('../assets/images/recipes.png'), items: 'RecipesHome' },
             { id: 4, title: 'Aktiviteler', icon: require('../assets/images/activities.png'), items: 'ActivitiesHome' },
             { id: 5, title: 'Testler', icon: require('../assets/images/testler.png'), items: 'CalorieCalculator' },
-            { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png'), items: 'SignUp' },
+            { id: 6, title: 'Tarifler', icon: require('../assets/images/foodss.png'), items: 'MyCalorieCart' },
         ],
         products: [
             { id: 4, title:'Peynirli Karnabahar', Image: require('../components/database/images/foods/h.png'), calorie: '522 kcal' , Amount:'1 Porsiyon (255 gr)' ,description:'Evinizde kolayca bulabileceğiniz malzemelerle hazırlanan graten, özellikle yoğun günlerde hızlı bir alternatif sunacak. Haşlanmış karnabaharları nefis bir sos ve peynirle buluşturarak, fırında muhteşem bir lezzet elde ediyoruz!' },
@@ -162,9 +162,7 @@ export default function HomePage() {
         }
        
 
-        fetchUserData('20rJyW850SP5c1g6t15t7tEjD7h2');
-        handleClearCartData();
-
+   
 
 
     };
@@ -200,14 +198,14 @@ export default function HomePage() {
                     </View>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('MyCalorieCart')}>
-                    <View style={{ borderWidth: 1, borderColor: '#F5B7B1', flex: 1, width: '95%', backgroundColor: '#F5B7B1', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <View style={{ borderWidth: 1, borderColor: '#F5B7B1', flex: 1, width: '95%', backgroundColor: '#ffffff', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', justifyContent: 'space-between' }}>
                         <View style={{ flex: 1, margin: 4, width: '70%' }}>
                             <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' ,marginBottom:12}}> Kalori Günlüğüm</Text>
                           
                             <Text style={{ fontSize: 12, color: '#556b2f' }}> Alınan kalori</Text>
                             <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalCalories} / Kcal</Text>
                         </View>
-                        <View style={{ width: '40%', height: '100%', opacity: 0.8, alignItems: 'center', backgroundColor: '#F5B7B1', justifyContent: 'center', }}>
+                        <View style={{ width: '40%', height: '100%', opacity: 0.8, alignItems: 'center', backgroundColor: '#ffffff', justifyContent: 'center', }}>
                             <Image
                                 style={{
                                     width: 100,
@@ -219,11 +217,11 @@ export default function HomePage() {
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('ActivitiesHome')}>
-                    <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#ABEBC6', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', borderWidth: 1, borderColor: '#ABEBC6', justifyContent: 'space-between' }}>
+                    <View style={{ flex: 1, width: '95%', height: 90, backgroundColor: '#ffffff', margin: 8, padding: 2, borderRadius: 12, flexDirection: 'row', borderWidth: 1, borderColor: '#ABEBC6', justifyContent: 'space-between' }}>
                   
                         <View style={{ flex: 1, width: '70%', margin: 4 }}>
-                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' }}> Egzersiz</Text>
-                            <View style={style.line} />
+                            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#556b2f' ,marginBottom:12 }}> Egzersiz</Text>
+                            { /*      <View style={style.line} />*/}
                             <Text style={{ fontSize: 12, color: '#556b2f' }}> Yakılan kalori</Text>
                             <Text style={{ marginLeft: 4, fontSize: 16, fontWeight: 'bold', color: '#556b2f' }}>{totalActiviteCalories} / Kcal</Text>
                         </View>
